@@ -45,12 +45,23 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
             {
                 _logger.LogInformation("CambiarClaveUsuarioCommandHandler.HandleAsync {Request}", request);
                 // Busca el usuario que deseas actualizar
-                var usuario_bd = _dbContext.Usuario.Update(request);
+                var usuario_bd = _dbContext.Usuario.FirstOrDefault(c => c.usuario == request._request.usuario);
 
-                await _dbContext.SaveEfContextChanges("APP");
-                transaccion.Commit();
-                _logger.LogInformation("AgregarValorePruebaCommandHandler.HandleAsync {Response}", id);
-                return id;
+                if (usuario_bd != null)
+                {
+                    if (request._request.password != null)
+                    {
+                        usuario_bd.password = request._request.password;
+
+                        _dbContext.Usuario.Update(usuario_bd);
+                        await _dbContext.SaveEfContextChanges("APP");
+                        transaccion.Commit();
+
+                        _logger.LogInformation("AgregarValorePruebaCommandHandler.HandleAsync {Response}", usuario_bd.Id);
+                        return usuario_bd.Id;
+                    }
+                }
+                return await HandleAsync(request);
             }
             catch (Exception ex)
             {
