@@ -21,7 +21,7 @@ namespace UCABPagaloTodoMS.Controllers
         [HttpPost("CambiarClave")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Guid>> CambiarClave(CambiarClaveUsuarioRequest valor)
+        public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest valor)
         {
             _logger.LogInformation("Entrando al método que registra los valores de prueba");
             try

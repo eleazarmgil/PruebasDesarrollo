@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Commands;
-using UCABPagaloTodoMS.Application.Mappers;
-using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Infrastructure.Correo;
 using UCABPagaloTodoMS.Core.Database;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands
@@ -11,6 +10,7 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
     {
         private readonly IUCABPagaloTodoDbContext _dbContext;
         private readonly ILogger<CambiarClaveUsuarioCommandHandler> _logger;
+        private EnviarCorreo correo = new EnviarCorreo();
 
         public CambiarClaveUsuarioCommandHandler(IUCABPagaloTodoDbContext dbContext, ILogger<CambiarClaveUsuarioCommandHandler> logger)
         {
@@ -58,10 +58,9 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
                         transaccion.Commit();
 
                         _logger.LogInformation("AgregarValorePruebaCommandHandler.HandleAsync {Response}", usuario_bd.Id);
+                        correo.EnviaCorreoUsuario(usuario_bd.correo, "Cambio de contraseña", "Su contraseña fue cambiada exitosamente, la nueva contraseña es: " + usuario_bd.password.ToString());
+
                         return usuario_bd.Id;
-
-
-
 
                     }
                 }

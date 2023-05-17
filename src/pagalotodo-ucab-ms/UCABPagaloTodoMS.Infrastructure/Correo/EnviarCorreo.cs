@@ -4,28 +4,22 @@ namespace UCABPagaloTodoMS.Infrastructure.Correo
 {
     public class EnviarCorreo
     {
-        public void enviarCorreo(string from, string to, string subject, string body)
+        public void EnviaCorreoUsuario(string correo_para_quien, string asunto_del_correo, string cuerpo_del_mensaje)
         {
-            MailMessage message = new MailMessage(from, to, subject, body);
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.UseDefaultCredentials = false;
-            client.EnableSsl = true;
-            client.Credentials = new System.Net.NetworkCredential("tu-correo@gmail.com", "tu-contraseña-de-correo");
+            MailMessage mensaje = new MailMessage("pagalotodo2023@gmail.com", correo_para_quien, asunto_del_correo, cuerpo_del_mensaje);
+            SmtpClient cliente = new SmtpClient("smtp.gmail.com", 587); //Creo la variable que envia correo atravez del protocolo SMTP
+            cliente.UseDefaultCredentials = false;
+            cliente.EnableSsl = true;
+            cliente.Credentials = new System.Net.NetworkCredential("pagalotodo2023@gmail.com", "Ucab.123");
 
             try
             {
-                client.Send(message);
+                cliente.Send(mensaje);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error al enviar el correo electrónico: {0}", e.Message);
             }
-        }
-
-        public void CambiarClave(string nuevaClave, string usuario)
-        {
-            // Lógica para cambiar la clave aquí
-            enviarCorreo("tu-correo@gmail.com", "destinatario@gmail.com", "Cambio de clave", "Tu clave ha sido cambiada exitosamente");
         }
     }
 }
