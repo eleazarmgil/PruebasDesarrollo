@@ -47,9 +47,9 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
                 // Busca el usuario que deseas actualizar
                 var usuario_bd = _dbContext.Usuario.FirstOrDefault(c => c.usuario == request._request.usuario);
 
-                if (usuario_bd != null)
+                if (usuario_bd != null) //Si el usuario existe
                 {
-                    if (request._request.password != null)
+                    if (request._request.password != null) //Y la nueva password no es vacia
                     {
                         usuario_bd.password = request._request.password;
 
@@ -59,6 +59,10 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
 
                         _logger.LogInformation("AgregarValorePruebaCommandHandler.HandleAsync {Response}", usuario_bd.Id);
                         return usuario_bd.Id;
+
+
+
+
                     }
                 }
                 return await HandleAsync(request);
