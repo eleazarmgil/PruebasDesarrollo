@@ -8,8 +8,8 @@ namespace UCABPagaloTodoMS.Core.Entities
 {
     public class OpcionDePagoEntity : BaseEntity
     {
-        public PagoEntity PagoEntity { get; set; }
-        public DetalleDeOpcionEntity DetalleDeOpcionEntity { get; set; }
+        public PagoEntity? PagoEntity { get; set; }
+        public DetalleDeOpcionEntity? DetalleDeOpcionEntity { get; set; }
 
         public string? nombre { get; set; }
         public int? estatus { get; set; }

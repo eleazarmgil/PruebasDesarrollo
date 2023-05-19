@@ -89,10 +89,10 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("DetalleDeOpcionEntityId")
+                    b.Property<Guid?>("DetalleDeOpcionEntityId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("PagoEntityId")
+                    b.Property<Guid?>("PagoEntityId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -128,7 +128,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("DetalleDePagoEntityId")
+                    b.Property<Guid?>("DetalleDePagoEntityId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -147,7 +147,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
 
                     b.HasIndex("DetalleDePagoEntityId");
 
-                    b.ToTable("Pago");
+                    b.ToTable("PagoEntity");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
@@ -173,7 +173,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Servicio");
+                    b.ToTable("ServicioEntity");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.UsuarioEntity", b =>
@@ -276,7 +276,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 {
                     b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
 
-                    b.Property<Guid>("PagoEntityId")
+                    b.Property<Guid?>("PagoEntityId")
                         .HasColumnType("uuid");
 
                     b.Property<int?>("ci")
@@ -297,13 +297,13 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("nombre_empresa")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("opcion_de_pagoId")
+                    b.Property<Guid?>("opcion_de_pagoId")
                         .HasColumnType("uuid");
 
                     b.Property<int?>("rif")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("servicioId")
+                    b.Property<Guid?>("servicioId")
                         .HasColumnType("uuid");
 
                     b.HasIndex("opcion_de_pagoId");
@@ -317,15 +317,11 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 {
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.DetalleDeOpcionEntity", "DetalleDeOpcionEntity")
                         .WithMany()
-                        .HasForeignKey("DetalleDeOpcionEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DetalleDeOpcionEntityId");
 
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", "PagoEntity")
                         .WithMany()
-                        .HasForeignKey("PagoEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PagoEntityId");
 
                     b.Navigation("DetalleDeOpcionEntity");
 
@@ -336,9 +332,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 {
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.DetalleDePagoEntity", "DetalleDePagoEntity")
                         .WithMany()
-                        .HasForeignKey("DetalleDePagoEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DetalleDePagoEntityId");
 
                     b.Navigation("DetalleDePagoEntity");
                 });
@@ -347,9 +341,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 {
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", "PagoEntity")
                         .WithMany()
-                        .HasForeignKey("PagoEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PagoEntityId");
 
                     b.Navigation("PagoEntity");
                 });
@@ -358,15 +350,11 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 {
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcion_de_pago")
                         .WithMany()
-                        .HasForeignKey("opcion_de_pagoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("opcion_de_pagoId");
 
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", "servicio")
                         .WithMany()
-                        .HasForeignKey("servicioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("servicioId");
 
                     b.Navigation("opcion_de_pago");
 

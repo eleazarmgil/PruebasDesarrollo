@@ -8,7 +8,7 @@ namespace UCABPagaloTodoMS.Core.Entities
 {
     public class ConsumidorEntity : UsuarioEntity
     {
-        public PagoEntity PagoEntity { set; get; }
+        public PagoEntity? PagoEntity { set; get; }
         public int? ci { set; get; }
 
     }

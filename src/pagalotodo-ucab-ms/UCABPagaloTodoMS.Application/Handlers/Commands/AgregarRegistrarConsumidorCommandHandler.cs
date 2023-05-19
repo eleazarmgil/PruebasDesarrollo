@@ -4,7 +4,7 @@ using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Handlers.Queries;
 using UCABPagaloTodoMS.Application.Mappers;
 using UCABPagaloTodoMS.Core.Database;
-using UCABPagaloTodoMS.Infrastructure.Services;
+//using UCABPagaloTodoMS.Infrastructure.Services;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands
 {
@@ -57,7 +57,7 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
                 var id = entity.Id;
                 await _dbContext.SaveEfContextChanges("APP");
                 transaccion.Commit();
-                new Rabbit().SendProductMessage("valor");
+                //new Rabbit().SendProductMessage("valor");
                 _logger.LogInformation("AgregarValorPruebaCommandHandler.HandleAsync {Response}", id);
                 return id;
             }

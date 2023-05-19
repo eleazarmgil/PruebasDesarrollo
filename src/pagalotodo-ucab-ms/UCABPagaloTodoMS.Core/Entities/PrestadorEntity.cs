@@ -8,8 +8,8 @@ namespace UCABPagaloTodoMS.Core.Entities
 {
     public class PrestadorEntity : UsuarioEntity
     {
-        public ServicioEntity servicio { get; set; }
-        public OpcionDePagoEntity opcion_de_pago { get; set; }
+        public ServicioEntity? servicio { get; set; }
+        public OpcionDePagoEntity? opcion_de_pago { get; set; }
 
 
         public int? rif { set; get; }
