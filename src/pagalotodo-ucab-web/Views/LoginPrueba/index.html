@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IniciarSeccion/registrarse, slide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+</body>
+</html>
+
+<body>
+    <div class="container" id="container">
+  
+      <div class="form-container registrarse-container">
+        <form action="#">
+          <h1>Registrarse</h1>
+          <input type="text" placeholder="Usuario">
+          <input type="correo" placeholder="Correo">
+          <input type="password" placeholder="Contraseña">
+          <input type="nombre" placeholder="Nombres">
+          <input type="apellido" placeholder="Apellidos">
+
+          <input type="pregunta_seguridad_1" placeholder="Pregunta Seguridad 1?">
+          <input type="respuesta_seguridad_1" placeholder="Respuesta">
+          <input type="pregunta_seguridad_2" placeholder="Pregunta Seguridad 2?">
+          <input type="respuesta_seguridad_2" placeholder="Respuesta">
+
+          <button>registrarse</button>
+          <span>o usa tu cuenta</span>
+          <div class="social-container">
+            <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
+            <a href="#" class="social"><i class="lni lni-google"></i></a>
+            <a href="#" class="social"><i class="lni lni-Gmail"></i></a>
+          </div>
+        </form>
+      </div>
+  
+      <div class="form-container login-container">
+        <form action="#">
+          <h1>Iniciar sesión</h1>
+          <input type="user" placeholder="Usuario">
+          <input type="password" placeholder="Contraseña">
+          <div class="content">
+            <div class="pass-link">
+              <a href="#">¿Has olvidado tu contraseña?</a>
+            </div>
+          </div>
+          <button>Comenzar</button>
+          <span>o usa tu cuenta</span>
+          <div class="social-container">
+            <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
+            <a href="#" class="social"><i class="lni lni-google"></i></a>
+            <a href="#" class="social"><i class="lni lni-Gmail"></i></a>
+          </div>
+        </form>
+      </div>
+  
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1 class="title">Bienvenidos a <br> nuestra plataforma</h1>
+            <p>Si tienes una cuenta, inicia sesión aquí y diviértete</p>
+            <button class="ghost" id="login">Login
+              <i class="lni lni-arrow-left login"></i>
+            </button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1 class="title">Comienza tu<br>viaje con<br>Pagalo Todo Ucab</h1>
+            <p>Si aún no tiene una cuenta, únase a nosotros y comience su viaje.</p>
+            <button class="ghost" id="registrarse">registrarse
+              <i class="lni lni-arrow-right registrarse"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <script src="script.js"></script>
+  
+  </body>
