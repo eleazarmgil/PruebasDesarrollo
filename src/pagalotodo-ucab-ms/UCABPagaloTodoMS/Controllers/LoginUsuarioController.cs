@@ -22,7 +22,7 @@ namespace UCABPagaloTodoMS.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult< List<LoginUsuarioResponse>>> LoginUsuario([FromBody] LoginUsuarioRequest request)
-            {
+        {
                 _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
                 try
                 {
@@ -35,7 +35,7 @@ namespace UCABPagaloTodoMS.Controllers
                     _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
                     throw;
                 }
-            }
+        }
 
     }
 }
