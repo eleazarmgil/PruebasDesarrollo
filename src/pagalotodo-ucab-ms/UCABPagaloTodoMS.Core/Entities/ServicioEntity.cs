@@ -13,14 +13,10 @@ namespace UCABPagaloTodoMS.Core.Entities
         public string? descripcion { set; get; }
         public double? monto { set; get; }
 
-        //Relacion n a 1 con Pago
-        [ForeignKey("PagoEntity")]
-        public Guid? pagoEntityId { get; set; }
-        public PagoEntity? pago { get; set; }
+        //Relacion 1 a n con Pago
+        public ICollection<ServicioEntity>? pago { get; set; }
 
         //Relacion n a 1 con Conciliacion
-        [ForeignKey("PrestadorEntity")]
-        public Guid prestadorEntityId { get; set; }
         public PrestadorEntity prestador { get; set; } = new PrestadorEntity();
     }
 }

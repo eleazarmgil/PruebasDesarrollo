@@ -16,8 +16,6 @@ namespace UCABPagaloTodoMS.Core.Entities
         public ICollection<PagoEntity>? pagos { get; set; }
 
         //Relacion n a 1 con Administrador
-        [ForeignKey("AdministradorEntity")]
-        public Guid AdministradorEntityId { get; set; }
         public AdministradorEntity administrador { get; set; } = new AdministradorEntity();
 
     }
