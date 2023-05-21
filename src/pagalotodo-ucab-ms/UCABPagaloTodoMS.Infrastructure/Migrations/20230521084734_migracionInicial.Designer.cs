@@ -12,7 +12,7 @@ using UCABPagaloTodoMS.Infrastructure.Database;
 namespace UCABPagaloTodoMS.Infrastructure.Migrations
 {
     [DbContext(typeof(UCABPagaloTodoDbContext))]
-    [Migration("20230521084037_migracionInicial")]
+    [Migration("20230521084734_migracionInicial")]
     partial class migracionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
