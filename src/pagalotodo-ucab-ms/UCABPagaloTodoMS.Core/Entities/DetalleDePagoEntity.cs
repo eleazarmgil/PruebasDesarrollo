@@ -14,7 +14,7 @@ namespace UCABPagaloTodoMS.Core.Entities
 
         //Relacion n a 1 con Pago
         [ForeignKey("PagoEntity")]
-        public Guid pagoEntityId { get; set; }
-        public PagoEntity pago { get; set; }
+        public Guid pagoEntityId { get; set; } 
+        public PagoEntity pago { get; set; } = new PagoEntity();
     }
 }

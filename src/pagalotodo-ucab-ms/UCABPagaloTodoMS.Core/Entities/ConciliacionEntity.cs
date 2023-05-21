@@ -18,7 +18,7 @@ namespace UCABPagaloTodoMS.Core.Entities
         //Relacion n a 1 con Administrador
         [ForeignKey("AdministradorEntity")]
         public Guid AdministradorEntityId { get; set; }
-        public AdministradorEntity administrador { get; set; }
+        public AdministradorEntity administrador { get; set; } = new AdministradorEntity();
 
     }
 }
