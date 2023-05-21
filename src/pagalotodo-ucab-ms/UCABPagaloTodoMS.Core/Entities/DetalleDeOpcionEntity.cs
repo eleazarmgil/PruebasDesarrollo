@@ -17,6 +17,6 @@ namespace UCABPagaloTodoMS.Core.Entities
         //Relacion n a 1 con OpcionDePago
         [ForeignKey("OpcionDePagoEntity")]
         public Guid opcionDePagoEntityId { get; set; }
-        public OpcionDePagoEntity opcionDePago { get; set; }
+        public OpcionDePagoEntity opcionDePago { get; set; } = new OpcionDePagoEntity();
     }
 }

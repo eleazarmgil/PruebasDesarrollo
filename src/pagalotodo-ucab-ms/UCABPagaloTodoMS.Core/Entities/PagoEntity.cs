@@ -18,7 +18,7 @@ namespace UCABPagaloTodoMS.Core.Entities
         //Relacion n a 1 con OpcionDePago
         [ForeignKey("OpcionDePagoEntity")]
         public Guid opcionDePagoEntityId { get; set; }
-        public OpcionDePagoEntity opcionDePago { get; set; }
+        public OpcionDePagoEntity opcionDePago { get; set; } = new OpcionDePagoEntity();
 
         //Relacion 1 a n con DetalleDePago
         public ICollection<DetalleDePagoEntity>? detalleDePago { get; set; }
@@ -26,14 +26,14 @@ namespace UCABPagaloTodoMS.Core.Entities
         //Relacion n a 1 con Consumidor
         [ForeignKey("ConsumidorEntity")]
         public Guid ConsumidorEntityId { get; set; }
-        public ConsumidorEntity consumidor { get; set; }
+        public ConsumidorEntity consumidor { get; set; } = new ConsumidorEntity();
 
         
 
         //Relacion n a 1 con Conciliacion
         [ForeignKey("ConciliacionEntity")]
-        public Guid ConciliacionEntityId { get; set; }
-        public ConciliacionEntity conciliacion { get; set; }
+        public Guid? ConciliacionEntityId { get; set; }
+        public ConciliacionEntity? conciliacion { get; set; }
 
 
     }

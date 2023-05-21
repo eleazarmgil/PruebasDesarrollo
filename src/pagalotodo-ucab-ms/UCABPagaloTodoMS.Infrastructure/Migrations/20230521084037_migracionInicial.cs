@@ -177,7 +177,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     nombre_completo = table.Column<DateOnly>(type: "date", nullable: true),
                     opcionDePagoEntityId = table.Column<Guid>(type: "uuid", nullable: false),
                     ConsumidorEntityId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ConciliacionEntityId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ConciliacionEntityId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -190,8 +190,7 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         name: "FK_Pago_Conciliacion_ConciliacionEntityId",
                         column: x => x.ConciliacionEntityId,
                         principalTable: "Conciliacion",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Pago_Consumidor_ConsumidorEntityId",
                         column: x => x.ConsumidorEntityId,
@@ -238,10 +237,8 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     nombre = table.Column<string>(type: "text", nullable: true),
                     descripcion = table.Column<string>(type: "text", nullable: true),
                     monto = table.Column<double>(type: "double precision", nullable: true),
-                    servicioEntityId = table.Column<Guid>(type: "uuid", nullable: false),
-                    servicioId = table.Column<Guid>(type: "uuid", nullable: false),
+                    pagoEntityId = table.Column<Guid>(type: "uuid", nullable: true),
                     prestadorEntityId = table.Column<Guid>(type: "uuid", nullable: false),
-                    PagoEntityId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -251,20 +248,14 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_ServicioEntity", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ServicioEntity_Pago_PagoEntityId",
-                        column: x => x.PagoEntityId,
+                        name: "FK_ServicioEntity_Pago_pagoEntityId",
+                        column: x => x.pagoEntityId,
                         principalTable: "Pago",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ServicioEntity_Prestador_prestadorEntityId",
                         column: x => x.prestadorEntityId,
                         principalTable: "Prestador",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ServicioEntity_ServicioEntity_servicioId",
-                        column: x => x.servicioId,
-                        principalTable: "ServicioEntity",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -300,19 +291,14 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 column: "opcionDePagoEntityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServicioEntity_PagoEntityId",
+                name: "IX_ServicioEntity_pagoEntityId",
                 table: "ServicioEntity",
-                column: "PagoEntityId");
+                column: "pagoEntityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServicioEntity_prestadorEntityId",
                 table: "ServicioEntity",
                 column: "prestadorEntityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ServicioEntity_servicioId",
-                table: "ServicioEntity",
-                column: "servicioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
