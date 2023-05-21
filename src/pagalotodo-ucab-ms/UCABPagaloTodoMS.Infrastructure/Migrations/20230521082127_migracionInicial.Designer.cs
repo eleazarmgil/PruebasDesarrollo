@@ -12,8 +12,8 @@ using UCABPagaloTodoMS.Infrastructure.Database;
 namespace UCABPagaloTodoMS.Infrastructure.Migrations
 {
     [DbContext(typeof(UCABPagaloTodoDbContext))]
-    [Migration("20230521080616_prueba1")]
-    partial class prueba1
+    [Migration("20230521082127_migracionInicial")]
+    partial class migracionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,21 +23,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("PagoEntityServicioEntity", b =>
-                {
-                    b.Property<Guid>("pagosId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("servicioId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("pagosId", "servicioId");
-
-                    b.HasIndex("servicioId");
-
-                    b.ToTable("PagoEntityServicioEntity");
-                });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
                 {
@@ -153,9 +138,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("nombre")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("pagoEntityId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("password")
                         .HasColumnType("text");
 
@@ -175,8 +157,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("pagoEntityId");
 
                     b.ToTable("Consumidor");
                 });
@@ -287,6 +267,9 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<Guid>("ConciliacionEntityId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("ConsumidorEntityId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -311,6 +294,8 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ConciliacionEntityId");
+
+                    b.HasIndex("ConsumidorEntityId");
 
                     b.HasIndex("opcionDePagoEntityId");
 
@@ -388,6 +373,9 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("PagoEntityId")
+                        .HasColumnType("uuid");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -406,9 +394,19 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<Guid>("prestadorEntityId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("servicioEntityId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("servicioId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("PagoEntityId");
+
                     b.HasIndex("prestadorEntityId");
+
+                    b.HasIndex("servicioId");
 
                     b.ToTable("ServicioEntity");
                 });
@@ -446,21 +444,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.ToTable("Valores");
                 });
 
-            modelBuilder.Entity("PagoEntityServicioEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", null)
-                        .WithMany()
-                        .HasForeignKey("pagosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", null)
-                        .WithMany()
-                        .HasForeignKey("servicioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
                 {
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", "administrador")
@@ -470,17 +453,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("administrador");
-                });
-
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", "pago")
-                        .WithMany("consumidor")
-                        .HasForeignKey("pagoEntityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("pago");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDeOpcionEntity", b =>
@@ -513,6 +485,12 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", "consumidor")
+                        .WithMany("Pago")
+                        .HasForeignKey("ConsumidorEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcionDePago")
                         .WithMany("pagos")
                         .HasForeignKey("opcionDePagoEntityId")
@@ -521,18 +499,32 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
 
                     b.Navigation("conciliacion");
 
+                    b.Navigation("consumidor");
+
                     b.Navigation("opcionDePago");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
                 {
+                    b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", null)
+                        .WithMany("servicio")
+                        .HasForeignKey("PagoEntityId");
+
                     b.HasOne("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", "prestador")
                         .WithMany("servicios")
                         .HasForeignKey("prestadorEntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", "servicio")
+                        .WithMany()
+                        .HasForeignKey("servicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("prestador");
+
+                    b.Navigation("servicio");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
@@ -545,6 +537,11 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Navigation("pagos");
                 });
 
+            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
+                {
+                    b.Navigation("Pago");
+                });
+
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", b =>
                 {
                     b.Navigation("detalleDeOpcion");
@@ -554,9 +551,9 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
                 {
-                    b.Navigation("consumidor");
-
                     b.Navigation("detalleDePago");
+
+                    b.Navigation("servicio");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
