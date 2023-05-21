@@ -5,6 +5,7 @@ using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
+
 namespace UCABPagaloTodoMS.Controllers
 {
     [ApiController]
