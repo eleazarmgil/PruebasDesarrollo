@@ -13,6 +13,8 @@ namespace UCABPagaloTodoMS.Core.Database
 
         DbSet<ConsumidorEntity> Consumidor { get; }
 
+        DbSet<ServicioEntity> Servicio { get; }
+
         DbContext DbContext
         {
             get;

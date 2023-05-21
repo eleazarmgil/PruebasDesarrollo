@@ -8,7 +8,7 @@ namespace UCABPagaloTodoMS.Core.Entities
 {
     public class ServicioEntity : BaseEntity
     {
-        public int? id { set; get; }
+        public string? id { set; get; }
         public string? nombre { set; get; }
     }
 }

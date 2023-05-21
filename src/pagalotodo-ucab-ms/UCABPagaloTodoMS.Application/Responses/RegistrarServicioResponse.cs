@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCABPagaloTodoMS.Application.Requests
+namespace UCABPagaloTodoMS.Application.Responses
 {
-    public class RegistrarServicioRequest
+    public class RegistrarServicioResponse
     {
         public string? id { get; set; }
         public string? nombre { get; set; }
