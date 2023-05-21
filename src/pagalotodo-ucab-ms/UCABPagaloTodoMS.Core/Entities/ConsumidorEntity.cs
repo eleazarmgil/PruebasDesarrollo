@@ -12,10 +12,7 @@ namespace UCABPagaloTodoMS.Core.Entities
     {
         public int? ci { set; get; }
 
-        //Relacion n a 1 con Pago
-        [ForeignKey("PagoEntity")]
-        public Guid pagoEntityId { get; set; }
-        public PagoEntity pago { get; set; }
-
+        //Relacion 1 a n con Pago
+        public ICollection<PagoEntity>? Pago { get; set; }
     }
 }

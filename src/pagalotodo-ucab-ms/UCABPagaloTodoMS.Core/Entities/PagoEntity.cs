@@ -12,6 +12,9 @@ namespace UCABPagaloTodoMS.Core.Entities
         public Double? monto { get; set; }
         public DateOnly? nombre_completo { get; set; }
 
+        //Relacion 1 a n con Servicio
+        public ICollection<ServicioEntity>? servicio { get; set; }
+
         //Relacion n a 1 con OpcionDePago
         [ForeignKey("OpcionDePagoEntity")]
         public Guid opcionDePagoEntityId { get; set; }
@@ -19,12 +22,13 @@ namespace UCABPagaloTodoMS.Core.Entities
 
         //Relacion 1 a n con DetalleDePago
         public ICollection<DetalleDePagoEntity>? detalleDePago { get; set; }
+        
+        //Relacion n a 1 con Consumidor
+        [ForeignKey("ConsumidorEntity")]
+        public Guid ConsumidorEntityId { get; set; }
+        public ConsumidorEntity consumidor { get; set; }
 
-        //Relacion 1 a n con Consumidor
-        public ICollection<ConsumidorEntity>? consumidor { get; set; }
-
-        //Relacion 1 a n con Servicio
-        public ICollection<ServicioEntity>? servicio { get; set; }
+        
 
         //Relacion n a 1 con Conciliacion
         [ForeignKey("ConciliacionEntity")]
