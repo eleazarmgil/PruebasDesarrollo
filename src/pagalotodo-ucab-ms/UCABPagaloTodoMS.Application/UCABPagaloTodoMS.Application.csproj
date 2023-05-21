@@ -14,9 +14,11 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.1.0" />
+    <PackageReference Include="MailKit" Version="4.0.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.ApplicationInsights" Version="2.19.0" />
+    <PackageReference Include="MimeKit" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\" />
     <Folder Include="Validators\" />
   </ItemGroup>
 
