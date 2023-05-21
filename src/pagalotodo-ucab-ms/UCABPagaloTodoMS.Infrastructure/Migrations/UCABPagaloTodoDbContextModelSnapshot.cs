@@ -360,8 +360,13 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("nombre_empresa")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("opcion_de_pagoId")
+                        .HasColumnType("uuid");
+
                     b.Property<int?>("rif")
                         .HasColumnType("integer");
+
+                    b.HasIndex("opcion_de_pagoId");
 
                     b.HasDiscriminator().HasValue("PrestadorEntity");
                 });
@@ -445,6 +450,15 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("prestador");
+                });
+
+            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
+                {
+                    b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcion_de_pago")
+                        .WithMany()
+                        .HasForeignKey("opcion_de_pagoId");
+
+                    b.Navigation("opcion_de_pago");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>

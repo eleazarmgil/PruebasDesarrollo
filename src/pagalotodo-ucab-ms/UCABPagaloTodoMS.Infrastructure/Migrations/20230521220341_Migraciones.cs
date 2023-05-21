@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UCABPagaloTodoMS.Infrastructure.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Migraciones : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,36 +24,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OpcionDePago", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    usuario = table.Column<string>(type: "text", nullable: true),
-                    password = table.Column<string>(type: "text", nullable: true),
-                    correo = table.Column<string>(type: "text", nullable: true),
-                    nombre = table.Column<string>(type: "text", nullable: true),
-                    apellido = table.Column<string>(type: "text", nullable: true),
-                    preguntas_de_seguridad = table.Column<string>(type: "text", nullable: true),
-                    preguntas_de_seguridad2 = table.Column<string>(type: "text", nullable: true),
-                    respuesta_de_seguridad = table.Column<string>(type: "text", nullable: true),
-                    respuesta_de_seguridad2 = table.Column<string>(type: "text", nullable: true),
-                    Discriminator = table.Column<string>(type: "text", nullable: false),
-                    cedula = table.Column<int>(type: "integer", nullable: true),
-                    ci = table.Column<int>(type: "integer", nullable: true),
-                    rif = table.Column<int>(type: "integer", nullable: true),
-                    nombre_empresa = table.Column<string>(type: "text", nullable: true),
-                    estado = table.Column<bool>(type: "boolean", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedBy = table.Column<string>(type: "text", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    UpdatedBy = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,6 +66,42 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         principalTable: "OpcionDePago",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuario",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    usuario = table.Column<string>(type: "text", nullable: true),
+                    password = table.Column<string>(type: "text", nullable: true),
+                    correo = table.Column<string>(type: "text", nullable: true),
+                    nombre = table.Column<string>(type: "text", nullable: true),
+                    apellido = table.Column<string>(type: "text", nullable: true),
+                    preguntas_de_seguridad = table.Column<string>(type: "text", nullable: true),
+                    preguntas_de_seguridad2 = table.Column<string>(type: "text", nullable: true),
+                    respuesta_de_seguridad = table.Column<string>(type: "text", nullable: true),
+                    respuesta_de_seguridad2 = table.Column<string>(type: "text", nullable: true),
+                    Discriminator = table.Column<string>(type: "text", nullable: false),
+                    cedula = table.Column<int>(type: "integer", nullable: true),
+                    ci = table.Column<int>(type: "integer", nullable: true),
+                    rif = table.Column<int>(type: "integer", nullable: true),
+                    nombre_empresa = table.Column<string>(type: "text", nullable: true),
+                    estado = table.Column<bool>(type: "boolean", nullable: true),
+                    opcion_de_pagoId = table.Column<Guid>(type: "uuid", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<string>(type: "text", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuario", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Usuario_OpcionDePago_opcion_de_pagoId",
+                        column: x => x.opcion_de_pagoId,
+                        principalTable: "OpcionDePago",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -264,6 +270,11 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 name: "IX_Servicio_ServicioEntityId",
                 table: "Servicio",
                 column: "ServicioEntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuario_opcion_de_pagoId",
+                table: "Usuario",
+                column: "opcion_de_pagoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -284,13 +295,13 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                 name: "Conciliacion");
 
             migrationBuilder.DropTable(
-                name: "OpcionDePago");
-
-            migrationBuilder.DropTable(
                 name: "Servicio");
 
             migrationBuilder.DropTable(
                 name: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "OpcionDePago");
         }
     }
 }

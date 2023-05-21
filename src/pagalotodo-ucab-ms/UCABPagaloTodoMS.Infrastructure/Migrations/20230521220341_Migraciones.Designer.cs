@@ -12,8 +12,8 @@ using UCABPagaloTodoMS.Infrastructure.Database;
 namespace UCABPagaloTodoMS.Infrastructure.Migrations
 {
     [DbContext(typeof(UCABPagaloTodoDbContext))]
-    [Migration("20230521175406_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230521220341_Migraciones")]
+    partial class Migraciones
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -362,8 +362,13 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("nombre_empresa")
                         .HasColumnType("text");
 
+                    b.Property<Guid?>("opcion_de_pagoId")
+                        .HasColumnType("uuid");
+
                     b.Property<int?>("rif")
                         .HasColumnType("integer");
+
+                    b.HasIndex("opcion_de_pagoId");
 
                     b.HasDiscriminator().HasValue("PrestadorEntity");
                 });
@@ -447,6 +452,15 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("prestador");
+                });
+
+            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
+                {
+                    b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcion_de_pago")
+                        .WithMany()
+                        .HasForeignKey("opcion_de_pagoId");
+
+                    b.Navigation("opcion_de_pago");
                 });
 
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
