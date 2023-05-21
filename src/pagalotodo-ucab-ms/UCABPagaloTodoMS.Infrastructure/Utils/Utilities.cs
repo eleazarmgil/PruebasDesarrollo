@@ -1,7 +1,6 @@
-﻿namespace UCABPagaloTodoMS.Infrastructure.Utils
-{
-    public static class Utilities
-    {
+﻿namespace UCABPagaloTodoMS.Infrastructure.Utils;
 
-    }
+public static class Utilities
+{
+
 }

@@ -7,497 +7,495 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UCABPagaloTodoMS.Infrastructure.Database;
 
 #nullable disable
+namespace UCABPagaloTodoMS.Infrastructure.Migrations;
 
-namespace UCABPagaloTodoMS.Infrastructure.Migrations
+[DbContext(typeof(UCABPagaloTodoDbContext))]
+partial class UCABPagaloTodoDbContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(UCABPagaloTodoDbContext))]
-    partial class UCABPagaloTodoDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "6.0.5")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<Guid>("administradorId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("administradorId")
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("fecha")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("fecha")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("administradorId");
+                b.HasIndex("administradorId");
 
-                    b.ToTable("Conciliacion");
-                });
+                b.ToTable("Conciliacion");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDeOpcionEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDeOpcionEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<string>("descripcion")
-                        .HasColumnType("text");
+                b.Property<string>("descripcion")
+                    .HasColumnType("text");
 
-                    b.Property<string>("nombre")
-                        .HasColumnType("text");
+                b.Property<string>("nombre")
+                    .HasColumnType("text");
 
-                    b.Property<Guid>("opcionDePagoId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("opcionDePagoId")
+                    .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("opcionDePagoId");
+                b.HasIndex("opcionDePagoId");
 
-                    b.ToTable("DetalleDeOpcion");
-                });
+                b.ToTable("DetalleDeOpcion");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDePagoEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDePagoEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<string>("detalle")
-                        .HasColumnType("text");
+                b.Property<string>("detalle")
+                    .HasColumnType("text");
 
-                    b.Property<string>("nombre")
-                        .HasColumnType("text");
+                b.Property<string>("nombre")
+                    .HasColumnType("text");
 
-                    b.Property<Guid>("pagoId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("pagoId")
+                    .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("pagoId");
+                b.HasIndex("pagoId");
 
-                    b.ToTable("DetalleDePago");
-                });
+                b.ToTable("DetalleDePago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<int?>("estatus")
-                        .HasColumnType("integer");
+                b.Property<int?>("estatus")
+                    .HasColumnType("integer");
 
-                    b.Property<string>("nombre")
-                        .HasColumnType("text");
+                b.Property<string>("nombre")
+                    .HasColumnType("text");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("OpcionDePago");
-                });
+                b.ToTable("OpcionDePago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<Guid?>("conciliacionId")
-                        .HasColumnType("uuid");
+                b.Property<Guid?>("conciliacionId")
+                    .HasColumnType("uuid");
 
-                    b.Property<Guid>("consumidorId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("consumidorId")
+                    .HasColumnType("uuid");
 
-                    b.Property<double?>("monto")
-                        .HasColumnType("double precision");
+                b.Property<double?>("monto")
+                    .HasColumnType("double precision");
 
-                    b.Property<DateOnly?>("nombre_completo")
-                        .HasColumnType("date");
+                b.Property<DateOnly?>("nombre_completo")
+                    .HasColumnType("date");
 
-                    b.Property<Guid>("opcionDePagoId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("opcionDePagoId")
+                    .HasColumnType("uuid");
 
-                    b.Property<Guid>("servicioId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("servicioId")
+                    .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("conciliacionId");
+                b.HasIndex("conciliacionId");
 
-                    b.HasIndex("consumidorId");
+                b.HasIndex("consumidorId");
 
-                    b.HasIndex("opcionDePagoId");
+                b.HasIndex("opcionDePagoId");
 
-                    b.HasIndex("servicioId");
+                b.HasIndex("servicioId");
 
-                    b.ToTable("Pago");
-                });
+                b.ToTable("Pago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<Guid?>("ServicioEntityId")
-                        .HasColumnType("uuid");
+                b.Property<Guid?>("ServicioEntityId")
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<string>("descripcion")
-                        .HasColumnType("text");
+                b.Property<string>("descripcion")
+                    .HasColumnType("text");
 
-                    b.Property<double?>("monto")
-                        .HasColumnType("double precision");
+                b.Property<double?>("monto")
+                    .HasColumnType("double precision");
 
-                    b.Property<string>("nombre")
-                        .HasColumnType("text");
+                b.Property<string>("nombre")
+                    .HasColumnType("text");
 
-                    b.Property<Guid>("prestadorId")
-                        .HasColumnType("uuid");
+                b.Property<Guid>("prestadorId")
+                    .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("ServicioEntityId");
+                b.HasIndex("ServicioEntityId");
 
-                    b.HasIndex("prestadorId");
+                b.HasIndex("prestadorId");
 
-                    b.ToTable("Servicio");
-                });
+                b.ToTable("Servicio");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.UsuarioEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.UsuarioEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("text");
+                b.Property<string>("Discriminator")
+                    .IsRequired()
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<string>("apellido")
-                        .HasColumnType("text");
+                b.Property<string>("apellido")
+                    .HasColumnType("text");
 
-                    b.Property<string>("correo")
-                        .HasColumnType("text");
+                b.Property<string>("correo")
+                    .HasColumnType("text");
 
-                    b.Property<string>("nombre")
-                        .HasColumnType("text");
+                b.Property<string>("nombre")
+                    .HasColumnType("text");
 
-                    b.Property<string>("password")
-                        .HasColumnType("text");
+                b.Property<string>("password")
+                    .HasColumnType("text");
 
-                    b.Property<string>("preguntas_de_seguridad")
-                        .HasColumnType("text");
+                b.Property<string>("preguntas_de_seguridad")
+                    .HasColumnType("text");
 
-                    b.Property<string>("preguntas_de_seguridad2")
-                        .HasColumnType("text");
+                b.Property<string>("preguntas_de_seguridad2")
+                    .HasColumnType("text");
 
-                    b.Property<string>("respuesta_de_seguridad")
-                        .HasColumnType("text");
+                b.Property<string>("respuesta_de_seguridad")
+                    .HasColumnType("text");
 
-                    b.Property<string>("respuesta_de_seguridad2")
-                        .HasColumnType("text");
+                b.Property<string>("respuesta_de_seguridad2")
+                    .HasColumnType("text");
 
-                    b.Property<string>("usuario")
-                        .HasColumnType("text");
+                b.Property<string>("usuario")
+                    .HasColumnType("text");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Usuario");
+                b.ToTable("Usuario");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("UsuarioEntity");
-                });
+                b.HasDiscriminator<string>("Discriminator").HasValue("UsuarioEntity");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ValoresEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ValoresEntity", b =>
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("uuid");
 
-                    b.Property<string>("Apellido")
-                        .HasColumnType("text");
+                b.Property<string>("Apellido")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime>("CreatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("CreatedBy")
+                    .HasColumnType("text");
 
-                    b.Property<string>("Identificacion")
-                        .IsRequired()
-                        .HasColumnType("text");
+                b.Property<string>("Identificacion")
+                    .IsRequired()
+                    .HasColumnType("text");
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("text");
+                b.Property<string>("Nombre")
+                    .HasColumnType("text");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
+                b.Property<string>("UpdatedBy")
+                    .HasColumnType("text");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Valores");
-                });
+                b.ToTable("Valores");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
-                {
-                    b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
+            {
+                b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
 
-                    b.Property<int?>("cedula")
-                        .HasColumnType("integer");
+                b.Property<int?>("cedula")
+                    .HasColumnType("integer");
 
-                    b.HasDiscriminator().HasValue("AdministradorEntity");
-                });
+                b.HasDiscriminator().HasValue("AdministradorEntity");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
-                {
-                    b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
+            {
+                b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
 
-                    b.Property<int?>("ci")
-                        .HasColumnType("integer");
+                b.Property<int?>("ci")
+                    .HasColumnType("integer");
 
-                    b.HasDiscriminator().HasValue("ConsumidorEntity");
-                });
+                b.HasDiscriminator().HasValue("ConsumidorEntity");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
-                {
-                    b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
+            {
+                b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
 
-                    b.Property<bool?>("estado")
-                        .HasColumnType("boolean");
+                b.Property<bool?>("estado")
+                    .HasColumnType("boolean");
 
-                    b.Property<string>("nombre_empresa")
-                        .HasColumnType("text");
+                b.Property<string>("nombre_empresa")
+                    .HasColumnType("text");
 
-                    b.Property<Guid?>("opcion_de_pagoId")
-                        .HasColumnType("uuid");
+                b.Property<Guid?>("opcion_de_pagoId")
+                    .HasColumnType("uuid");
 
-                    b.Property<int?>("rif")
-                        .HasColumnType("integer");
+                b.Property<int?>("rif")
+                    .HasColumnType("integer");
 
-                    b.HasIndex("opcion_de_pagoId");
+                b.HasIndex("opcion_de_pagoId");
 
-                    b.HasDiscriminator().HasValue("PrestadorEntity");
-                });
+                b.HasDiscriminator().HasValue("PrestadorEntity");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", "administrador")
-                        .WithMany("conciliacion")
-                        .HasForeignKey("administradorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
+            {
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", "administrador")
+                    .WithMany("conciliacion")
+                    .HasForeignKey("administradorId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("administrador");
-                });
+                b.Navigation("administrador");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDeOpcionEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcionDePago")
-                        .WithMany("detalleDeOpcion")
-                        .HasForeignKey("opcionDePagoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDeOpcionEntity", b =>
+            {
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcionDePago")
+                    .WithMany("detalleDeOpcion")
+                    .HasForeignKey("opcionDePagoId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("opcionDePago");
-                });
+                b.Navigation("opcionDePago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDePagoEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", "pago")
-                        .WithMany("detalleDePago")
-                        .HasForeignKey("pagoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.DetalleDePagoEntity", b =>
+            {
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.PagoEntity", "pago")
+                    .WithMany("detalleDePago")
+                    .HasForeignKey("pagoId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("pago");
-                });
+                b.Navigation("pago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", "conciliacion")
-                        .WithMany("pagos")
-                        .HasForeignKey("conciliacionId");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
+            {
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", "conciliacion")
+                    .WithMany("pagos")
+                    .HasForeignKey("conciliacionId");
 
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", "consumidor")
-                        .WithMany("Pago")
-                        .HasForeignKey("consumidorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", "consumidor")
+                    .WithMany("Pago")
+                    .HasForeignKey("consumidorId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcionDePago")
-                        .WithMany("pagos")
-                        .HasForeignKey("opcionDePagoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcionDePago")
+                    .WithMany("pagos")
+                    .HasForeignKey("opcionDePagoId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", "servicio")
-                        .WithMany()
-                        .HasForeignKey("servicioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", "servicio")
+                    .WithMany()
+                    .HasForeignKey("servicioId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("conciliacion");
+                b.Navigation("conciliacion");
 
-                    b.Navigation("consumidor");
+                b.Navigation("consumidor");
 
-                    b.Navigation("opcionDePago");
+                b.Navigation("opcionDePago");
 
-                    b.Navigation("servicio");
-                });
+                b.Navigation("servicio");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", null)
-                        .WithMany("pago")
-                        .HasForeignKey("ServicioEntityId");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
+            {
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.ServicioEntity", null)
+                    .WithMany("pago")
+                    .HasForeignKey("ServicioEntityId");
 
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", "prestador")
-                        .WithMany("servicios")
-                        .HasForeignKey("prestadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", "prestador")
+                    .WithMany("servicios")
+                    .HasForeignKey("prestadorId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
 
-                    b.Navigation("prestador");
-                });
+                b.Navigation("prestador");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
-                {
-                    b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcion_de_pago")
-                        .WithMany()
-                        .HasForeignKey("opcion_de_pagoId");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
+            {
+                b.HasOne("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", "opcion_de_pago")
+                    .WithMany()
+                    .HasForeignKey("opcion_de_pagoId");
 
-                    b.Navigation("opcion_de_pago");
-                });
+                b.Navigation("opcion_de_pago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
-                {
-                    b.Navigation("pagos");
-                });
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
+            {
+                b.Navigation("pagos");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", b =>
-                {
-                    b.Navigation("detalleDeOpcion");
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.OpcionDePagoEntity", b =>
+            {
+                b.Navigation("detalleDeOpcion");
 
-                    b.Navigation("pagos");
-                });
+                b.Navigation("pagos");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
-                {
-                    b.Navigation("detalleDePago");
-                });
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PagoEntity", b =>
+            {
+                b.Navigation("detalleDePago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
-                {
-                    b.Navigation("pago");
-                });
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ServicioEntity", b =>
+            {
+                b.Navigation("pago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
-                {
-                    b.Navigation("conciliacion");
-                });
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
+            {
+                b.Navigation("conciliacion");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
-                {
-                    b.Navigation("Pago");
-                });
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
+            {
+                b.Navigation("Pago");
+            });
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
-                {
-                    b.Navigation("servicios");
-                });
+        modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
+            {
+                b.Navigation("servicios");
+            });
 #pragma warning restore 612, 618
-        }
     }
 }
