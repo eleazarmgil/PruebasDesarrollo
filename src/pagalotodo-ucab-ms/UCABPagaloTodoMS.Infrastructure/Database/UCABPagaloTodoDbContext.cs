@@ -5,8 +5,6 @@ using UCABPagaloTodoMS.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace UCABPagaloTodoMS.Infrastructure.Database;
-
-
 public class UCABPagaloTodoDbContext : DbContext, IUCABPagaloTodoDbContext
 {
     public UCABPagaloTodoDbContext(DbContextOptions<UCABPagaloTodoDbContext> options)

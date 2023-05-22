@@ -1,34 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UCABPagaloTodoMS.Application.Requests;
+﻿using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Core.Entities;
 
-namespace UCABPagaloTodoMS.Application.Mappers
+namespace UCABPagaloTodoMS.Application.Mappers;
+public static class CambiarClaveMapper
 {
-    public static class CambiarClaveMapper
+    public static CambiarClaveUsuarioResponse MapEntityAResponse(UsuarioEntity entity)
     {
-        public static CambiarClaveUsuarioResponse MapEntityAResponse(UsuarioEntity entity)
+        var response = new CambiarClaveUsuarioResponse()
         {
-            var response = new CambiarClaveUsuarioResponse()
-            {
-                Id = entity.Id,
-                newpassword = entity.password,
-            };
-            return response;
-        }
+            Id = entity.Id,
+            newpassword = entity.password,
+        };
+        return response;
+    }
 
-        public static UsuarioEntity MapRequestEntity(CambiarClaveUsuarioRequest request)
+    public static UsuarioEntity MapRequestEntity(CambiarClaveUsuarioRequest request)
+    {
+        var entity = new UsuarioEntity()
         {
-            var entity = new UsuarioEntity()
-            {
-                usuario = request.usuario,
-                password = request.newpassword,
-            };
-            return entity;
-        }
+            usuario = request.usuario,
+            password = request.newpassword,
+        };
+        return entity;
     }
 }

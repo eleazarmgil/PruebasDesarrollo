@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace UCABPagaloTodoMS.Core.Entities
+﻿namespace UCABPagaloTodoMS.Core.Entities;
+public class PrestadorEntity : UsuarioEntity
 {
-    public class PrestadorEntity : UsuarioEntity
-    {
-        public List<ServicioEntity> servicio = new List<ServicioEntity>();
-        public List<OpcionDePagoEntity> opcion_de_pago = new List<OpcionDePagoEntity>();
+    public int? rif { set; get; }
+    public string? nombre_empresa { set; get; }
+    public bool? estado { set; get; }
 
-
-        public int? rif { set; get; }
-        public string? nombre_empresa { set; get; }
-        public bool? estado { set; get; }
-    }
+    //Relacion 1 a n con DetalleDePago
+    public ICollection<ServicioEntity>? servicios { get; set; }
+    //Relacion n a 1 con OpcionDePago
+    public OpcionDePagoEntity? opcion_de_pago { get; set; }
 }

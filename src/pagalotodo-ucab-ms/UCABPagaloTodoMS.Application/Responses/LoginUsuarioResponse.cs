@@ -1,7 +1,5 @@
-﻿namespace UCABPagaloTodoMS.Application.Responses
+﻿namespace UCABPagaloTodoMS.Application.Responses;
+public class LoginUsuarioResponse
 {
-    public class LoginUsuarioResponse
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

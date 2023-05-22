@@ -1,7 +1,4 @@
-﻿
-namespace UCABPagaloTodoMS.Tests.MockData
+﻿namespace UCABPagaloTodoMS.Tests.MockData;
+public static class BuildDataContextFaker
 {
-    public static class BuildDataContextFaker
-    {
-    }
 }

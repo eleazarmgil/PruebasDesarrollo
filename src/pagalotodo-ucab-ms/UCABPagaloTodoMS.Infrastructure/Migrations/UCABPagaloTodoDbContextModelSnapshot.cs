@@ -7,143 +7,19 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using UCABPagaloTodoMS.Infrastructure.Database;
 
 #nullable disable
-
-namespace UCABPagaloTodoMS.Infrastructure.Migrations
+namespace UCABPagaloTodoMS.Infrastructure.Migrations;
+[DbContext(typeof(UCABPagaloTodoDbContext))]
+partial class UCABPagaloTodoDbContextModelSnapshot : ModelSnapshot
 {
-    [DbContext(typeof(UCABPagaloTodoDbContext))]
-    partial class UCABPagaloTodoDbContextModelSnapshot : ModelSnapshot
+    protected override void BuildModel(ModelBuilder modelBuilder)
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
-        {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+        modelBuilder
+            .HasAnnotation("ProductVersion", "6.0.5")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.UsuarioEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("apellido")
-                        .HasColumnType("text");
-
-                    b.Property<string>("correo")
-                        .HasColumnType("text");
-
-                    b.Property<string>("nombre")
-                        .HasColumnType("text");
-
-                    b.Property<string>("password")
-                        .HasColumnType("text");
-
-                    b.Property<string>("preguntas_de_seguridad")
-                        .HasColumnType("text");
-
-                    b.Property<string>("preguntas_de_seguridad2")
-                        .HasColumnType("text");
-
-                    b.Property<string>("respuesta_de_seguridad")
-                        .HasColumnType("text");
-
-                    b.Property<string>("respuesta_de_seguridad2")
-                        .HasColumnType("text");
-
-                    b.Property<string>("usuario")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuario");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("UsuarioEntity");
-                });
-
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ValoresEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Apellido")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Identificacion")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Valores");
-                });
-
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.AdministradorEntity", b =>
-                {
-                    b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
-
-                    b.HasDiscriminator().HasValue("AdministradorEntity");
-                });
-
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConsumidorEntity", b =>
-                {
-                    b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
-
-                    b.Property<int?>("ci")
-                        .HasColumnType("integer");
-
-                    b.HasDiscriminator().HasValue("ConsumidorEntity");
-                });
-
-            modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
-                {
-                    b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
-
-                    b.Property<bool?>("estado")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("nombre_empresa")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("rif")
-                        .HasColumnType("integer");
-
-                    b.HasDiscriminator().HasValue("PrestadorEntity");
-                });
 #pragma warning restore 612, 618
-        }
     }
 }

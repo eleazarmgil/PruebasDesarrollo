@@ -5,36 +5,34 @@ using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
 
-namespace UCABPagaloTodoMS.Controllers
+namespace UCABPagaloTodoMS.Controllers;
+[ApiController]
+[Route("[controller]")]
+public class CambiarClaveController : BaseController<CambiarClaveController>
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class CambiarClaveController : BaseController<CambiarClaveController>
+    private readonly IMediator _mediator;
+
+    public CambiarClaveController(ILogger<CambiarClaveController> logger, IMediator mediator) : base(logger)
     {
-        private readonly IMediator _mediator;
+        _mediator = mediator;
+    }
 
-        public CambiarClaveController(ILogger<CambiarClaveController> logger, IMediator mediator) : base(logger)
+    [HttpPost("CambiarClave")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest request)
+    {
+        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        try
         {
-            _mediator = mediator;
+            var command = new CambiarClaveCommand(request);
+            var response = await _mediator.Send(command);
+            return Ok(response);
         }
-
-        [HttpPost("CambiarClave")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest request)
+        catch (Exception ex)
         {
-            _logger.LogInformation("Entrando al método que registra los valores de prueba");
-            try
-            {
-                var command = new CambiarClaveCommand(request);
-                var response = await _mediator.Send(command);
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-                throw;
-            }
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            throw;
         }
     }
 }
