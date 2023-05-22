@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class ConsumidorEntity : UsuarioEntity
 {
     public int? ci { set; get; }

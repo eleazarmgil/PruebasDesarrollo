@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class PrestadorEntity : UsuarioEntity
 {
     public int? rif { set; get; }

@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class PagoEntity : BaseEntity
 {
     public Double? monto { get; set; }

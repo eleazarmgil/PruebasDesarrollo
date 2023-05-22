@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace UCABPagaloTodoMS.Infrastructure.Services;
-
 public class Rabbit
 {
     public void SendProductMessage<T>(T message) 

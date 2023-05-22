@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class OpcionDePagoEntity : BaseEntity
 {
     public string? nombre { get; set; }

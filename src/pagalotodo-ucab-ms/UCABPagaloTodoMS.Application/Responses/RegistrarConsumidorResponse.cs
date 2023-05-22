@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Application.Responses;
-
 public class RegistrarConsumidorResponse
 {
     public string? usuario { get; set; }

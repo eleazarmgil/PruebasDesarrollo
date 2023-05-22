@@ -2,7 +2,6 @@
 using UCABPagaloTodoMS.Application.Requests;
 
 namespace UCABPagaloTodoMS.Application.Commands;
-
 public class ActualizarPrestadorCommand : IRequest<Guid>
 {
     public ActualizarPrestadorRequest _request { get; set; }

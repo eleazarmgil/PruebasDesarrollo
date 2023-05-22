@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class DetalleDePagoEntity : BaseEntity
 {
     public string? detalle { get; set; }

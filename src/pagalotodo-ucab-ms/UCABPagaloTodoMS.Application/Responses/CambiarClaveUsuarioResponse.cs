@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Application.Responses;
-
 public class CambiarClaveUsuarioResponse
 {
     public Guid Id { get; set; }

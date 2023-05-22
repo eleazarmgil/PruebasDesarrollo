@@ -1,7 +1,6 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
 public class UsuarioEntity : BaseEntity
 {
-
     public string? usuario { get; set; }
     public string? password { get; set; }
     public string? correo { get; set; }

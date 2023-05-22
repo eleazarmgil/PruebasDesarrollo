@@ -6,7 +6,6 @@ using UCABPagaloTodoMS.Application.Responses;
 using Microsoft.EntityFrameworkCore;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
-
 public class ConsultarPreguntasDeSeguridadQueryHandler : IRequestHandler<ConsultarPreguntasDeSeguridadQuery, List<PreguntasDeSeguridadResponse>>
 {
     private readonly IUCABPagaloTodoDbContext _dbContext;

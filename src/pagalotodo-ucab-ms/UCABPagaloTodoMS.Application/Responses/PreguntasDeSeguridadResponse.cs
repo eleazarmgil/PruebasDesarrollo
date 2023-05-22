@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Application.Responses;
-
 public class PreguntasDeSeguridadResponse
 {
     public string? pregunta_de_seguridad { set; get; }

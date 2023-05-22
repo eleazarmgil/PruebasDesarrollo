@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class ValoresEntity : BaseEntity
 {
     public string? Nombre { get; set; }

@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Core.Entities;
-
 public class AdministradorEntity : UsuarioEntity
 {
     public int? cedula { set; get; }

@@ -3,7 +3,6 @@ using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Application.Mappers;
-
 public static class CambiarClaveMapper
 {
     public static CambiarClaveUsuarioResponse MapEntityAResponse(UsuarioEntity entity)

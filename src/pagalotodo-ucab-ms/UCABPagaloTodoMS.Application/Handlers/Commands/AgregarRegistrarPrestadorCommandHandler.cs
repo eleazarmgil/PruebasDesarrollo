@@ -5,7 +5,6 @@ using UCABPagaloTodoMS.Application.Mappers;
 using UCABPagaloTodoMS.Core.Database;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands;
-
 public class AgregarRegistrarPrestadorCommandHandler : IRequestHandler<AgregarRegistrarPrestadorCommand, Guid>
 {
     private readonly IUCABPagaloTodoDbContext _dbContext;
