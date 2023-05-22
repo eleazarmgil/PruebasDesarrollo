@@ -1,8 +1,6 @@
-﻿namespace UCABPagaloTodoMS.Application.Requests
+﻿namespace UCABPagaloTodoMS.Application.Requests;
+public class LoginUsuarioRequest
 {
-    public class LoginUsuarioRequest
-    {
-        public string? usuario {set;get;}
-        public string? password { set;get;}
-    }
+    public string? usuario {set;get;}
+    public string? password { set;get;}
 }

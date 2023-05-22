@@ -1,9 +1,7 @@
-﻿namespace UCABPagaloTodoMS.Application.Responses
+﻿namespace UCABPagaloTodoMS.Application.Responses;
+public class ValoresResponse
 {
-    public class ValoresResponse
-    {
-        public Guid Id { get; set; }
-        public string? Nombre { get; set; }
-        public string? Identificacion { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string? Nombre { get; set; }
+    public string? Identificacion { get; set; }
 }

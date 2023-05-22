@@ -1,10 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Core.Database
+﻿namespace UCABPagaloTodoMS.Core.Database;
+public interface IDbContextTransactionProxy : IDisposable
 {
-    public interface IDbContextTransactionProxy : IDisposable
-    {
-        void Commit();
-        void Rollback();
-    }
+    void Commit();
+    void Rollback();
 }
 
 
