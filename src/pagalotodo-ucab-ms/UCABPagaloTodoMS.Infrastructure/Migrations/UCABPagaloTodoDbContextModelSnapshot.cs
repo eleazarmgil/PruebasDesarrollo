@@ -14,13 +14,13 @@ partial class UCABPagaloTodoDbContextModelSnapshot : ModelSnapshot
 {
     protected override void BuildModel(ModelBuilder modelBuilder)
     {
+        {
 #pragma warning disable 612, 618
         modelBuilder
             .HasAnnotation("ProductVersion", "6.0.5")
             .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
         NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
         modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.ConciliacionEntity", b =>
             {
                 b.Property<Guid>("Id")
@@ -496,6 +496,7 @@ partial class UCABPagaloTodoDbContextModelSnapshot : ModelSnapshot
             {
                 b.Navigation("servicios");
             });
+                });
 #pragma warning restore 612, 618
     }
 }

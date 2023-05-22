@@ -48,9 +48,9 @@ public class CambiarClaveUsuarioCommandHandler : IRequestHandler<CambiarClaveCom
 
             if (usuario_bd != null) //Si el usuario existe
             {
-                if (request._request.password != null) //Y la nueva password no es vacia
+                if (request._request.newpassword != null) //Y la nueva password no es vacia
                 {
-                    usuario_bd.password = request._request.password;
+                    usuario_bd.password = request._request.newpassword;
 
                     _dbContext.Usuario.Update(usuario_bd);
                     await _dbContext.SaveEfContextChanges("APP");

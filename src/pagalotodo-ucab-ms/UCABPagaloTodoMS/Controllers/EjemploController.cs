@@ -7,7 +7,6 @@ using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
 
 namespace UCABPagaloTodoMS.Controllers;
-
 [ApiController]
 [Route("[controller]")]
 public class EjemploController : BaseController<EjemploController>

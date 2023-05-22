@@ -6,26 +6,27 @@ using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
 
+
 namespace UCABPagaloTodoMS.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class AgregarPrestadorController : BaseController<AgregarPrestadorController>
+public class AgregarServicioController : BaseController<AgregarServicioController>
 {
     private readonly IMediator _mediator;
-    public AgregarPrestadorController(ILogger<AgregarPrestadorController> logger, IMediator mediator) : base(logger)
+    public AgregarServicioController(ILogger<AgregarServicioController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarPrestador")]
+    [HttpGet("AgregarServicio")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
-    public async Task<ActionResult<Guid>> AgregarPrestador([FromBody] RegistrarPrestadorRequest request)
+    public async Task<ActionResult<Guid>> AgregarPrestador([FromBody] RegistrarServicioRequest request)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");
         try
         {
-            var command = new AgregarRegistrarPrestadorCommand(request);
+            var command = new AgregarRegistrarServicioCommand(request);
             var response = await _mediator.Send(command);
             return Ok(response);
         }

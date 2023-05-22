@@ -10,6 +10,7 @@ public static class CambiarClaveMapper
         var response = new CambiarClaveUsuarioResponse()
         {
             Id = entity.Id,
+            newpassword = entity.password,
         };
         return response;
     }
@@ -19,7 +20,7 @@ public static class CambiarClaveMapper
         var entity = new UsuarioEntity()
         {
             usuario = request.usuario,
-            password = request.password,
+            password = request.newpassword,
         };
         return entity;
     }

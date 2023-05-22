@@ -9,30 +9,32 @@ using UCABPagaloTodoMS.Base;
 namespace UCABPagaloTodoMS.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class AgregarPrestadorController : BaseController<AgregarPrestadorController>
+public class ConsultarUsuariosController : BaseController<ConsultarUsuariosController>
 {
     private readonly IMediator _mediator;
-    public AgregarPrestadorController(ILogger<AgregarPrestadorController> logger, IMediator mediator) : base(logger)
+    public ConsultarUsuariosController(ILogger<ConsultarUsuariosController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarPrestador")]
+
+    [HttpGet("ConsultarUsuarios")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
-    public async Task<ActionResult<Guid>> AgregarPrestador([FromBody] RegistrarPrestadorRequest request)
+    public async Task<ActionResult<List<ConsultarUsuarios>>> ConsultarUsuarios()
     {
-        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
         try
         {
-            var command = new AgregarRegistrarPrestadorCommand(request);
-            var response = await _mediator.Send(command);
+            var query = new ConsultarUsuariosQuery();
+            var response = await _mediator.Send(query);
             return Ok(response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
             throw;
         }
     }
+
 }
+

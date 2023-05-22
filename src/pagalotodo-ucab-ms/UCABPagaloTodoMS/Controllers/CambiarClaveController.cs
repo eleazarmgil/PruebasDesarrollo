@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UCABPagaloTodoMS.Application.Commands;
-using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
@@ -9,23 +8,24 @@ using UCABPagaloTodoMS.Base;
 namespace UCABPagaloTodoMS.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class AgregarPrestadorController : BaseController<AgregarPrestadorController>
+public class CambiarClaveController : BaseController<CambiarClaveController>
 {
     private readonly IMediator _mediator;
-    public AgregarPrestadorController(ILogger<AgregarPrestadorController> logger, IMediator mediator) : base(logger)
+
+    public CambiarClaveController(ILogger<CambiarClaveController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarPrestador")]
+
+    [HttpPost("CambiarClave")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
-    public async Task<ActionResult<Guid>> AgregarPrestador([FromBody] RegistrarPrestadorRequest request)
+    public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest request)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");
         try
         {
-            var command = new AgregarRegistrarPrestadorCommand(request);
+            var command = new CambiarClaveCommand(request);
             var response = await _mediator.Send(command);
             return Ok(response);
         }

@@ -2,6 +2,6 @@
 public class CambiarClaveUsuarioResponse
 {
     public Guid Id { get; set; }
-    public string? password { get; set; }
+    public string? newpassword { get; set; }
 
 }
