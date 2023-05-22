@@ -23,8 +23,6 @@ public class UCABPagaloTodoDbContext : DbContext, IUCABPagaloTodoDbContext
     public virtual DbSet<PrestadorEntity> Prestador { get; set; } = null!;
     public virtual DbSet<ServicioEntity> Servicio { get; set; } = null!;
 
-
-
     public DbContext DbContext
     {
         get
