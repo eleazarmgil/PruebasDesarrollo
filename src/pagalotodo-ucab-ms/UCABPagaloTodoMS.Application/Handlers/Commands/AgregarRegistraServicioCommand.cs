@@ -44,10 +44,8 @@ namespace UCABPagaloTodoMS.Application.Handlers.Commands
             try
             {
                 _logger.LogInformation("RegistrarAgregarServicoCommandHandler.HandleAsync {Request}", request);
-                Guid idGuid;
-                Guid.TryParse(request._request.id, out idGuid);
 
-                var result = _dbContext.Usuario.Count(c => c.Id == idGuid); // agregar que el id del servicio no exista
+                var result = _dbContext.Usuario.Count(c => c.Id == request._request.id); // agregar que el id del servicio no exista
 
                 if (result == 0)
                 {
