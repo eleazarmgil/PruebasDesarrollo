@@ -19,15 +19,15 @@ public class ActualizarUsuarioController : BaseController<ActualizarUsuarioContr
         _mediator = mediator;
     }
 
-    [HttpPost("ActualizarPrestador")]
+    [HttpPost("AdministrarActualizarPrestador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Guid>> ActualizarPrestador([FromBody] ActualizarPrestadorRequest valor)
+    public async Task<ActionResult<Guid>> AdministradorActualizarPrestador([FromBody] AdministradorActualizarPrestadorRequest valor)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");
         try
         {
-            var query = new ActualizarPrestadorCommand(valor);
+            var query = new AdministradorActualizarPrestadorCommand(valor);
             var response = await _mediator.Send(query);
             return Ok(response);
         }
@@ -58,5 +58,4 @@ public class ActualizarUsuarioController : BaseController<ActualizarUsuarioContr
             throw;
         }
     }
-
 }

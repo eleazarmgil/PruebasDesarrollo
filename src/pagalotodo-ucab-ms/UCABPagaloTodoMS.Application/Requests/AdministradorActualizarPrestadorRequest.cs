@@ -1,5 +1,5 @@
 ﻿namespace UCABPagaloTodoMS.Application.Requests;
-public class ActualizarPrestadorRequest
+public class AdministradorActualizarPrestadorRequest
 {
     public string? usuario { get; set; }
     public string? password { get; set; }

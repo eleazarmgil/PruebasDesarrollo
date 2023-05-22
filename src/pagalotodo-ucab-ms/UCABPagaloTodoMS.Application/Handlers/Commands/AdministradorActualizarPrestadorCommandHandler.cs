@@ -8,19 +8,19 @@ using Org.BouncyCastle.Asn1.Ocsp;
 using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands;
-public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrestadorCommand, Guid>
+public class AdministradorActualizarPrestadorCommandHandler : IRequestHandler<AdministradorActualizarPrestadorCommand, Guid>
 {
     private readonly IUCABPagaloTodoDbContext _dbContext;
-    private readonly ILogger<ActualizarPrestadorCommandHandler> _logger;
+    private readonly ILogger<AdministradorActualizarPrestadorCommandHandler> _logger;
     private EnviarCorreo correo = new EnviarCorreo();
 
-    public ActualizarPrestadorCommandHandler(IUCABPagaloTodoDbContext dbContext, ILogger<ActualizarPrestadorCommandHandler> logger)
+    public AdministradorActualizarPrestadorCommandHandler(IUCABPagaloTodoDbContext dbContext, ILogger<AdministradorActualizarPrestadorCommandHandler> logger)
     {
         _dbContext = dbContext;
         _logger = logger;
     }
 
-    public async Task<Guid> Handle(ActualizarPrestadorCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(AdministradorActualizarPrestadorCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -40,7 +40,7 @@ public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrest
         }
     }
 
-    private async Task<Guid> HandleAsync(ActualizarPrestadorCommand request)
+    private async Task<Guid> HandleAsync(AdministradorActualizarPrestadorCommand request)
     {
         var transaccion = _dbContext.BeginTransaction();
         try
@@ -54,7 +54,7 @@ public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrest
             }
 
             // Actualiza las propiedades del usuario
-            foreach (var propiedad in typeof(ActualizarPrestadorRequest).GetProperties())
+            foreach (var propiedad in typeof(AdministradorActualizarPrestadorRequest).GetProperties())
             {
                 var valor = propiedad.GetValue(request._request);
                 if (valor != null)

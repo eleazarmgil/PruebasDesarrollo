@@ -1,5 +1,6 @@
 namespace UCABPagaloTodoMS.Application.Responses;
-public class ActualizarPrestadorResponse
+
+public class ConsultarConsumidorResponse
 {
     public Guid Id { get; set; }
 }
