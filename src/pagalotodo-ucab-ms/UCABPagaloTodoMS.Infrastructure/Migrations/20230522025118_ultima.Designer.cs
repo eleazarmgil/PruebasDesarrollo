@@ -12,8 +12,8 @@ using UCABPagaloTodoMS.Infrastructure.Database;
 namespace UCABPagaloTodoMS.Infrastructure.Migrations
 {
     [DbContext(typeof(UCABPagaloTodoDbContext))]
-    [Migration("20230521220341_Migraciones")]
-    partial class Migraciones
+    [Migration("20230522025118_ultima")]
+    partial class ultima
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -271,6 +271,9 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
                     b.Property<string>("correo")
                         .HasColumnType("text");
 
+                    b.Property<bool?>("estado")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("nombre")
                         .HasColumnType("text");
 
@@ -355,9 +358,6 @@ namespace UCABPagaloTodoMS.Infrastructure.Migrations
             modelBuilder.Entity("UCABPagaloTodoMS.Core.Entities.PrestadorEntity", b =>
                 {
                     b.HasBaseType("UCABPagaloTodoMS.Core.Entities.UsuarioEntity");
-
-                    b.Property<bool?>("estado")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("nombre_empresa")
                         .HasColumnType("text");

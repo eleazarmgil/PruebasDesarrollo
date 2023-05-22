@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Infrastructure.Correo;
 using UCABPagaloTodoMS.Core.Database;
+using UCABPagaloTodoMS.Application.Requests;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands;
 public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrestadorCommand, Guid>
@@ -43,84 +44,37 @@ public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrest
         try
         {
             _logger.LogInformation("ActualizarPrestadorCommandHandler.HandleAsync {Request}", request);
-            // Busca el usuario que deseas actualizar
+
             var usuario_bd = _dbContext.Prestador.FirstOrDefault(c => c.usuario == request._request.usuario);
 
-            if (usuario_bd != null) //Si el usuario existe
+            if (usuario_bd == null)
             {
-                if (request._request.usuario != null) 
-                {
-                    usuario_bd.usuario = request._request.usuario;
-                }
-
-                if (request._request.password != null) 
-                {
-                    usuario_bd.password = request._request.password;
-                }
-
-                if (request._request.correo != null) 
-                {
-                    usuario_bd.correo = request._request.correo;
-                }
-
-                if (request._request.nombre != null) 
-                {
-                    usuario_bd.nombre = request._request.nombre;
-                }
-
-                if (request._request.apellido != null) 
-                {
-                    usuario_bd.apellido = request._request.apellido;
-                }
-
-                if (request._request.preguntas_de_seguridad != null) 
-                {
-                    usuario_bd.preguntas_de_seguridad = request._request.preguntas_de_seguridad;
-                }
-
-                if (request._request.preguntas_de_seguridad2 != null) 
-                {
-                    usuario_bd.preguntas_de_seguridad2 = request._request.preguntas_de_seguridad2;
-                }
-
-                if (request._request.respuesta_de_seguridad != null)
-                {
-                    usuario_bd.respuesta_de_seguridad = request._request.respuesta_de_seguridad;
-                }
-
-                if (request._request.respuesta_de_seguridad2 != null)
-                {
-                    usuario_bd.respuesta_de_seguridad2 = request._request.respuesta_de_seguridad2;
-                }
-
-                if (request._request.rif != null)
-                {
-                    usuario_bd.rif = request._request.rif;
-                }
-
-                if (request._request.nombre_empresa != null)
-                {
-                    usuario_bd.nombre_empresa = request._request.nombre_empresa;
-                }
-                if (request._request.estado != null)
-                {
-                    usuario_bd.estado = request._request.estado;
-                }
-
-                _dbContext.Usuario.Update(usuario_bd);
-                await _dbContext.SaveEfContextChanges("APP");
-                transaccion.Commit();
-                _logger.LogInformation("ActualizarPrestadorCommandHandler.HandleAsync {Response}", usuario_bd.Id);
-
-                return usuario_bd.Id;
+                return await HandleAsync(request);
             }
-            return await HandleAsync(request);
+
+            // Actualiza las propiedades del usuario
+            foreach (var propiedad in typeof(ActualizarPrestadorRequest).GetProperties())
+            {
+                var valor = propiedad.GetValue(request._request);
+                if (valor != null)
+                {
+                    typeof(Prestador).GetProperty(propiedad.Name)?.SetValue(usuario_bd, valor);
+                }
+            }
+
+            _dbContext.Usuario.Update(usuario_bd);
+            await _dbContext.SaveEfContextChanges("APP");
+            transaccion.Commit();
+            _logger.LogInformation("ActualizarPrestadorCommandHandler.HandleAsync {Response}", usuario_bd.Id);
+
+            return usuario_bd.Id;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error ConsultarValoresQueryHandler.HandleAsync. {Mensaje}", ex.Message);
+            _logger.LogError(ex, "Error en ActualizarPrestadorCommandHandler.HandleAsync. {Mensaje}", ex.Message);
             transaccion.Rollback();
             throw;
         }
+
     }
 }
