@@ -4,6 +4,8 @@ using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Infrastructure.Correo;
 using UCABPagaloTodoMS.Core.Database;
 using UCABPagaloTodoMS.Application.Requests;
+using Org.BouncyCastle.Asn1.Ocsp;
+using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands;
 public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrestadorCommand, Guid>
@@ -46,7 +48,6 @@ public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrest
             _logger.LogInformation("ActualizarPrestadorCommandHandler.HandleAsync {Request}", request);
 
             var usuario_bd = _dbContext.Prestador.FirstOrDefault(c => c.usuario == request._request.usuario);
-
             if (usuario_bd == null)
             {
                 return await HandleAsync(request);
@@ -58,7 +59,7 @@ public class ActualizarPrestadorCommandHandler : IRequestHandler<ActualizarPrest
                 var valor = propiedad.GetValue(request._request);
                 if (valor != null)
                 {
-                    typeof(Prestador).GetProperty(propiedad.Name)?.SetValue(usuario_bd, valor);
+                    typeof(PrestadorEntity).GetProperty(propiedad.Name)?.SetValue(usuario_bd, valor);
                 }
             }
 
