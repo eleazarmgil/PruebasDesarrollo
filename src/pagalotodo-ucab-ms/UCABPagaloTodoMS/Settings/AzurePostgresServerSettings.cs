@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS.Settings;
-
-
 public class AzurePostgresServerSettings
 {
     public string Host { get; set; }

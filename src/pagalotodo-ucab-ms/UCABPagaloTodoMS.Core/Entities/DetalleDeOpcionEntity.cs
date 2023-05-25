@@ -1,20 +1,9 @@
-using System;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace UCABPagaloTodoMS.Core.Entities
+namespace UCABPagaloTodoMS.Core.Entities;
+public class DetalleDeOpcionEntity : BaseEntity
 {
-    public class DetalleDeOpcionEntity : BaseEntity
-    {
-        public string? nombre { get; set; }
-        public string? descripcion { get; set; }
+    public string? nombre { get; set; }
+    public string? descripcion { get; set; }
 
-        //Relacion n a 1 con OpcionDePago
-        public OpcionDePagoEntity opcionDePago { get; set; } = new OpcionDePagoEntity();
-    }
+    //Relacion n a 1 con OpcionDePago
+    public OpcionDePagoEntity opcionDePago { get; set; } = new OpcionDePagoEntity();
 }

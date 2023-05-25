@@ -1,5 +1,4 @@
 ﻿namespace UCABPagaloTodoMS.Infrastructure.Settings;
-
 public class AppSettings
 {
     public string? TermsOfService { get; set; }

@@ -9,8 +9,6 @@ using MediatR;
 using UCABPagaloTodoMS.Application.Handlers.Queries;
 
 namespace UCABPagaloTodoMS;
-
-
 public class Startup
 {
     private AppSettings _appSettings;

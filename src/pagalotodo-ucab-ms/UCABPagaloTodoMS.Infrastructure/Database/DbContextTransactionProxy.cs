@@ -2,51 +2,48 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace UCABPagaloTodoMS.Infrastructure.Database
+namespace UCABPagaloTodoMS.Infrastructure.Database;
+public class DbContextTransactionProxy : IDbContextTransactionProxy
 {
-    
-    public class DbContextTransactionProxy : IDbContextTransactionProxy
+    /// <summary>
+    ///     Real Class which we want to control.
+    ///     We can't mock it's because it does not have public constructors.
+    /// </summary>
+    private readonly IDbContextTransaction _transaction;
+
+    private bool _disposed;
+
+    public DbContextTransactionProxy(DbContext context)
     {
-        /// <summary>
-        ///     Real Class which we want to control.
-        ///     We can't mock it's because it does not have public constructors.
-        /// </summary>
-        private readonly IDbContextTransaction _transaction;
+        _transaction = context.Database.BeginTransaction();
+    }
 
-        private bool _disposed;
+    public void Commit()
+    {
+        _transaction.Commit();
+    }
 
-        public DbContextTransactionProxy(DbContext context)
+    public void Rollback()
+    {
+        _transaction.Rollback();
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!_disposed)
         {
-            _transaction = context.Database.BeginTransaction();
-        }
-
-        public void Commit()
-        {
-            _transaction.Commit();
-        }
-
-        public void Rollback()
-        {
-            _transaction.Rollback();
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
+            if (disposing)
             {
-                if (disposing)
-                {
-                    _transaction.Dispose();
-                }
-
-                _disposed = true;
+                _transaction.Dispose();
             }
+
+            _disposed = true;
         }
     }
 }
