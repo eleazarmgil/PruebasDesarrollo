@@ -1,8 +1,7 @@
-﻿namespace UCABPagaloTodoMS.Core.Entities;
+namespace UCABPagaloTodoMS.Core.Entities;
 public class ConciliacionEntity : BaseEntity
 {
     public DateTime? fecha { set; get; }
-   
 
     //Relacion 1 a n con Pago
     public ICollection<PagoEntity>? pagos { get; set; }

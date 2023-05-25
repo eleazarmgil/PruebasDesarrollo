@@ -1,4 +1,4 @@
-﻿using UCABPagaloTodoMS.Application.Requests;
+using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Core.Entities;
 
@@ -41,6 +41,8 @@ public class RegistrarPrestadorMapper
             rif = request.rif,
             nombre_empresa = request.nombre_empresa,
             estado = true,
+
+
         };
         return entity;
     }

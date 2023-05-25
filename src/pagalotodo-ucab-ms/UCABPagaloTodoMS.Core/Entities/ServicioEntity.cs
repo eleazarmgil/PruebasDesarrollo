@@ -1,4 +1,4 @@
-﻿namespace UCABPagaloTodoMS.Core.Entities;
+namespace UCABPagaloTodoMS.Core.Entities;
 public class ServicioEntity : BaseEntity
 
 {
@@ -13,6 +13,4 @@ public class ServicioEntity : BaseEntity
 
     //Relacion n a 1 con Conciliacion
     public PrestadorEntity prestador { get; set; } = null!;
-
-    
 }

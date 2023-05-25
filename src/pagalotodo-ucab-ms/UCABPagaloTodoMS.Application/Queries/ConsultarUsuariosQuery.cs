@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using UCABPagaloTodoMS.Application.Responses;
 
 namespace UCABPagaloTodoMS.Application.Queries

@@ -1,4 +1,4 @@
-﻿using UCABPagaloTodoMS.Application.Requests;
+using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Core.Entities;
 

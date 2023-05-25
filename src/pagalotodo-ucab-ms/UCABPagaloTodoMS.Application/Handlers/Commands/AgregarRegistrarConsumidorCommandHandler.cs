@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Handlers.Queries;
