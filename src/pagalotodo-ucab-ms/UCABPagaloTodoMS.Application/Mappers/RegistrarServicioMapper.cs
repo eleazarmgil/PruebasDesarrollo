@@ -1,27 +1,33 @@
-﻿using UCABPagaloTodoMS.Application.Requests;
+using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Core.Entities;
 
-namespace UCABPagaloTodoMS.Application.Mappers;
-public class RegistrarServicioMapper
+namespace UCABPagaloTodoMS.Application.Mappers
 {
-    public static RegistrarServicioResponse MapEntityAResponse(ServicioEntity entity)
+    public class RegistrarServicioMapper
     {
-        var response = new RegistrarServicioResponse()
+        public static RegistrarServicioResponse MapEntityAResponse(ServicioEntity entity)
         {
-            id = entity.Id,
-            nombre = entity.nombre,
-           
-        };
-        return response;
-    }
-    public static ServicioEntity MapRequestEntity(RegistrarServicioRequest request)
-    {
-        var entity = new ServicioEntity()
+            var response = new RegistrarServicioResponse()
+            {
+                PrestadorEntityId = entity.PrestadorEntityId,
+                nombre = entity.nombre,
+                descripcion = entity.descripcion,
+                monto = entity.monto,
+
+    };
+            return response;
+        }
+        public static ServicioEntity MapRequestEntity(RegistrarServicioRequest request)
         {
-            Id = request.id,
-            nombre = request.nombre,
-        };
-        return entity;
+            var entity = new ServicioEntity()
+            {
+                nombre = request.nombre,
+                descripcion = request.descripcion,
+                monto = request.monto,
+                PrestadorEntityId = request.PrestadorEntityId,
+            };
+            return entity;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Queries;
@@ -17,7 +17,8 @@ public class AgregarServicioController : BaseController<AgregarServicioControlle
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarServicio")]
+
+    [HttpPost("AgregarServicio")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Queries;
@@ -10,25 +10,26 @@ namespace UCABPagaloTodoMS.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ActualizarUsuarioController : BaseController<ActualizarUsuarioController>
+public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
 {
     private readonly IMediator _mediator;
 
-    public ActualizarUsuarioController(ILogger<ActualizarUsuarioController> logger, IMediator mediator) : base(logger)
+    public CRUDUsuariosController(ILogger<CRUDUsuariosController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
 
-    [HttpPost("AdministrarActualizarPrestador")]
+    [HttpGet("AgregarPrestador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Guid>> AdministradorActualizarPrestador([FromBody] AdministradorActualizarPrestadorRequest valor)
+
+    public async Task<ActionResult<Guid>> AgregarPrestador([FromBody] RegistrarPrestadorRequest request)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");
         try
         {
-            var query = new AdministradorActualizarPrestadorCommand(valor);
-            var response = await _mediator.Send(query);
+            var command = new AgregarRegistrarPrestadorCommand(request);
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
         catch (Exception ex)
@@ -37,20 +38,19 @@ public class ActualizarUsuarioController : BaseController<ActualizarUsuarioContr
             throw;
         }
     }
-
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///
-    [HttpPost("CambiarClave")]
+    [HttpGet("AgregarConsumidor")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest valor)
+
+    public async Task<ActionResult<Guid>> AgregarConsumidor([FromBody] RegistrarConsumidorRequest request)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");
         try
         {
-            var query = new CambiarClaveCommand(valor);
-            var response = await _mediator.Send(query);
+            var command = new AgregarRegistrarConsumidorCommand(request);
+            var response = await _mediator.Send(command);
             return Ok(response);
         }
         catch (Exception ex)
@@ -60,3 +60,25 @@ public class ActualizarUsuarioController : BaseController<ActualizarUsuarioContr
         }
     }
 
+   
+    [HttpPost("ConsultarUsuarios")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<ConsultarUsuariosResponse>>> ConsultarUsuarios()
+    {
+        _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
+        try
+        {
+            var query = new ConsultarUsuariosQuery();
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+
+}
