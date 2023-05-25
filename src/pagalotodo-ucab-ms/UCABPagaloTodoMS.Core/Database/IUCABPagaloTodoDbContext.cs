@@ -29,4 +29,3 @@ public interface IUCABPagaloTodoDbContext
     Task<bool> SaveEfContextChanges(string user, CancellationToken cancellationToken = default);
 
 }
-

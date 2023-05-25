@@ -8,5 +8,4 @@ public class ConciliacionEntity : BaseEntity
 
     //Relacion n a 1 con Administrador
     public AdministradorEntity administrador { get; set; } = new AdministradorEntity();
-
 }

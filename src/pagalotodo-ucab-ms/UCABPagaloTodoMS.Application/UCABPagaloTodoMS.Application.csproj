@@ -26,9 +26,8 @@
 		<ProjectReference Include="..\UCABPagaloTodoMS.Infrastructure\UCABPagaloTodoMS.Infrastructure.csproj" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validators\" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<Folder Include="Validators\" />
+	</ItemGroup>
 
 </Project>

@@ -41,8 +41,6 @@ public class RegistrarPrestadorMapper
             rif = request.rif,
             nombre_empresa = request.nombre_empresa,
             estado = true,
-
-
         };
         return entity;
     }

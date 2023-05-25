@@ -65,5 +65,3 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
     }
 
 }
-
-
