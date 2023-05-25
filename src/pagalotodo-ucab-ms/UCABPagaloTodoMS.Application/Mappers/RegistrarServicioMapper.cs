@@ -10,18 +10,22 @@ namespace UCABPagaloTodoMS.Application.Mappers
         {
             var response = new RegistrarServicioResponse()
             {
-                id = entity.id,
+                PrestadorEntityId = entity.PrestadorEntityId,
                 nombre = entity.nombre,
-               
-            };
+                descripcion = entity.descripcion,
+                monto = entity.monto,
+
+    };
             return response;
         }
         public static ServicioEntity MapRequestEntity(RegistrarServicioRequest request)
         {
             var entity = new ServicioEntity()
             {
-                id = request.id,
                 nombre = request.nombre,
+                descripcion = request.descripcion,
+                monto = request.monto,
+                PrestadorEntityId = request.PrestadorEntityId,
             };
             return entity;
         }

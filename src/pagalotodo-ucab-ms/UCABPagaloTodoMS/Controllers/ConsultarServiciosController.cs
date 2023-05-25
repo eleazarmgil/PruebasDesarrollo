@@ -9,23 +9,23 @@ using UCABPagaloTodoMS.Base;
 namespace UCABPagaloTodoMS.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class ConsultarUsuariosController : BaseController<ConsultarUsuariosController>
+public class ConsultarServiciosController : BaseController<ConsultarServiciosController>
 {
     private readonly IMediator _mediator;
-    public ConsultarUsuariosController(ILogger<ConsultarUsuariosController> logger, IMediator mediator) : base(logger)
+    public ConsultarServiciosController(ILogger<ConsultarServiciosController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
 
-    [HttpGet("ConsultarUsuarios")]
+    [HttpPost("ConsultarServicios")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<List<ConsultarUsuarios>>> ConsultarUsuarios()
+    public async Task<ActionResult<List<ConsultarServiciosResponse>>> ConsultarServicios()
     {
         _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
         try
         {
-            var query = new ConsultarUsuariosQuery();
+            var query = new ConsultarServiciosQuery();
             var response = await _mediator.Send(query);
             return Ok(response);
         }

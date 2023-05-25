@@ -15,6 +15,7 @@ public interface IUCABPagaloTodoDbContext
     DbSet<PagoEntity> Pago { get; set; }
     DbSet<PrestadorEntity> Prestador { get; set; }
     DbSet<ServicioEntity> Servicio { get; set; }
+
     DbContext DbContext
     {
         get;

@@ -7,26 +7,32 @@ using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
 
 namespace UCABPagaloTodoMS.Controllers;
+
 [ApiController]
 [Route("[controller]")]
-public class AgregarConsumidorController : BaseController <AgregarConsumidorController>
+public class ActualizarUsuarioController : BaseController<ActualizarUsuarioController>
 {
     private readonly IMediator _mediator;
-    public AgregarConsumidorController(ILogger<AgregarConsumidorController> logger, IMediator mediator) : base(logger)
+
+    public ActualizarUsuarioController(ILogger<ActualizarUsuarioController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarConsumidor")]
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///
+    [HttpPost("CambiarClave")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
-    public async Task<ActionResult<Guid>> AgregarConsumidor([FromBody] RegistrarConsumidorRequest request)
+    public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest valor)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");
         try
         {
-            var command = new AgregarRegistrarConsumidorCommand(request);
-            var response = await _mediator.Send(command);
+            var query = new CambiarClaveCommand(valor);
+            var response = await _mediator.Send(query);
             return Ok(response);
         }
         catch (Exception ex)
@@ -35,4 +41,5 @@ public class AgregarConsumidorController : BaseController <AgregarConsumidorCont
             throw;
         }
     }
+
 }

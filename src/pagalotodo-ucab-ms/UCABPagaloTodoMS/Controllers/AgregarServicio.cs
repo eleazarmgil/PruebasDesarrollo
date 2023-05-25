@@ -17,7 +17,7 @@ public class AgregarServicioController : BaseController<AgregarServicioControlle
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarServicio")]
+    [HttpPost("AgregarServicio")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

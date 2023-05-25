@@ -19,6 +19,7 @@ public class RegistrarConsumidorMapper
             respuesta_de_seguridad = entity.respuesta_de_seguridad,
             respuesta_de_seguridad2 = entity.respuesta_de_seguridad2,   
             ci = entity.ci,
+            estado = entity.estado,
 
         };
         return response;
@@ -38,6 +39,7 @@ public class RegistrarConsumidorMapper
             respuesta_de_seguridad = request.respuesta_de_seguridad,
             respuesta_de_seguridad2 = request.respuesta_de_seguridad2,
             ci = request.ci,
+            estado = true,
         };
         return entity;
     }

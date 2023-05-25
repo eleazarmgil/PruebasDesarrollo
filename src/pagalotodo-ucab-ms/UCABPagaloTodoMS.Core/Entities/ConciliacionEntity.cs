@@ -2,7 +2,7 @@
 public class ConciliacionEntity : BaseEntity
 {
     public DateTime? fecha { set; get; }
-    //public Dictionary<string, string>? archivo { set; get; }
+   
 
     //Relacion 1 a n con Pago
     public ICollection<PagoEntity>? pagos { get; set; }

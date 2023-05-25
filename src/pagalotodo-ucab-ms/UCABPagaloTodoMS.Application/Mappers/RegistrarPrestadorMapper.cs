@@ -40,7 +40,7 @@ public class RegistrarPrestadorMapper
             respuesta_de_seguridad2 = request.respuesta_de_seguridad2,
             rif = request.rif,
             nombre_empresa = request.nombre_empresa,
-            estado = request.estado,
+            estado = true,
         };
         return entity;
     }
