@@ -6,7 +6,7 @@ public class ServicioEntity : BaseEntity
     public double? monto { set; get; }
 
     //Relacion 1 a n con Pago
-    public ICollection<ServicioEntity>? pago { get; set; }
+    public ICollection<PagoEntity>? pago { get; set; }
 
     //Relacion n a 1 con Conciliacion
     public PrestadorEntity prestador { get; set; } = new PrestadorEntity();
