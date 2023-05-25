@@ -1,24 +1,24 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Handlers.Queries;
 using UCABPagaloTodoMS.Application.Mappers;
 using UCABPagaloTodoMS.Core.Database;
-//using UCABPagaloTodoMS.Infrastructure.Services;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Commands;
-public class AgregarRegistrarConsumidorCommandHandler : IRequestHandler<AgregarRegistrarConsumidorCommand, Guid>
+
+public class AgregarRegistrarServicioCommandHandler : IRequestHandler<AgregarRegistrarServicioCommand, Guid>
 {
     private readonly IUCABPagaloTodoDbContext _dbContext;
-    private readonly ILogger<AgregarRegistrarConsumidorCommandHandler> _logger;
+    private readonly ILogger<AgregarRegistrarServicioCommandHandler> _logger;
 
-    public AgregarRegistrarConsumidorCommandHandler(IUCABPagaloTodoDbContext dbContext, ILogger<AgregarRegistrarConsumidorCommandHandler> logger)
+    public AgregarRegistrarServicioCommandHandler(IUCABPagaloTodoDbContext dbContext, ILogger<AgregarRegistrarServicioCommandHandler> logger)
     {
         _dbContext = dbContext;
         _logger = logger;
     }
 
-    public async Task<Guid> Handle(AgregarRegistrarConsumidorCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(AgregarRegistrarServicioCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -38,25 +38,27 @@ public class AgregarRegistrarConsumidorCommandHandler : IRequestHandler<AgregarR
         }
     }
 
-    private async Task<Guid> HandleAsync(AgregarRegistrarConsumidorCommand request)
+    private async Task<Guid> HandleAsync(AgregarRegistrarServicioCommand request)
     {
         var transaccion = _dbContext.BeginTransaction();
         try
         {
-            _logger.LogInformation("AgregarValorPruebaCommandHandler.HandleAsync {Request}", request);
-            var result = _dbContext.Consumidor.Count(c => c.usuario == request._request.usuario);
+            _logger.LogInformation("RegistrarAgregarServicoCommandHandler.HandleAsync {Request}", request);
+ 
 
-             if (result > 0)
-             {
-                 throw new InvalidOperationException("Registro fallido: el usuario ya existe");
-             }
+            var result = _dbContext.Usuario.Count(c => c.Id == request._request.PrestadorEntityId); // agregar que el id del servicio no exista
 
-            var entity = RegistrarConsumidorMapper.MapRequestEntity(request._request);
-            _dbContext.Consumidor.Add(entity);
+            if (result == 0)
+            {
+                throw new InvalidOperationException("Registro fallido: No existe prestador para este servicio");
+            }
+
+            var entity = RegistrarServicioMapper.MapRequestEntity(request._request);
+            _dbContext.Servicio.Add(entity);
             var id = entity.Id;
+            
             await _dbContext.SaveEfContextChanges("APP");
             transaccion.Commit();
-            //new Rabbit().SendProductMessage("valor");
             _logger.LogInformation("AgregarValorPruebaCommandHandler.HandleAsync {Response}", id);
             return id;
         }

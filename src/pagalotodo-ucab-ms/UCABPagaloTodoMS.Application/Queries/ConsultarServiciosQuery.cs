@@ -1,10 +1,10 @@
-using MediatR;
+﻿using MediatR;
 using UCABPagaloTodoMS.Application.Responses;
 
 namespace UCABPagaloTodoMS.Application.Queries
 {
-    public class ConsultarUsuariosQuery : IRequest<List<ConsultarUsuariosResponse>>
+    public class ConsultarServiciosQuery : IRequest<List<ConsultarServiciosResponse>>
     {
-      
+
     }
 }
