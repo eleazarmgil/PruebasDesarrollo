@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Infrastructure.Correo;
@@ -76,6 +76,5 @@ public class ActualizarConsumidorCommandHandler : IRequestHandler<ActualizarCons
             transaccion.Rollback();
             throw;
         }
-
     }
 }
