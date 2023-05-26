@@ -46,7 +46,7 @@ public class ConsultarServicioEmpresaQueryHandler : IRequestHandler<ConsultarSer
             _logger.LogInformation("ConsultarServicioEmpresaQueryHandler.HandleAsync");
 
             
-            var prestadores = await _dbContext.Prestador
+            var result = await _dbContext.Prestador.Where(p => p.Id == request._request.id_prestador)
                 .Include(p => p.servicios)
                 .ToListAsync();
 
