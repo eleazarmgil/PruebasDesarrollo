@@ -54,7 +54,7 @@ public class AdministradorActualizarConsumidorCommandHandler : IRequestHandler<A
             }
 
             // Actualiza las propiedades del usuario
-            foreach (var propiedad in typeof(AdministradorActualizarPrestadorRequest).GetProperties())
+            foreach (var propiedad in typeof(AdministradorActualizarConsumidorRequest).GetProperties())
             {
                 var valor = propiedad.GetValue(request._request);
                 if (valor != null)
