@@ -45,7 +45,7 @@ public class ConsultarServiciosController : BaseController<ConsultarServiciosCon
         _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
         try
         {
-            var query = new ConsultarServiciosQuery();
+            var query = new ConsultarServicioEmpresaQuery();
             var response = await _mediator.Send(query);
             return Ok(response);
         }
