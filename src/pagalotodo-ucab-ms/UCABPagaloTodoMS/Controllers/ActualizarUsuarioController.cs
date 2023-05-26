@@ -19,26 +19,6 @@ public class ActualizarUsuarioController : BaseController<ActualizarUsuarioContr
         _mediator = mediator;
     }
 
-    [HttpPost("AdministrarActualizarPrestador")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Guid>> AdministradorActualizarPrestador([FromBody] AdministradorActualizarPrestadorRequest valor)
-    {
-        _logger.LogInformation("Entrando al método que registra los valores de prueba");
-        try
-        {
-            var query = new AdministradorActualizarPrestadorCommand(valor);
-            var response = await _mediator.Send(query);
-            return Ok(response);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
-        }
-    }
-
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///
     [HttpPost("CambiarClave")]
@@ -60,3 +40,48 @@ public class ActualizarUsuarioController : BaseController<ActualizarUsuarioContr
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///
+    [HttpPost("AdministradorActualizarPrestador")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Guid>> AdministradorActualizarPrestador([FromBody] AdministradorActualizarPrestadorRequest request)
+    {
+        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        try
+        {
+            var command = new AdministradorActualizarPrestadorCommand(request);
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///
+    [HttpPost("AdministradorActualizarConsumidor")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Guid>> AdministradorActualizarConsumidor([FromBody] AdministradorActualizarConsumidorRequest request)
+    {
+        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        try
+        {
+            var command = new AdministradorActualizarConsumidorCommand(request);
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+
+
+}
