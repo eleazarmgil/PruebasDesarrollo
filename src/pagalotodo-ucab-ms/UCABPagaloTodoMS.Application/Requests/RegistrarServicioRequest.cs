@@ -1,4 +1,4 @@
-﻿namespace UCABPagaloTodoMS.Application.Requests;
+namespace UCABPagaloTodoMS.Application.Requests;
 public class RegistrarServicioRequest
 {
     public Guid PrestadorEntityId { get; set; }

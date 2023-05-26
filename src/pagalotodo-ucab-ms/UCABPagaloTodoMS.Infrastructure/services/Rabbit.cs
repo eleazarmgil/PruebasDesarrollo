@@ -1,4 +1,4 @@
-﻿//using Newtonsoft.Json;
+//using Newtonsoft.Json;
 //using RabbitMQ.Client;
 
 //namespace UCABPagaloTodoMS.Infrastructure.Services;
@@ -33,3 +33,4 @@
 
 
 //}
+

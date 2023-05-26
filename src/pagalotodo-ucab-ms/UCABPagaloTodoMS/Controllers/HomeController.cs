@@ -1,4 +1,4 @@
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Queries;
@@ -10,36 +10,32 @@ namespace UCABPagaloTodoMS.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ActualizarUsuarioController : BaseController<ActualizarUsuarioController>
+public class ConsultarConsumidorController : BaseController<ConsultarConsumidorController>
 {
     private readonly IMediator _mediator;
-
-    public ActualizarUsuarioController(ILogger<ActualizarUsuarioController> logger, IMediator mediator) : base(logger)
+    public ConsultarConsumidorController(ILogger<ConsultarConsumidorController> logger, IMediator mediator) : base(logger)
     {
         _mediator = mediator;
     }
 
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///
-    [HttpPost("CambiarClave")]
+    [HttpGet("ConsultarConsumidor")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest valor)
+    public async Task<ActionResult<List<ConsultarConsumidorResponse>>> ConsultarConsumidor([FromBody] ConsultarConsumidorRequest request)
     {
-        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        _logger.LogInformation("Entrando al método que consulta el ci del consumidor");
         try
         {
-            var query = new CambiarClaveCommand(valor);
+            var query = new ConsultarConsumidorQuery(request);
             var response = await _mediator.Send(query);
             return Ok(response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            _logger.LogError("Ocurrio un error en la consulta del ci del prestador. Exception: " + ex);
             throw;
         }
     }
-
-
 }
+

@@ -1,4 +1,4 @@
-﻿namespace UCABPagaloTodoMS.Core.Entities;
+namespace UCABPagaloTodoMS.Core.Entities;
 public class PrestadorEntity : UsuarioEntity
 {
     public int? rif { set; get; }
@@ -6,6 +6,6 @@ public class PrestadorEntity : UsuarioEntity
 
     //Relacion 1 a n con DetalleDePago
     public ICollection<ServicioEntity>? servicios { get; set; }
-    
-   
+ 
+
 }

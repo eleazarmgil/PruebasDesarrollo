@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Core.Database;
 public interface IUCABPagaloTodoDbContext
 {
+
     DbSet<ValoresEntity> Valores { get; set; }
     DbSet<UsuarioEntity> Usuario { get; set; }
     DbSet<AdministradorEntity> Administrador { get; set; }
@@ -28,3 +29,4 @@ public interface IUCABPagaloTodoDbContext
     Task<bool> SaveEfContextChanges(string user, CancellationToken cancellationToken = default);
 
 }
+

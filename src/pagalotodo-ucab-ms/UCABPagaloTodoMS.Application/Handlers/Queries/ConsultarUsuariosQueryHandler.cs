@@ -1,4 +1,4 @@
-﻿using UCABPagaloTodoMS.Core.Database;
+using UCABPagaloTodoMS.Core.Database;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
@@ -65,4 +65,5 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
     }
 
 }
+
 

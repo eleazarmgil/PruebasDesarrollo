@@ -1,4 +1,4 @@
-﻿namespace UCABPagaloTodoMS.Application.Responses;
+namespace UCABPagaloTodoMS.Application.Responses;
 public class RegistrarServicioResponse
 {
     public Guid PrestadorEntityId { get; set; }
