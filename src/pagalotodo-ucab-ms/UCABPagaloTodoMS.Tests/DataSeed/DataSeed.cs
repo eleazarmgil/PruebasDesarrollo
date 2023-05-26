@@ -4,8 +4,6 @@ using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UCABPagaloTodoMS.Core.Database;
 using Microsoft.EntityFrameworkCore;
-using static Bogus.Person.CardAddress;
-using System.Text.RegularExpressions;
 using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Tests.DataSeed;
@@ -28,6 +26,116 @@ public static class DataSeed
 
     public static void SetupDbContextData(this Mock<IUCABPagaloTodoDbContext> mockContext)
     {
+
+        //usuario
+        var request_usuarios = new List<UsuarioEntity>
+        {
+             new UsuarioEntity
+             {
+                  Id=Guid.NewGuid(),
+                  CreatedAt = DateTime.Now,
+                  CreatedBy="Admin",
+                  UpdatedAt=DateTime.Now,
+                  UpdatedBy="",
+
+                  usuario ="Usuario1",
+                  password="password1",
+                  correo="prueba@gmail.com",
+                  nombre ="Luis",
+                  apellido="Febles",
+                  preguntas_de_seguridad= "Pregunta1",
+                  preguntas_de_seguridad2 = "Pregunta2",
+                  respuesta_de_seguridad= "Respuesta1",
+                  respuesta_de_seguridad2= "Respuesta2",
+                  estado=true,
+             }
+        };
+        //administradores
+        var request_administrador = new List<AdministradorEntity>
+        {
+             new AdministradorEntity
+             {
+                  Id=Guid.NewGuid(),
+                  CreatedAt = DateTime.Now,
+                  CreatedBy="Admin",
+                  UpdatedAt=DateTime.Now,
+                  UpdatedBy="",
+
+                  usuario ="Usuario_admin1",
+                  password="password_admin1",
+                  correo="prueba@gmail.com",
+                  nombre ="Luis",
+                  apellido="Febles",
+                  preguntas_de_seguridad= "Pregunta1",
+                  preguntas_de_seguridad2 = "Pregunta2",
+                  respuesta_de_seguridad= "Respuesta1",
+                  respuesta_de_seguridad2= "Respuesta2",
+                  estado=true,
+             }
+        };
+        //Prestador
+        var request_prestador = new List<PrestadorEntity>
+        {
+             new PrestadorEntity
+             {
+                  Id=Guid.NewGuid(),
+                  CreatedAt = DateTime.Now,
+                  CreatedBy="Admin",
+                  UpdatedAt=DateTime.Now,
+                  UpdatedBy="",
+
+                  usuario ="Usuario1",
+                  password="password1",
+                  correo="prueba@gmail.com",
+                  nombre ="Luis",
+                  apellido="Febles",
+                  preguntas_de_seguridad= "Pregunta1",
+                  preguntas_de_seguridad2 = "Pregunta2",
+                  respuesta_de_seguridad= "Respuesta1",
+                  respuesta_de_seguridad2= "Respuesta2",
+                  estado=true,
+
+                  rif=1234567894,
+                  nombre_empresa ="Polar",
+}
+        };
+        //Consumidor
+        var request_consumidor = new List<ConsumidorEntity>
+        {
+             new ConsumidorEntity
+             {
+                  Id=Guid.NewGuid(),
+                  CreatedAt = DateTime.Now,
+                  CreatedBy="Admin",
+                  UpdatedAt=DateTime.Now,
+                  UpdatedBy="",
+
+                  usuario ="Usuario1",
+                  password="password1",
+                  correo="prueba@gmail.com",
+                  nombre ="Luis",
+                  apellido="Febles",
+                  preguntas_de_seguridad= "Pregunta1",
+                  preguntas_de_seguridad2 = "Pregunta2",
+                  respuesta_de_seguridad= "Respuesta1",
+                  respuesta_de_seguridad2= "Respuesta2",
+                  estado=true,
+
+                  ci=27277277,
+             }
+        };
+
+
+
+
+        //Usuario DataSeed
+        mockContext.Setup(C => C.Usuario).Returns(request_usuarios.AsQueryable().BuildMockDbSet().Object);
+        mockContext.Setup(C => C.Prestador).Returns(request_prestador.AsQueryable().BuildMockDbSet().Object);
+        mockContext.Setup(C => C.Administrador).Returns(request_administrador.AsQueryable().BuildMockDbSet().Object);
+        mockContext.Setup(C => C.Consumidor).Returns(request_consumidor.AsQueryable().BuildMockDbSet().Object);
+
+
+
 
     }
 }
