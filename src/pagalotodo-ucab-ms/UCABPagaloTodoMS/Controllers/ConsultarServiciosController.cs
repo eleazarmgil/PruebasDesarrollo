@@ -37,7 +37,7 @@ public class ConsultarServiciosController : BaseController<ConsultarServiciosCon
     }
 
 
-    [HttpPost("ConsultarServicioEmpresa")]
+    [HttpPost("ConsultarServiciosController")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<List<ConsultarServicioEmpresaResponse>>> ConsultarServicioEmpresa()
@@ -45,7 +45,7 @@ public class ConsultarServiciosController : BaseController<ConsultarServiciosCon
         _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
         try
         {
-            var query = new ConsultarServicioEmpresaQuery();
+            var query = new ConsultarServiciosQuery();
             var response = await _mediator.Send(query);
             return Ok(response);
         }
