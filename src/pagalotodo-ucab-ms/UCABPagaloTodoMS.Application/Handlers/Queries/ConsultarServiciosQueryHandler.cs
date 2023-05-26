@@ -44,21 +44,26 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries;
             {
                 _logger.LogInformation("ConsultarServiciosQueryHandler.HandleAsync");
 
-                var result = await _dbContext.Servicio
-                .Include(s => s.prestador)
-                .Select(c => new ConsultarServiciosResponse()
-                {
-                    id_servicio = c.Id,
-                    nombre = c.nombre,
-                    descripcion = c.descripcion,
-                    monto = c.monto,
-                    id_prestador = c.PrestadorEntityId,
-                    nombre_prestador = c.prestador.nombre,
-                    
-
-                })
+            var prestadores = await _dbContext.Prestador
+            .Include(p => p.servicios)
             .ToListAsync();
+
+
+            var result = prestadores.SelectMany(p => p.servicios
+                .Select(s => new ConsultarServiciosResponse
+                {
+                    nombre_empresa = p.nombre_empresa,
+                    nombre_prestador = p.usuario,
+                    id_servicio = s.Id,
+                    nombre = s.nombre,
+                    descripcion = s.descripcion,
+                    monto = s.monto,
+                    id_prestador = p.Id
+                }))
+                .ToList();
+
             return result;
+  
             }
             catch (Exception ex)
             {
