@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 using UCABPagaloTodoMS.Application.Requests; 
 
 namespace UCABPagaloTodoMS.Application.Commands;
