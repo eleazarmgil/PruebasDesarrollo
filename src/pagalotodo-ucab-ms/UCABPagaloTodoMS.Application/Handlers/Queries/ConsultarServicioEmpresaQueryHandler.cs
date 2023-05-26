@@ -46,12 +46,12 @@ public class ConsultarServicioEmpresaQueryHandler : IRequestHandler<ConsultarSer
             _logger.LogInformation("ConsultarServicioEmpresaQueryHandler.HandleAsync");
 
             
-            var result = await _dbContext.Prestador.Where(p => p.Id == request._request.id_prestador)
+            var prestador = await _dbContext.Prestador.Where(p => p.Id == request._request.id_prestador)
                 .Include(p => p.servicios)
                 .ToListAsync();
 
            
-            var response = prestadores.SelectMany(p => p.servicios
+            var result = prestador.SelectMany(p => p.servicios
                 .Select(s => new ConsultarServicioEmpresaResponse
                 {
                     nombre_empresa = p.nombre_empresa,
@@ -64,23 +64,9 @@ public class ConsultarServicioEmpresaQueryHandler : IRequestHandler<ConsultarSer
                 }))
                 .ToList();
 
-            return response;
+            return result;
 
-            /* var result = await _dbContext.Servicio
-             .Include(s => s.prestador)
-             .Select(c => new ConsultarServiciosResponse()
-             {
-                 id_servicio = c.Id,
-                 nombre = c.nombre,
-                 descripcion = c.descripcion,
-                 monto = c.monto,
-                 id_prestador = c.PrestadorEntityId,
-                 nombre_prestador = c.prestador.nombre,
-
-
-             })
-         .ToListAsync();
-             return result;*/
+         
         }
         catch (Exception ex)
         {
