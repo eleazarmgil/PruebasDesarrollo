@@ -13,8 +13,8 @@ public class AgregarOpcionPagoMapper
             estatus = entity.estatus,
             ServicioEntityId = entity.ServicioEntityId,
 
-
 };
+
         return response;
     }
 

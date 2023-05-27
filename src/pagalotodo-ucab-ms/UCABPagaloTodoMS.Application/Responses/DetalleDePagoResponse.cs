@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCABPagaloTodoMS.Application.Requests;
+namespace UCABPagaloTodoMS.Application.Responses;
 
-public class DetalleDePagoRequest
+public class DetalleDePagoResponse
 {
     public string? detalle { get; set; }
     public string? nombre { get; set; }
