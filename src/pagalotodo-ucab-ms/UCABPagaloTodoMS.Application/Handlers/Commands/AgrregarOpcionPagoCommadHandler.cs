@@ -47,7 +47,7 @@ public class AgregarOpcionPagoCommandHandler : IRequestHandler<AgregarOpcionPago
         {
             _logger.LogInformation("RegistrarAgregarServicoCommandHandler.HandleAsync {Request}", request);
 
-
+            //validar que si el metodo de pago existe para el servicio no agregarlor
             var result = _dbContext.Servicio.Count(c => c.Id == request._request.ServicioEntityId); // agregar que el id del servicio no exista
 
             if (result == 0)
@@ -56,27 +56,6 @@ public class AgregarOpcionPagoCommandHandler : IRequestHandler<AgregarOpcionPago
             }
 
             var entity = AgregarOpcionPagoMapper.MapRequestEntity(request._request);
-
-
-
-          /*  entity.detalleDeOpcion = new List<DetalleDeOpcionEntity>();
-
-            if (request._request.detalleDeOpcion != null)
-            {
-                foreach (var detalleDeOpcion in request._request.detalleDeOpcion)
-                {
-                    entity.detalleDeOpcion.Add(new DetalleDeOpcionEntity
-                    {
-                        nombre = detalleDeOpcion.nombre,
-                        tipo_dato = detalleDeOpcion.tipo_dato,
-                        cant_caracteres = detalleDeOpcion.cant_caracteres,
-                        formato = detalleDeOpcion.formato,
-                        
-                    });
-                }
-            }*/
-
-
 
             _dbContext.OpcionDePago.Add(entity);
             var id = entity.Id;
