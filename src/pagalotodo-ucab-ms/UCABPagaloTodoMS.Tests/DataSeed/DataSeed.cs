@@ -111,7 +111,7 @@ public static class DataSeed
 
                   rif=1234567894,
                   nombre_empresa ="Polar",
-}
+             }
         };
         //Consumidor
         var request_consumidor = new List<ConsumidorEntity>

@@ -31,13 +31,18 @@ public class LoginUsuarioControllerTest
     [Fact]
     public async Task LoginUsuarioTest()
     {
+        //Arrange-> Variables de mock
         var valores = BuildDataContextFaker.BuildListaLoginUsuario();
+        var request = BuildDataContextFaker.BuildLoginUsuarioRequest();
 
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarLoginUsuarioQuery>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
 
-        var result = await _controller.LoginUsuario();
-        var response = Assert.IsType<OkObjectResult>(result.Result);
+        //Act-> Cuales son las actividades de mi consulta que debo tener
+        var result = await _controller.LoginUsuario(request);
+        var response = Assert.IsType<OkObjectResult>(result.Result); //
+
+        //Assert-> Aqui verifico cual es el estado de la consulta-> 200 = 200
         Assert.Equal(200, response.StatusCode);
         _mediatorMock.Verify();
 

@@ -29,14 +29,18 @@ public class EjemploControllerTest
 
     [Fact]
     public async Task ConsultarValoresTest()
-    {
-        var valores = BuildDataContextFaker.BuildListaValores();
+    {//AAA
 
+        //Arrange-> Datos necesarios para ejecutar la prueba
+        var valores = BuildDataContextFaker.BuildListaValores();
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarValoresPruebaQuery>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
 
+        //Act->Llama al metodo a probar
         var result = await _controller.ConsultaValores();
         var response = Assert.IsType<OkObjectResult>(result.Result);
+
+        //Assert-> Aqui verifico el resultado de la consulta-> 200 = 200
         Assert.Equal(200, response.StatusCode);
         _mediatorMock.Verify();
 
@@ -47,8 +51,10 @@ public class EjemploControllerTest
     {
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarValoresPruebaQuery>(), It.IsAny<CancellationToken>()))
             .ThrowsAsync(new Exception());
+
         var result = await _controller.ConsultaValores();
         var response = Assert.IsType<BadRequestObjectResult>(result.Result);
+
         Assert.Equal(400, response.StatusCode);
         _mediatorMock.Verify();
     }

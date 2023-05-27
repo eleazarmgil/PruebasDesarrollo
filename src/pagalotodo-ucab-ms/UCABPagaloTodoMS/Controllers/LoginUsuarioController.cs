@@ -20,7 +20,7 @@ public class LoginUsuarioController : BaseController<LoginUsuarioController>
     [HttpGet("LoginUsuario")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult< List<LoginUsuarioResponse>>> LoginUsuario([FromBody] LoginUsuarioRequest request)
+    public async Task<ActionResult<LoginUsuarioResponse>> LoginUsuario([FromBody] LoginUsuarioRequest request)
         {
             _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
             try

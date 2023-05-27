@@ -6,6 +6,8 @@ namespace UCABPagaloTodoMS.Tests.MockData;
 
 public static class BuildDataContextFaker
 {
+    //Faker de Valores
+
     public static Faker<ValoresRequest> BuildValoresRequest()
     {
         Randomizer.Seed = new Random(100);
@@ -42,6 +44,7 @@ public static class BuildDataContextFaker
         return data;
     }
 
+    //Faker de LoginUsuario
     public static Faker<LoginUsuarioRequest> BuildLoginUsuarioRequest()
     {
         Randomizer.Seed = new Random(100);
