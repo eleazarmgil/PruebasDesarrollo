@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MediatR;
+using UCABPagaloTodoMS.Application.Requests; 
 
-namespace UCABPagaloTodoMS.Application.Commands
+namespace UCABPagaloTodoMS.Application.Commands;
+
+public class ActualizarServicioCommand : IRequest<Guid>
 {
-    internal class ActualizarServicioCommand
+    public ActualizarServicioRequest _request { get; set; }
+
+    public ActualizarServicioCommand(ActualizarServicioRequest request)
     {
+        _request = request;
     }
 }
