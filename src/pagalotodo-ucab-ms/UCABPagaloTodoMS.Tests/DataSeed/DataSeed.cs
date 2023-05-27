@@ -9,6 +9,8 @@ using UCABPagaloTodoMS.Core.Entities;
 namespace UCABPagaloTodoMS.Tests.DataSeed;
 public static class DataSeed
 {
+    //Seed de los Valores
+    public static Mock<DbSet<ValoresEntity>> mock_valores = new Mock<DbSet<ValoresEntity>>();
     //Seed de los usuarios
     public static Mock<DbSet<UsuarioEntity>> mock_usuario = new Mock<DbSet<UsuarioEntity>>();
     public static Mock<DbSet<PrestadorEntity>> mock_prestador = new Mock<DbSet<PrestadorEntity>>();
@@ -26,6 +28,18 @@ public static class DataSeed
 
     public static void SetupDbContextData(this Mock<IUCABPagaloTodoDbContext> mockContext)
     {
+
+        //Valores
+        var request_valores = new List<ValoresEntity>
+        {
+            new ValoresEntity
+            {
+                Id = new Guid("907dd04e-6648-4168-a835-129c29ac9fb2"),
+                Nombre = "Maria",
+                Apellido = "Arteaga",
+                Identificacion = "213213344"
+            },
+        };
 
         //usuario
         var request_usuarios = new List<UsuarioEntity>
@@ -133,9 +147,7 @@ public static class DataSeed
         mockContext.Setup(C => C.Prestador).Returns(request_prestador.AsQueryable().BuildMockDbSet().Object);
         mockContext.Setup(C => C.Administrador).Returns(request_administrador.AsQueryable().BuildMockDbSet().Object);
         mockContext.Setup(C => C.Consumidor).Returns(request_consumidor.AsQueryable().BuildMockDbSet().Object);
-
-
-
+        mockContext.Setup(c => c.Valores).Returns(request_valores.AsQueryable().BuildMockDbSet().Object);
 
     }
 }
