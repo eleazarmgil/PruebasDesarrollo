@@ -350,6 +350,26 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     //                                             CRUDS DE ACTUALIZAR USUARIOS
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /// <summary>
+    /// Endpoint para actualizar la información de un prestador de servicios registrado en el sistema por un administrador.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite actualizar la información de un prestador de servicios registrado en el sistema a partir de su identificador único.
+    ///     ## Description
+    ///     ### Get campos Id
+    ///     ## Url
+    ///     GET /crudusuarios/AdministradorActualizarPrestador
+    /// </remarks>
+    /// <param name="request">El objeto de solicitud que contiene la información actualizada del prestador de servicios.</param>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta
+    /// <returns>El identificador único del prestador de servicios actualizado.</returns>
+
     [HttpPost("AdministradorActualizarPrestador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -369,6 +389,26 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         }
     }
 
+    /// <summary>
+    /// Endpoint para actualizar la información de un consumidor de servicios registrado en el sistema por un administrador.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite actualizar la información de un consumidor de servicios registrado en el sistema a partir de su identificador único.
+    ///     ## Description
+    ///     ### Get campos Id
+    ///     ## Url
+    ///     GET /crudusuarios/AdministradorActualizarConsumidor
+    /// </remarks>
+    /// <param name="request">El objeto de solicitud que contiene la información actualizada del consumidor de servicios.</param>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta
+    /// <returns>El identificador único del consumidor de servicios actualizado.</returns>
+
     [HttpPost("AdministradorActualizarConsumidor")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -387,6 +427,26 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
             throw;
         }
     }
+
+    /// <summary>
+    /// Endpoint para cambiar la clave de acceso de un usuario registrado en el sistema.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite cambiar la clave de acceso de un usuario registrado en el sistema a partir de su identificador único.
+    ///     ## Description
+    ///     ### Get campos Id y newpassword
+    ///     ## Url
+    ///     GET /crudusuarios/CambiarClave
+    /// </remarks>
+    /// <param name="valor">El objeto de solicitud que contiene el identificador único del usuario y su nueva clave de acceso.</param>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta
+    /// <returns>El identificador único del usuario con la clave de acceso actualizada.</returns>
 
     [HttpPost("CambiarClave")]
     [ProducesResponseType(StatusCodes.Status200OK)]
