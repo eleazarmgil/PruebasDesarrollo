@@ -26,4 +26,8 @@
 		<ProjectReference Include="..\UCABPagaloTodoMS.Infrastructure\UCABPagaloTodoMS.Infrastructure.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Responses\CRUDUsuarios\" />
+	</ItemGroup>
+
 </Project>

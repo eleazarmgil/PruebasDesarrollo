@@ -12,6 +12,5 @@ public class ConsultarServicioEmpresaResponse
 
     public Guid id_prestador { get; set; }
    
-
 }
 

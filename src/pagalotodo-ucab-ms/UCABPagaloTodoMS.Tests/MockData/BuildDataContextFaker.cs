@@ -44,19 +44,10 @@ public static class BuildDataContextFaker
         return data;
     }
 
-    //Faker de LoginUsuario
-    public static Faker<LoginUsuarioRequest> BuildLoginUsuarioRequest()
+    //Faker de ConsultarUsuarios
+    public static List<ConsultarUsuariosResponse> BuildListaLoginUsuario()
     {
-        Randomizer.Seed = new Random(100);
-        return new Faker<LoginUsuarioRequest>()
-            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
-            .RuleFor(cs => cs.password, fk => fk.Lorem.Word());
-    }
-
-
-    public static List<LoginUsuarioResponse> BuildListaLoginUsuario()
-    {
-        var data = new List<LoginUsuarioResponse>()
+        var data = new List<ConsultarUsuariosResponse>()
         {
             new LoginUsuarioResponse()
             {

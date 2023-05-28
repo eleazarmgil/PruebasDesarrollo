@@ -9,29 +9,29 @@ using Moq;
 using Xunit;
 using UCABPagaloTodoMS.Application.Queries;
 
-namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers;
+namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers.CRUDUsuarios.Select;
 
 public class LoginUsuarioControllerTest
 {
-    private readonly LoginUsuarioController _controller;
+    private readonly CRUDUsuariosController _controller;
     private readonly Mock<IMediator> _mediatorMock;
-    private readonly Mock<ILogger<LoginUsuarioController>> _loggerMock;
+    private readonly Mock<ILogger<CRUDUsuariosController>> _loggerMock;
 
     public LoginUsuarioControllerTest()
     {
-        _loggerMock = new Mock<ILogger<LoginUsuarioController>>();
+        _loggerMock = new Mock<ILogger<CRUDUsuariosController>>();
         _mediatorMock = new Mock<IMediator>();
 
-        _controller = new LoginUsuarioController(_loggerMock.Object, _mediatorMock.Object);
+        _controller = new CRUDUsuariosController(_loggerMock.Object, _mediatorMock.Object);
         _controller.ControllerContext = new ControllerContext();
         _controller.ControllerContext.HttpContext = new DefaultHttpContext();
         _controller.ControllerContext.ActionDescriptor = new ControllerActionDescriptor();
     }
 
     [Fact(DisplayName = "LoginUsuarioController estatus 200-ok")]
-    public async Task LoginUsuarioTest()
+    public async Task LoginUsuarioStatus200OK()
     {
-        //Arrange-> Variables de mock
+        //Arrange-> Datos necesario para las pruebas
         var valores = BuildDataContextFaker.BuildListaLoginUsuario();
         var request = BuildDataContextFaker.BuildLoginUsuarioRequest();
 
@@ -40,11 +40,28 @@ public class LoginUsuarioControllerTest
 
         //Act-> Cuales son las actividades de mi consulta que debo tener
         var result = await _controller.LoginUsuario(request);
-        var response = Assert.IsType<OkObjectResult>(result.Result); //
+        var response = Assert.IsType<OkObjectResult>(result.Result);
 
         //Assert-> Aqui verifico cual es el estado de la consulta-> 200 = 200
         Assert.Equal(200, response.StatusCode);
         _mediatorMock.Verify();
+    }
 
+    [Fact(DisplayName = "LoginUsuarioController estatus 400-BadRequest")]
+    public async Task LoginUsuarioStatus400BadRequestTest()
+    {
+        //Arrange-> Datos necesario para las pruebas
+        var request = BuildDataContextFaker.BuildLoginUsuarioRequest();
+        _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarLoginUsuarioQuery>(), It.IsAny<CancellationToken>()))
+                    .ThrowsAsync(new Exception("Ocurrio un error"));
+
+        //Act-> Cuales son las actividades de mi consulta que debo tener
+        var result = await _controller.LoginUsuario(request);
+        Console.WriteLine(result.Result);
+        var response = Assert.IsType<BadRequestObjectResult>(result.Result);
+
+        //Assert-> Aqui verifico cual es el estado de la consulta-> 400 = 400
+        Assert.Equal(400, response.StatusCode);
+        _mediatorMock.Verify();
     }
 }

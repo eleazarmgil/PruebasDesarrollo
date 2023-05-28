@@ -1,10 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
+
 
 namespace UCABPagaloTodoMS.Controllers;
 [ApiController]
@@ -42,12 +44,13 @@ public class EjemploController : BaseController<EjemploController>
         {
             var query = new ConsultarValoresPruebaQuery();
             var response = await _mediator.Send(query);
-            return Ok(response);
+            //return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error en la consulta de los valores de prueba. Exception: " + ex);
-            throw;
+            return BadRequest(ex.Message);
         }
     }
 
@@ -75,12 +78,14 @@ public class EjemploController : BaseController<EjemploController>
         {
             var query = new AgregarValorPruebaCommand(valor);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
+
 }

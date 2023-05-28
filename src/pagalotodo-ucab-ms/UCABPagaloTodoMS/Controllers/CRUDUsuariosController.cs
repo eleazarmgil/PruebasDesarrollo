@@ -54,12 +54,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var command = new AgregarRegistrarPrestadorCommand(request);
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -95,12 +96,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var command = new AgregarRegistrarConsumidorCommand(request);
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -138,12 +140,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new ConsultarUsuariosQuery();
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
-            throw;
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -178,12 +181,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new ConsultarLoginUsuarioQuery(request);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
-            throw;
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -218,12 +222,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new ConsultarConsumidorQuery(request);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error en la consulta del ci del prestador. Exception: " + ex);
-            throw;
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -258,12 +263,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new ConsultarPrestadorQuery(request);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
-            throw;
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -297,12 +303,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new ConsultarPreguntasDeSeguridadQuery(request);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
-            throw;
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -336,12 +343,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new ConsultarRecuperarClaveQuery(request);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
-            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
-            throw;
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -380,12 +388,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var command = new AdministradorActualizarPrestadorCommand(request);
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -419,12 +428,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var command = new AdministradorActualizarConsumidorCommand(request);
             var response = await _mediator.Send(command);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
@@ -458,12 +468,13 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         {
             var query = new CambiarClaveCommand(valor);
             var response = await _mediator.Send(query);
-            return Ok(response);
+            return Response200(NewResponseOperation(), response);
         }
         catch (Exception ex)
         {
             _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
-            throw;
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
 
