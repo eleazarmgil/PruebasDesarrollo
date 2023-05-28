@@ -19,6 +19,21 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Endpoint para agregar un nuevo prestador.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite agregar un nuevo prestador con los datos proporcionados en el cuerpo de la solicitud.
+    /// </remarks>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta.
+    /// <returns>El ID del nuevo prestador agregado.</returns>
+
     [HttpGet("AgregarPrestador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -38,6 +53,26 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
             throw;
         }
     }
+
+
+    /// <summary>
+    ///     Endpoint para obtener una lista de información de usuarios.
+    /// </summary>
+    /// <remarks>
+    ///     ## Description
+    ///     ### Get campos usuario, correo y nombre
+    ///     ## Url
+    ///     GET /crudusuarios/agregarconsumidor
+    /// </remarks>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta.
+    /// </response>
+    /// <returns> Objeto de respuesta que contiene la información de un usuario.</returns>
 
     [HttpGet("AgregarConsumidor")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,14 +94,15 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         }
     }
 
+
     /// <summary>
-    ///     Endpoint para consultar información de usuarios.
+    ///     Endpoint para obtener una lista de información de usuarios.
     /// </summary>
     /// <remarks>
     ///     ## Description
-    ///     ### Get valores usuario y password
+    ///     ### Get campos usuario, correo y nombre
     ///     ## Url
-    ///     GET /LoginUsuario/LoginUsuario
+    ///     GET /crudusuarios/ConsultarUsuarios
     /// </remarks>
     /// <response code="200">
     ///     Accepted:
@@ -76,7 +112,8 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     ///     Bad Request:
     ///     - La solicitud del cliente es incorrecta.
     /// </response>
-    /// <returns> Un objeto de respuesta que indica si el inicio de sesión fue exitoso o no.</returns>
+    /// <returns> Objeto de respuesta que contiene la información de un usuario.</returns>
+    /// 
     [HttpPost("ConsultarUsuarios")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
