@@ -259,4 +259,24 @@ public static class BuildDataContextFaker
         };
         return data.Id;
     }
+
+    //Faker de CambiarClave
+
+    public static Faker<CambiarClaveUsuarioRequest> BuildCambiarClaveUsuario()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<CambiarClaveUsuarioRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.password, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.newpassword, fk => fk.Lorem.Word());
+        ;
+    }
+    public static Guid BuildGuidCambiarClaveUsuario()
+    {
+        var data = new AdministradorActualizarConsumidorResponse()
+        {
+            Id = new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+        };
+        return data.Id;
+    }
 }
