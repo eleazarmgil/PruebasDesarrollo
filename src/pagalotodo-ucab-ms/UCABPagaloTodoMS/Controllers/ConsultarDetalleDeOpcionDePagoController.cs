@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using UCABPagaloTodoMS.Application.Commands;
+using UCABPagaloTodoMS.Application.Handlers;
+using UCABPagaloTodoMS.Application.Handlers.Queries;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
@@ -35,6 +36,7 @@ public class ConsultarDetalleDeOpcionDePagoController : BaseController<Consultar
             throw;
         }
     }
+
 
 }
 
