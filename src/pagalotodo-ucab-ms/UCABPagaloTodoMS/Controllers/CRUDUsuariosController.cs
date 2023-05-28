@@ -18,7 +18,10 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     {
         _mediator = mediator;
     }
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             CRUDS DE AGREGAR USUARIOS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
     /// <summary>
     /// Endpoint para agregar un nuevo prestador.
     /// </summary>
@@ -53,7 +56,6 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
             throw;
         }
     }
-
 
     /// <summary>
     ///     Endpoint para obtener una lista de información de usuarios.
@@ -94,6 +96,9 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         }
     }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             CRUDS DE CONSULTAR USUARIOS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /// <summary>
     ///     Endpoint para obtener una lista de información de usuarios.
@@ -113,7 +118,7 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     ///     - La solicitud del cliente es incorrecta.
     /// </response>
     /// <returns> Objeto de respuesta que contiene la información de un usuario.</returns>
-    /// 
+ 
     [HttpPost("ConsultarUsuarios")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -133,5 +138,164 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         }
     }
 
+    [HttpGet("ConsultarConsumidor")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<ConsultarConsumidorResponse>>> ConsultarConsumidor([FromBody] ConsultarConsumidorRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta el ci del consumidor");
+        try
+        {
+            var query = new ConsultarConsumidorQuery(request);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta del ci del prestador. Exception: " + ex);
+            throw;
+        }
+    }
+
+    [HttpGet("ConsultarPrestador")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<ConsultarPrestadorResponse>>> ConsultarPrestador([FromBody] ConsultarPrestadorRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta el rif del prestador");
+        try
+        {
+            var query = new ConsultarPrestadorQuery(request);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+    
+    [HttpGet("PreguntasDeSeguridad")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<PreguntasDeSeguridadResponse>>> LoginUsuario([FromBody] PreguntasDeSeguridadRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta las preguntas de seguridad del usuario");
+        try
+        {
+            var query = new ConsultarPreguntasDeSeguridadQuery(request);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+    
+    [HttpGet("LoginUsuario")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<LoginUsuarioResponse>>> LoginUsuario([FromBody] LoginUsuarioRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
+        try
+        {
+            var query = new ConsultarLoginUsuarioQuery(request);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+    
+    [HttpGet("RecuperarClave")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<RecuperarClaveResponse>>> LoginUsuario([FromBody] RecuperarClaveRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
+        try
+        {
+            var query = new ConsultarRecuperarClaveQuery(request);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             CRUDS DE ACTUALIZAR USUARIOS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    [HttpPost("AdministradorActualizarPrestador")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Guid>> AdministradorActualizarPrestador([FromBody] AdministradorActualizarPrestadorRequest request)
+    {
+        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        try
+        {
+            var command = new AdministradorActualizarPrestadorCommand(request);
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+    [HttpPost("AdministradorActualizarConsumidor")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Guid>> AdministradorActualizarConsumidor([FromBody] AdministradorActualizarConsumidorRequest request)
+    {
+        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        try
+        {
+            var command = new AdministradorActualizarConsumidorCommand(request);
+            var response = await _mediator.Send(command);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            throw;
+        }
+    }
+
+    [HttpPost("CambiarClave")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Guid>> CambiarClave([FromBody] CambiarClaveUsuarioRequest valor)
+    {
+        _logger.LogInformation("Entrando al método que registra los valores de prueba");
+        try
+        {
+            var query = new CambiarClaveCommand(valor);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            throw;
+        }
+    }
 
 }
