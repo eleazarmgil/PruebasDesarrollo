@@ -17,10 +17,10 @@ public class ConsultarPreguntasDeSeguridadQueryHandler : IRequestHandler<Consult
     }
 
     public Task<List<PreguntasDeSeguridadResponse>> Handle(ConsultarPreguntasDeSeguridadQuery request, CancellationToken cancellationToken)
-    {//Todo lo que puede fallar
+    {
         try
         {
-            if (request is null)
+            if (request is null) //Pregunto si el request es nulo
             {
                 _logger.LogWarning("ConsultarPreguntasDeSeguridadQueryHandler: Request nulo.");
                 throw new ArgumentNullException(nameof(request));

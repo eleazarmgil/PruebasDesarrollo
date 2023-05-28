@@ -38,8 +38,7 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
             throw;
         }
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///
+
     [HttpGet("AgregarConsumidor")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -60,7 +59,24 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
         }
     }
 
-   
+    /// <summary>
+    ///     Endpoint para consultar información de usuarios.
+    /// </summary>
+    /// <remarks>
+    ///     ## Description
+    ///     ### Get valores usuario y password
+    ///     ## Url
+    ///     GET /LoginUsuario/LoginUsuario
+    /// </remarks>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta.
+    /// </response>
+    /// <returns> Un objeto de respuesta que indica si el inicio de sesión fue exitoso o no.</returns>
     [HttpPost("ConsultarUsuarios")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

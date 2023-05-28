@@ -17,10 +17,10 @@ public class ConsultarConsumidorQueryHandler : IRequestHandler<ConsultarConsumid
     }
 
     public Task<List<ConsultarConsumidorResponse>> Handle(ConsultarConsumidorQuery request, CancellationToken cancellationToken)
-    {//Todo lo que puede fallar
+    {
         try
         {
-            if (request is null)
+            if (request is null) //Pregunto si el request es nulo
             {
                 _logger.LogWarning("ConsultarConsumidorQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));

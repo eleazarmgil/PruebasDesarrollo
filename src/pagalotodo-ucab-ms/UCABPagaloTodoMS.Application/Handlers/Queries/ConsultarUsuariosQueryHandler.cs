@@ -18,10 +18,10 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
     }
 
     public Task<List<ConsultarUsuariosResponse>> Handle(ConsultarUsuariosQuery request, CancellationToken cancellationToken)
-    {//Todo lo que puede fallar
+    {
         try
         {
-            if (request is null)
+            if (request is null) //Pregunto si el request es nulo
             {
                 _logger.LogWarning("LoginUsuarioQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));
@@ -33,17 +33,18 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
         }
         catch (Exception)
         {
-            _logger.LogWarning("LoginUsuarioQueryHandler.Handle: ArgumentNullException");
+            _logger.LogWarning("ConsultarUsuariosQueryHandler.Handle: ArgumentNullException");
             throw;
         }
     }
 
     private async Task<List<ConsultarUsuariosResponse>> HandleAsync(ConsultarUsuariosQuery request)
-    {//Todo lo bueno para chocar contra la bd
+    {
         try
         {
-            _logger.LogInformation("ConsultarLoginUsuarioQueryHandler.HandleAsync");
+            _logger.LogInformation("ConsultarUsuariosQueryHandler.HandleAsync");
 
+            //Traigo todos los usuario de la base de datos con los parametros que deseo ver
             var result = _dbContext.Usuario.Select(c => new ConsultarUsuariosResponse()
             {
                 id_usuario = c.Id,
@@ -59,7 +60,7 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error LoginUsuarioQueryHandler.HandleAsync. {Mensaje}", ex.Message);
+            _logger.LogError(ex, "Error ConsultarUsuariosQueryHandler.HandleAsync. {Mensaje}", ex.Message);
             throw;
         }
     }

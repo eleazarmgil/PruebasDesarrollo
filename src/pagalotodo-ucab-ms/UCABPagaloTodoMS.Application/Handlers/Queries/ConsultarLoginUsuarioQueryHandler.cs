@@ -20,12 +20,12 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
     }
 
     public Task<List<LoginUsuarioResponse>> Handle(ConsultarLoginUsuarioQuery request, CancellationToken cancellationToken)
-    {//Todo lo que puede fallar
+    {
 
         var validator = new ConsultarLoginUsuarioValidator();
         try
         {
-            if (request is null) //Si el REQUEST no es null
+            if (request is null) //Pregunto si el request es nulo
             {
                 _logger.LogWarning("LoginUsuarioQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));

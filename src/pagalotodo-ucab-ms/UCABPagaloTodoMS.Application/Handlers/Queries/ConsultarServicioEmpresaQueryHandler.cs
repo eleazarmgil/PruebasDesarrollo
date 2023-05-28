@@ -18,10 +18,10 @@
 //    }
 
 //    public Task<List<ConsultarServiciosResponse>> Handle(ConsultarServicioEmpresaQuery request, CancellationToken cancellationToken)
-//    {//Todo lo que puede fallar
+//    {
 //        try
 //        {
-//            if (request is null)
+//            if (request is null) //Pregunto si el request es nulo
 //            {
 //                _logger.LogWarning("ConsultarServiciosQueryHandler.Handle: Request nulo.");
 //                throw new ArgumentNullException(nameof(request));

@@ -17,11 +17,16 @@ public class ConsultarValoresQueryHandler : IRequestHandler<ConsultarValoresPrue
         _logger = logger;
     }
 
+    /// <summary>
+    /// Este método verifica que el request de ConsultarValoresPruebaQuery no sea null
+    /// </summary>
+    /// <param name="request"> </param>
+    /// <returns>La suma de los dos números enteros.</returns>
     public Task<List<ValoresResponse>> Handle(ConsultarValoresPruebaQuery request, CancellationToken cancellationToken)
     {
         try
         {
-            if (request is null)
+            if (request is null) //Pregunto si el request es nulo
             {
                 _logger.LogWarning("ConsultarValoresQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));

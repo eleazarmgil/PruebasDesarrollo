@@ -17,6 +17,25 @@ public class LoginUsuarioController : BaseController<LoginUsuarioController>
         _mediator = mediator;
     }
 
+    /// <summary>
+    ///     Endpoint Inicia sesión con las credenciales del usuario.
+    /// </summary>
+    /// <remarks>
+    ///     ## Description
+    ///     ### Get valores usuario y password
+    ///     ## Url
+    ///     GET /LoginUsuario/LoginUsuario
+    /// </remarks>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta.
+    /// </response>
+    /// <returns> Un objeto de respuesta que indica si el inicio de sesión fue exitoso o no.</returns>
+
     [HttpGet("LoginUsuario")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

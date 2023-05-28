@@ -18,11 +18,11 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries;
         }
 
         public Task<List<ConsultarServiciosResponse>> Handle(ConsultarServiciosQuery request, CancellationToken cancellationToken)
-        {//Todo lo que puede fallar
+        {
             try
             {
-                if (request is null)
-                {
+                if (request is null) //Pregunto si el request es nulo
+            {
                     _logger.LogWarning("ConsultarServiciosQueryHandler.Handle: Request nulo.");
                     throw new ArgumentNullException(nameof(request));
                 }
@@ -39,7 +39,7 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries;
         }
 
         private async Task<List<ConsultarServiciosResponse>> HandleAsync(ConsultarServiciosQuery request)
-        {//Todo lo bueno para chocar contra la bd
+        {
             try
             {
                 _logger.LogInformation("ConsultarServiciosQueryHandler.HandleAsync");
@@ -53,16 +53,14 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries;
                     descripcion = c.descripcion,
                     monto = c.monto,
                     id_prestador = c.PrestadorEntityId,
-                    nombre_prestador = c.prestador.nombre,
-                    
-
+                    nombre_prestador = c.prestador.nombre,        
                 })
             .ToListAsync();
             return result;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error LoginUsuarioQueryHandler.HandleAsync. {Mensaje}", ex.Message);
+                _logger.LogError(ex, "Error ConsultarServiciosQueryHandler.HandleAsync. {Mensaje}", ex.Message);
                 throw;
             }
         }

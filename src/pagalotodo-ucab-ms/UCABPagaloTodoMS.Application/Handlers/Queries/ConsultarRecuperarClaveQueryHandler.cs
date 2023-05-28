@@ -5,8 +5,6 @@ using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Application.Validators;
 using Microsoft.EntityFrameworkCore;
-using UCABPagaloTodoMS.Application.Validators;
-using RestSharp.Validation;
 using FluentValidation.Results;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
@@ -21,27 +19,34 @@ public class ConsultarRecuperarClaveQueryHandler : IRequestHandler<ConsultarRecu
         _logger = logger;
     }
 
+    /// <summary>
+    /// Este método verifica .
+    /// </summary>
+    /// <param name="a">El primer número entero.</param>
+    /// <param name="b">El segundo número entero.</param>
+    /// <returns>La suma de los dos números enteros.</returns>
     public Task<List<RecuperarClaveResponse>> Handle(ConsultarRecuperarClaveQuery request, CancellationToken cancellationToken)
     {
         var validator = new ConsultarRecuperarClaveValidator(); //Variable del validator
         try
         {
-            if (request is null)
+            if (request is null) //Pregunto si el request es nulo
             {
                 _logger.LogWarning("ConsultarRecuperarClaveQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));
             }
             else
             {
-                ValidationResult result = validator.Validate(request);
                 //Llamo a validator del RecuperarClave y verifico 
-                if (result.IsValid)
+                ValidationResult result = validator.Validate(request);
+
+                if (result.IsValid) //Si el request es valido llamo a HandleAsync
                 {
                     return HandleAsync(request);
                 }
-                else
-                {
-                    foreach (var error in result.Errors) //Muestra los errores
+                else  //Si no es valido muestra los errores con el campo y el mensaje del campo en el validator  
+                { 
+                    foreach (var error in result.Errors) 
                     {
                         _logger.LogWarning($"Error en el campo {error.PropertyName} {error.ErrorMessage}");
                     }
