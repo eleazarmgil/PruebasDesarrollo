@@ -146,4 +146,31 @@ public static class BuildDataContextFaker
         };
         return data;
     }
+
+    //Faker de PreguntasDeSeguridad
+
+    public static Faker<PreguntasDeSeguridadRequest> BuildPreguntasDeSeguridadRequest()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<PreguntasDeSeguridadRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word());
+    }
+
+    public static List<PreguntasDeSeguridadResponse> BuildListaPreguntasDeSeguridad()
+    {
+        var data = new List<PreguntasDeSeguridadResponse>()
+        {
+            new PreguntasDeSeguridadResponse()
+            {
+                pregunta_de_seguridad = "PreguntaFaker1",
+                pregunta_de_seguridad2 = "PreguntaFaker2"
+            },
+            new PreguntasDeSeguridadResponse()
+            {
+                pregunta_de_seguridad = "PreguntaFaker3",
+                pregunta_de_seguridad2 = "PreguntaFaker4"
+            },
+        };
+        return data;
+    }
 }
