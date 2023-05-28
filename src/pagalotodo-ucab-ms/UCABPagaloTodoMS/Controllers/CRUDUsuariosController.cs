@@ -336,7 +336,7 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     [HttpGet("RecuperarClave")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<List<RecuperarClaveResponse>>> LoginUsuario([FromBody] RecuperarClaveRequest request)
+    public async Task<ActionResult<List<RecuperarClaveResponse>>> RecuperarClave([FromBody] RecuperarClaveRequest request)
     {
         _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
         try

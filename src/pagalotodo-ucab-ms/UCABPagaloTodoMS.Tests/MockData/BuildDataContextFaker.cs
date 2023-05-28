@@ -173,4 +173,33 @@ public static class BuildDataContextFaker
         };
         return data;
     }
+
+    //Faker de RecuperarClave
+
+    public static Faker<RecuperarClaveRequest> BuildRecuperarClaveRequest()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<RecuperarClaveRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word());
+    }
+
+    public static List<RecuperarClaveResponse> BuildListaRecuperarClave()
+    {
+        var data = new List<RecuperarClaveResponse>()
+        {
+            new RecuperarClaveResponse()
+            {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+                password = "passwordFaker"
+            },
+            new RecuperarClaveResponse()
+            {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+                password = "passwordFaker2"
+            },
+        };
+        return data;
+    }
 }
