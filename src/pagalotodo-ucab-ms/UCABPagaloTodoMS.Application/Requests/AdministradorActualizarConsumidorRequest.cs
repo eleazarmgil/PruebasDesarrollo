@@ -11,7 +11,6 @@ public class AdministradorActualizarConsumidorRequest
     public string? preguntas_de_seguridad2 { set; get; }
     public string? respuesta_de_seguridad { set; get; }
     public string? respuesta_de_seguridad2 { set; get; }
-    public int? rif { set; get; }
-    public string? nombre_empresa { set; get; }
+    public int? ci { set; get; }
     public bool? estado { set; get; }
 }
