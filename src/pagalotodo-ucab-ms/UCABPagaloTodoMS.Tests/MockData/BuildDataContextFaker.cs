@@ -202,4 +202,51 @@ public static class BuildDataContextFaker
         };
         return data;
     }
+
+    //Faker de AdministradorActualizarPrestador
+
+    public static Faker<AdministradorActualizarPrestadorRequest> BuildAdministradorActualizarPrestador()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<AdministradorActualizarPrestadorRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.password, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.correo, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.nombre, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.apellido, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.preguntas_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.rif, fk => fk.Random.Number(99999, 90000000))
+            .RuleFor(cs => cs.nombre_empresa, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.nombre_empresa, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.estado, fk => fk.Random.Bool());
+        ;
+    }
+
+    public static Guid BuildGuidAdministradorActualizarPrestador()
+    {
+        var data = new AdministradorActualizarPrestadorResponse()
+        {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+        };
+        return data.Id;
+    }
+
+    public static List<AdministradorActualizarPrestadorResponse> BuildListaAdministradorActualizarPrestador()
+    {
+        var data = new List<AdministradorActualizarPrestadorResponse>()
+        {
+            new AdministradorActualizarPrestadorResponse()
+            {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+            },
+            new AdministradorActualizarPrestadorResponse()
+            {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+            },
+        };
+        return data;
+    }
 }
