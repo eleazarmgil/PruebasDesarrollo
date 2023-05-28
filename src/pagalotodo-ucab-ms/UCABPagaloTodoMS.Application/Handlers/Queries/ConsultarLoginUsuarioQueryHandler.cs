@@ -3,7 +3,10 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Application.Validators;
 using Microsoft.EntityFrameworkCore;
+using RestSharp.Validation;
+using FluentValidation.Results;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginUsuarioQuery, List<LoginUsuarioResponse>>
@@ -18,16 +21,31 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
 
     public Task<List<LoginUsuarioResponse>> Handle(ConsultarLoginUsuarioQuery request, CancellationToken cancellationToken)
     {//Todo lo que puede fallar
+
+        var validator = new ConsultarLoginUsuarioValidator();
         try
         {
-            if (request is null)
+            if (request is null) //Si el REQUEST no es null
             {
                 _logger.LogWarning("LoginUsuarioQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));
             }
             else
             {
-                return HandleAsync(request);
+                ValidationResult result = validator.Validate(request);
+                //Llamo a validator del LoginUsuario y verifico 
+                if (result.IsValid) 
+                {
+                    return HandleAsync(request);
+                }
+                else
+                {
+                    foreach (var error in result.Errors) //Muestra los errores
+                    {
+                        _logger.LogWarning($"Error en el campo {error.PropertyName} {error.ErrorMessage}");
+                    }
+                    throw new ArgumentNullException(nameof(request));
+                }
             }
         }
         catch (Exception)

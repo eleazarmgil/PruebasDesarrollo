@@ -28,7 +28,7 @@ public class LoginUsuarioControllerTest
         _controller.ControllerContext.ActionDescriptor = new ControllerActionDescriptor();
     }
 
-    [Fact]
+    [Fact(DisplayName = "LoginUsuarioController estatus 200-ok")]
     public async Task LoginUsuarioTest()
     {
         //Arrange-> Variables de mock

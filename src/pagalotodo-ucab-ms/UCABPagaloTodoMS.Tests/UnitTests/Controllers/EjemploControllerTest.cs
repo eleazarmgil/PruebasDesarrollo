@@ -50,7 +50,7 @@ public class EjemploControllerTest
     public async Task ConsultarValoresFalla()
     {
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarValoresPruebaQuery>(), It.IsAny<CancellationToken>()))
-            .ThrowsAsync(new Exception());
+            .ThrowsAsync(new Exception("Ocurrio un error"));
 
         var result = await _controller.ConsultaValores();
         var response = Assert.IsType<BadRequestObjectResult>(result.Result);

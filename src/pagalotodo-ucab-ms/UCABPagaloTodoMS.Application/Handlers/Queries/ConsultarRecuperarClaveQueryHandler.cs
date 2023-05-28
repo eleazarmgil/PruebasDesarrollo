@@ -3,7 +3,11 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Application.Validators;
 using Microsoft.EntityFrameworkCore;
+using UCABPagaloTodoMS.Application.Validators;
+using RestSharp.Validation;
+using FluentValidation.Results;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarRecuperarClaveQueryHandler : IRequestHandler<ConsultarRecuperarClaveQuery, List<RecuperarClaveResponse>>
@@ -19,6 +23,7 @@ public class ConsultarRecuperarClaveQueryHandler : IRequestHandler<ConsultarRecu
 
     public Task<List<RecuperarClaveResponse>> Handle(ConsultarRecuperarClaveQuery request, CancellationToken cancellationToken)
     {
+        var validator = new ConsultarRecuperarClaveValidator(); //Variable del validator
         try
         {
             if (request is null)
@@ -28,7 +33,20 @@ public class ConsultarRecuperarClaveQueryHandler : IRequestHandler<ConsultarRecu
             }
             else
             {
-                return HandleAsync(request);
+                ValidationResult result = validator.Validate(request);
+                //Llamo a validator del RecuperarClave y verifico 
+                if (result.IsValid)
+                {
+                    return HandleAsync(request);
+                }
+                else
+                {
+                    foreach (var error in result.Errors) //Muestra los errores
+                    {
+                        _logger.LogWarning($"Error en el campo {error.PropertyName} {error.ErrorMessage}");
+                    }
+                    throw new ArgumentNullException(nameof(request));
+                }
             }
         }
         catch (Exception)
@@ -38,19 +56,30 @@ public class ConsultarRecuperarClaveQueryHandler : IRequestHandler<ConsultarRecu
         }
     }
 
-    private async Task<List<RecuperarClaveResponse>> HandleAsync(ConsultarRecuperarClaveQuery request) //Cambiarrrrrrrrrr
-    {//Todo lo bueno para chocar contra la bd
+    private async Task<List<RecuperarClaveResponse>> HandleAsync(ConsultarRecuperarClaveQuery request) 
+    {
         try
         {
             _logger.LogInformation("ConsultarPreguntasDeSeguridadQueryHandler.HandleAsync");
 
-            var result = _dbContext.Usuario.Where(c => c.usuario == request._request.usuario).Select(c => new RecuperarClaveResponse()
+            var result = _dbContext.Usuario.Count(c => c.usuario == request._request.usuario);
+
+            if (result == 0) //Verifico que el usuario exista
+            {
+                throw new InvalidOperationException("No se encontro al usuario registrado");
+            }
+
+            //Pregunto si tanto el usuario como las respuestas de seguridad son las correctas
+            var usuario = _dbContext.Usuario.Where(c => c.usuario == request._request.usuario 
+                                                     && c.respuesta_de_seguridad == request._request.respuesta_de_seguridad 
+                                                     && c.respuesta_de_seguridad2 == request._request.respuesta_de_seguridad2)
+                                            .Select(c => new RecuperarClaveResponse()
             {
                 Id = c.Id,
                 password = c.password
             });
 
-            return await result.ToListAsync();
+            return await usuario.ToListAsync();
         }
         catch (Exception ex)
         {
