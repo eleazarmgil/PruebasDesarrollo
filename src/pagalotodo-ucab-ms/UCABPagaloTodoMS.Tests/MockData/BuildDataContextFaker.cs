@@ -66,10 +66,6 @@ public static class BuildDataContextFaker
             {
 
                 Id= new Guid("33b6653b-128d-4178-bb89-5fd77d2164b6")
-            },
-            new LoginUsuarioResponse()
-            {
-                Id= new Guid("c2d0efa5-c36a-4ef8-8741-c16972d5db83")
             }
         };
         return data;
@@ -121,15 +117,33 @@ public static class BuildDataContextFaker
             new ConsultarConsumidorResponse()
             {
                 Id= new Guid("33b6653b-128d-4178-bb89-5fd77d2164b6")
-            },
-            new ConsultarConsumidorResponse()
-            {
-                Id= new Guid("c2d0efa5-c36a-4ef8-8741-c16972d5db83")
             }
         };
         return data;
     }
 
+    //Faker de ConsultarPrestador
 
+    public static Faker<ConsultarPrestadorRequest> BuildConsultarPrestadorRequest()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<ConsultarPrestadorRequest>()
+            .RuleFor(cs => cs.rif, fk => fk.Random.Number(99999, 90000000));
+    }
 
+    public static List<ConsultarPrestadorResponse> BuildListaConsultarPrestador()
+    {
+        var data = new List<ConsultarPrestadorResponse>()
+        {
+            new ConsultarPrestadorResponse()
+            {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc")
+            },
+            new ConsultarPrestadorResponse()
+            {
+                Id= new Guid("33b6653b-128d-4178-bb89-5fd77d2164b6")
+            }
+        };
+        return data;
+    }
 }
