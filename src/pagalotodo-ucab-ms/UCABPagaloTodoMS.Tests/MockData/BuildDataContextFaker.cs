@@ -101,6 +101,35 @@ public static class BuildDataContextFaker
         return data;
     }
 
+    //Faker de ConsultarConsumidor
+
+    public static Faker<ConsultarConsumidorRequest> BuildConsultarConsumidorRequest()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<ConsultarConsumidorRequest>()
+            .RuleFor(cs => cs.ci, fk => fk.Random.Number(99999, 90000000));
+    }
+
+    public static List<ConsultarConsumidorResponse> BuildListaConsultarConsumidor()
+    {
+        var data = new List<ConsultarConsumidorResponse>()
+        {
+            new ConsultarConsumidorResponse()
+            {
+                Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc")
+            },
+            new ConsultarConsumidorResponse()
+            {
+                Id= new Guid("33b6653b-128d-4178-bb89-5fd77d2164b6")
+            },
+            new ConsultarConsumidorResponse()
+            {
+                Id= new Guid("c2d0efa5-c36a-4ef8-8741-c16972d5db83")
+            }
+        };
+        return data;
+    }
+
 
 
 }
