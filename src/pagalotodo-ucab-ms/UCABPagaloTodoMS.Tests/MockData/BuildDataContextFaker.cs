@@ -44,10 +44,19 @@ public static class BuildDataContextFaker
         return data;
     }
 
-    //Faker de ConsultarUsuarios
-    public static List<ConsultarUsuariosResponse> BuildListaLoginUsuario()
+    //Faker de LoginUsuario
+
+    public static Faker<LoginUsuarioRequest> BuildLoginUsuarioRequest()
     {
-        var data = new List<ConsultarUsuariosResponse>()
+        Randomizer.Seed = new Random(100);
+        return new Faker<LoginUsuarioRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.password, fk => fk.Lorem.Word());
+    }
+
+    public static List<LoginUsuarioResponse> BuildListaLoginUsuario()
+    {
+        var data = new List<LoginUsuarioResponse>()
         {
             new LoginUsuarioResponse()
             {
@@ -62,6 +71,32 @@ public static class BuildDataContextFaker
             {
                 Id= new Guid("c2d0efa5-c36a-4ef8-8741-c16972d5db83")
             }
+        };
+        return data;
+    }
+    //Faker de ConsultarUsuarios
+    public static List<ConsultarUsuariosResponse> BuildListaConsultarUsuarios()
+    {
+        var data = new List<ConsultarUsuariosResponse>()
+        {
+            new ConsultarUsuariosResponse()
+            {
+                id_usuario= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+                usuario = "Faker1",
+                correo = "Faker1@gmail.com",
+                nombre = "Faker1",
+                estado = true,
+                Discriminator = "PrestadorEntity"
+            },
+            new ConsultarUsuariosResponse()
+            {
+                id_usuario= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+                usuario = "Faker2",
+                correo = "Faker2@gmail.com",
+                nombre = "Faker2",
+                estado = true,
+                Discriminator = "ConsumidorEntity"
+            },
         };
         return data;
     }

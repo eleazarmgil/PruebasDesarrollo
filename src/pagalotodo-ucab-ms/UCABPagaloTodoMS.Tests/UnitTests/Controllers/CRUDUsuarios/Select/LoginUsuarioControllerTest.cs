@@ -32,8 +32,8 @@ public class LoginUsuarioControllerTest
     public async Task LoginUsuarioStatus200OK()
     {
         //Arrange-> Datos necesario para las pruebas
-        var valores = BuildDataContextFaker.BuildListaLoginUsuario();
         var request = BuildDataContextFaker.BuildLoginUsuarioRequest();
+        var valores = BuildDataContextFaker.BuildListaLoginUsuario();
 
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarLoginUsuarioQuery>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
