@@ -18,7 +18,16 @@ public class ConsultarPrestadorQueryHandler : IRequestHandler<ConsultarPrestador
         _dbContext = dbContext;
         _logger = logger;
     }
-
+    /// <summary>
+    /// Maneja una consulta de prestador y devuelve una lista de objetos ConsultarPrestadorResponse.
+    /// </summary>
+    /// <param name="request">El objeto ConsultarPrestadorQuery que contiene la información necesaria para realizar la consulta.</param>
+    /// <param name="cancellationToken">El token de cancelación que se utiliza para cancelar la operación de forma asincrónica.</param>
+    /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarPrestadorResponse.</returns>
+    /// <exception cref="ArgumentNullException">Se lanza si el objeto ConsultarPrestadorQuery es nulo.</exception>
+    /// <remarks>
+    /// Este método valida el objeto ConsultarPrestadorQuery utilizando un validador de RifValidator. Si la validación es exitosa, llama al método HandleAsync para manejar la consulta y devuelve los resultados como una tarea asincrónica. Si la validación falla, se lanza una excepción ArgumentNullException y se muestran los errores de validación en el registro.
+    /// </remarks>
     public Task<List<ConsultarPrestadorResponse>> Handle(ConsultarPrestadorQuery request, CancellationToken cancellationToken)
     {
         try
@@ -54,25 +63,33 @@ public class ConsultarPrestadorQueryHandler : IRequestHandler<ConsultarPrestador
             throw;
         }
     }
-
+    /// <summary>
+    /// Maneja una consulta de prestador y devuelve una lista de objetos ConsultarPrestadorResponse.
+    /// </summary>
+    /// <param name="request">El objeto ConsultarPrestadorQuery que contiene la información necesaria para realizar la consulta.</param>
+    /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarPrestadorResponse.</returns>
+    /// <exception cref="InvalidOperationException">Se lanza si el Prestador no está registrado en la base de datos.</exception>
+    /// <remarks>
+    /// Este método busca el Prestador en la base de datos utilizando el RIF proporcionado en el objeto ConsultarPrestadorQuery. Si el Prestador no está registrado, se lanza una excepción InvalidOperationException. Si el Prestador está registrado, se crea un objeto ConsultarPrestadorResponse con el Id del Prestador y se devuelve como una lista de objetos ConsultarPrestadorResponse en una tarea asincrónica.
+    /// </remarks>
     private async Task<List<ConsultarPrestadorResponse>> HandleAsync(ConsultarPrestadorQuery request)
     {
         try
         {
             _logger.LogInformation("ConsultarPrestadorQueryHandler.HandleAsync");
-            var result = _dbContext.Usuario.Count(c => c.usuario == request._request.ci);
+            var result = _dbContext.Prestador.Count(c => c.rif == request._request.rif);
 
-            if (result == 0) //Verifico que el Consumidor exista 
+            if (result == 0) //Verifico que el Prestador exista 
             {
-                throw new InvalidOperationException("No se encontro al usuario registrado");
+                throw new InvalidOperationException("No se encontro al Prestador registrado");
             }
 
-            var usuario = _dbContext.Prestador.Where(c => c.rif == request._request.rif).Select(c => new ConsultarPrestadorResponse()
+            var prestador = _dbContext.Prestador.Where(c => c.rif == request._request.rif).Select(c => new ConsultarPrestadorResponse() //Traemos al Prestador de la bd
             {
                 Id = c.Id,
             });
 
-            return await usuario.ToListAsync();
+            return await prestador.ToListAsync();
         }
         catch (Exception ex)
         {

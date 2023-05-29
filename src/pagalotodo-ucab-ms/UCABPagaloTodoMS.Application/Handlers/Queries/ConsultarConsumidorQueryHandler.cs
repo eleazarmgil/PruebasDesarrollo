@@ -17,7 +17,16 @@ public class ConsultarConsumidorQueryHandler : IRequestHandler<ConsultarConsumid
         _dbContext = dbContext;
         _logger = logger;
     }
-
+    /// <summary>
+    /// Maneja una consulta de consumidor y devuelve un objeto de ConsultarConsumidorResponse.
+    /// </summary>
+    /// <param name="request">El objeto ConsultarConsumidorQuery que contiene la información necesaria para realizar la consulta.</param>
+    /// <param name="cancellationToken">El token de cancelación que se utiliza para cancelar la operación de forma asincrónica.</param>
+    /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarConsumidorResponse.</returns>
+    /// <exception cref="ArgumentNullException">Se lanza si el objeto ConsultarConsumidorQuery es nulo.</exception>
+    /// <remarks>
+    /// Este método valida el objeto ConsultarConsumidorQuery utilizando un validador de CiValidator. Si la validación es exitosa, llama al método HandleAsync para manejar la consulta y devuelve los resultados como una tarea asincrónica. Si la validación falla, se lanza una excepción ArgumentNullException y se muestran los errores de validación en el registro.
+    /// </remarks>
     public Task<List<ConsultarConsumidorResponse>> Handle(ConsultarConsumidorQuery request, CancellationToken cancellationToken)
     {
         try
