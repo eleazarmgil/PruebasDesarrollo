@@ -21,8 +21,6 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
 
     public Task<List<LoginUsuarioResponse>> Handle(ConsultarLoginUsuarioQuery request, CancellationToken cancellationToken)
     {
-
-        var validator = new ConsultarLoginUsuarioValidator();
         try
         {
             if (request is null) //Pregunto si el request es nulo
@@ -32,6 +30,7 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
             }
             else
             {
+                var validator = new ConsultarLoginUsuarioValidator();
                 ValidationResult result = validator.Validate(request);
                 //Llamo a validator del LoginUsuario y verifico 
                 if (result.IsValid) 

@@ -365,4 +365,50 @@ public static class BuildDataContextFaker
         return data.PrestadorEntityId;
     }
 
+    //Faker de ConsultarServicios
+
+    public static List<ConsultarServiciosResponse> BuildGuidConsultarServicios()
+    {
+        var data = new List<ConsultarServiciosResponse>()
+        {
+            new ConsultarServiciosResponse()
+            {
+                id_servicio = new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+                nombre = "ServicioFaker",
+                monto = 20.00,
+                id_prestador = new Guid(),
+                nombre_prestador = "NombreFaker"
+            },
+            new ConsultarServiciosResponse()
+            {
+                id_servicio = new Guid("f1da2b25-922e-44ce-92bb-07b069b43dfc"),
+                nombre = "ServicioFaker2",
+                monto = 30.00,
+                id_prestador = new Guid(),
+                nombre_prestador = "NombreFaker2"
+            },
+        };
+        return data;
+    }
+
+    //Faker de ActualizarServicio
+
+    public static Faker<ActualizarServicioRequest> BuildActualizarServicioRequest()
+    {
+        var guid = Guid.NewGuid();
+        Randomizer.Seed = new Random(100);
+        return new Faker<ActualizarServicioRequest>()
+            .RuleFor(cs => cs.Id, fk => guid)
+            .RuleFor(cs => cs.nombre, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.descripcion, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.monto, fk => fk.Random.Double(0, 10000));
+    }
+    public static Guid BuildGuidActualizarServicio()
+    {
+        var data = new ActualizarServicioResponse()
+        {
+            Id = new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+        };
+        return data.Id;
+    }
 }

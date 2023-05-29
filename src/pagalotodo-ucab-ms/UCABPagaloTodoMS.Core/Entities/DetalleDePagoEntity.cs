@@ -5,5 +5,5 @@ public class DetalleDePagoEntity : BaseEntity
     public string? nombre { get; set; }
 
     //Relacion n a 1 con Pago
-    public PagoEntity? pago { get; set; };
+    public PagoEntity? pago { get; set; }
 }

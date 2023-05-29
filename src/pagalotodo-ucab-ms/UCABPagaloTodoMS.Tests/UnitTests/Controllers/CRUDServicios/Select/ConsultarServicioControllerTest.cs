@@ -10,15 +10,15 @@ using Xunit;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Commands;
 
-namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers.CRUDServicios.Insert;
+namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers.CRUDServicios.Select;
 
-public class AgregarServicioControllerTest
+public class ConsultarServicioControllerTest
 {
     private readonly CRUDServicioController _controller;
     private readonly Mock<IMediator> _mediatorMock;
     private readonly Mock<ILogger<CRUDServicioController>> _loggerMock;
 
-    public AgregarServicioControllerTest()
+    public ConsultarServicioControllerTest()
     {
         _loggerMock = new Mock<ILogger<CRUDServicioController>>();
         _mediatorMock = new Mock<IMediator>();
@@ -29,18 +29,17 @@ public class AgregarServicioControllerTest
         _controller.ControllerContext.ActionDescriptor = new ControllerActionDescriptor();
     }
 
-    [Fact(DisplayName = "AgregarServicioController estatus 200-ok")]
-    public async Task AgregarServicioStatus200OK()
+    [Fact(DisplayName = "ConsultarServicioController estatus 200-ok")]
+    public async Task ConsultarServicioStatus200OK()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildRegistrarServicioRequest();
-        var valores = BuildDataContextFaker.BuildGuidRegistrarServicio();
+        var valores = BuildDataContextFaker.BuildGuidConsultarServicios();
 
-        _mediatorMock.Setup(x => x.Send(It.IsAny<AgregarRegistrarServicioCommand>(), It.IsAny<CancellationToken>()))
+        _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarServiciosQuery>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
 
         //Act-> Cuales son las actividades de mi consulta que debo tener
-        var result = await _controller.AgregarServicio(request);
+        var result = await _controller.ConsultarServicios();
         var response = Assert.IsType<OkObjectResult>(result.Result);
 
         //Assert-> Aqui verifico cual es el estado de la consulta-> 200 = 200
@@ -52,12 +51,12 @@ public class AgregarServicioControllerTest
     public async Task AdministradorActualizaServicioStatus400BadRequestTest()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildRegistrarServicioRequest();
-        _mediatorMock.Setup(x => x.Send(It.IsAny<AgregarRegistrarServicioCommand>(), It.IsAny<CancellationToken>()))
+        _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarServiciosQuery>(), It.IsAny<CancellationToken>()))
                     .ThrowsAsync(new Exception("Ocurrio un error"));
 
         //Act-> Cuales son las actividades de mi consulta que debo tener
-        var result = await _controller.AgregarServicio(request);
+        var result = await _controller.ConsultarServicios();
+        Console.WriteLine(result.Result);
         var response = Assert.IsType<BadRequestObjectResult>(result.Result);
 
         //Assert-> Aqui verifico cual es el estado de la consulta-> 400 = 400
