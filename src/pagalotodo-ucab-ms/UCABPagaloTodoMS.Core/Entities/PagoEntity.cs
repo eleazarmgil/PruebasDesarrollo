@@ -4,7 +4,7 @@ public class PagoEntity : BaseEntity
     public Double? monto { get; set; }
     public DateTime? fecha { get; set; }
 
-    public Guid? OpcionDePagoIdEntity { get; set; }
+    public Guid? opcionDePagoId { get; set; }
 
     //Relacion n a 1 con OpcionDePago
     public OpcionDePagoEntity OpcionDePago { get; set; } = null!;// opcion de pago debe existir primero
@@ -12,7 +12,7 @@ public class PagoEntity : BaseEntity
     //Relacion 1 a n con DetalleDePago
     public ICollection<DetalleDePagoEntity>? detalleDePago { get; set; }
 
-    public Guid? ConsumidorIdEntity { get; set; }
+    public Guid? ConsumidorId { get; set; }
 
     //Relacion n a 1 con Consumidor
     public ConsumidorEntity Consumidor { get; set; } = null!;
