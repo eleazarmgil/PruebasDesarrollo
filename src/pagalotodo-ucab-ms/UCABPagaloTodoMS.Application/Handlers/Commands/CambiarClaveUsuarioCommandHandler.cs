@@ -57,7 +57,7 @@ public class CambiarClaveUsuarioCommandHandler : IRequestHandler<CambiarClaveCom
                     transaccion.Commit();
 
                     _logger.LogInformation("AgregarValorePruebaCommandHandler.HandleAsync {Response}", usuario_bd.Id);
-                    correo.EnviaCorreoUsuario(usuario_bd.correo, "Cambio de contraseña", "Su contraseña fue cambiada exitosamente, la nueva contraseña es: " + usuario_bd.password.ToString());
+                    correo.EnviaCorreoUsuario(usuario_bd.correo, "Cambio de contraseña", "Su contraseña fue cambiada exitosamente);
 
                     return usuario_bd.Id;
 
