@@ -17,6 +17,16 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
         _logger = logger;
     }
 
+    /// <summary>
+    /// Maneja una consulta de usuarios y devuelve una lista de objetos ConsultarUsuariosResponse.
+    /// </summary>
+    /// <param name="request">El objeto ConsultarUsuariosQuery que contiene la información necesaria para realizar la consulta.</param>
+    /// <param name="cancellationToken">El token de cancelación que se utiliza para cancelar la operación de forma asincrónica.</param>
+    /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarUsuariosResponse.</returns>
+    /// <exception cref="ArgumentNullException">Se lanza si el objeto ConsultarUsuariosQuery es nulo.</exception>
+    /// <remarks>
+    /// Este método llama al método HandleAsync para manejar la consulta y devuelve los resultados como una tarea asincrónica. Si el objeto ConsultarUsuariosQuery es nulo, se lanza una excepción ArgumentNullException.
+    /// </remarks>
     public Task<List<ConsultarUsuariosResponse>> Handle(ConsultarUsuariosQuery request, CancellationToken cancellationToken)
     {
         try
@@ -37,7 +47,14 @@ public class ConsultarUsuariosQueryHandler : IRequestHandler<ConsultarUsuariosQu
             throw;
         }
     }
-
+    /// <summary>
+    /// Maneja una consulta de usuarios y devuelve una lista de objetos ConsultarUsuariosResponse.
+    /// </summary>
+    /// <param name="request">El objeto ConsultarUsuariosQuery que contiene la información necesaria para realizar la consulta.</param>
+    /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarUsuariosResponse.</returns>
+    /// <remarks>
+    /// Este método busca todos los usuarios en la base de datos y devuelve los campos "id_usuario", "nombre", "usuario", "correo", "Discriminator" y "estado" como una lista de objetos ConsultarUsuariosResponse en una tarea asincrónica.
+    /// </remarks>
     private async Task<List<ConsultarUsuariosResponse>> HandleAsync(ConsultarUsuariosQuery request)
     {
         try

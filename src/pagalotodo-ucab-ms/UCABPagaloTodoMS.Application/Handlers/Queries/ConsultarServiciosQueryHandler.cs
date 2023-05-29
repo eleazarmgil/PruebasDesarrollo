@@ -17,6 +17,16 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries;
             _logger = logger;
         }
 
+        /// <summary>
+        /// Maneja una consulta de servicios y devuelve una lista de objetos ConsultarServiciosResponse.
+        /// </summary>
+        /// <param name="request">El objeto ConsultarServiciosQuery que contiene la información necesaria para realizar la consulta.</param>
+        /// <param name="cancellationToken">El token de cancelación que se utiliza para cancelar la operación de forma asincrónica.</param>
+        /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarServiciosResponse.</returns>
+        /// <exception cref="ArgumentNullException">Se lanza si el objeto ConsultarServiciosQuery es nulo.</exception>
+        /// <remarks>
+        /// Este método llama al método HandleAsync para manejar la consulta y devuelve los resultados como una tarea asincrónica. Si el objeto ConsultarServiciosQuery es nulo, se lanza una excepción ArgumentNullException.
+        /// </remarks>
         public Task<List<ConsultarServiciosResponse>> Handle(ConsultarServiciosQuery request, CancellationToken cancellationToken)
         {
             try
@@ -38,6 +48,14 @@ namespace UCABPagaloTodoMS.Application.Handlers.Queries;
             }
         }
 
+        /// <summary>
+        /// Maneja una consulta de servicios y devuelve una lista de objetos ConsultarServiciosResponse.
+        /// </summary>
+        /// <param name="request">El objeto ConsultarServiciosQuery que contiene la información necesaria para realizar la consulta.</param>
+        /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarServiciosResponse.</returns>
+        /// <remarks>
+        /// Este método busca todos los servicios en la base de datos, incluyendo los datos del prestador, y devuelve los campos "id_servicio", "nombre", "descripcion", "monto", "id_prestador" y "nombre_prestador" como una lista de objetos ConsultarServiciosResponse en una tarea asincrónica.
+        /// </remarks>
         private async Task<List<ConsultarServiciosResponse>> HandleAsync(ConsultarServiciosQuery request)
         {
             try
