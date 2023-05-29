@@ -4,6 +4,8 @@ public class OpcionDePagoEntity : BaseEntity
     public string? nombre { get; set; }
     public int? estatus { get; set; }
 
+    public Guid? ServicioEntityId { get; set; }
+    public ServicioEntity? servicio { get; set; } 
     //Relacion 1 a n con DetalleDeOpcion
     public ICollection<DetalleDeOpcionEntity>? detalleDeOpcion { get; set; }
 

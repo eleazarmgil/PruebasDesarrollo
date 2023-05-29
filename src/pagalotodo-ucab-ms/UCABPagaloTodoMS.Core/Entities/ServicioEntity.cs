@@ -11,5 +11,5 @@ public class ServicioEntity : BaseEntity
     public ICollection<PagoEntity>? pago { get; set; }
 
     //Relacion n a 1 con Conciliacion
-    public PrestadorEntity prestador { get; set; } = null!;
+    public PrestadorEntity? prestador { get; set; }
 }
