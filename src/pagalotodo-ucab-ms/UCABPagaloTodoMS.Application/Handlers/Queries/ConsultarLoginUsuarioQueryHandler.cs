@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
-using UCABPagaloTodoMS.Application.Validators;
+using UCABPagaloTodoMS.Application.Validators.UsuarioValidator;
 using Microsoft.EntityFrameworkCore;
 using RestSharp.Validation;
 using FluentValidation.Results;
@@ -55,7 +55,7 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
     }
 
     private async Task<List<LoginUsuarioResponse>> HandleAsync(ConsultarLoginUsuarioQuery request)
-    {//Todo lo bueno para chocar contra la bd
+    {
         try
         {
             _logger.LogInformation("ConsultarLoginUsuarioQueryHandler.HandleAsync");

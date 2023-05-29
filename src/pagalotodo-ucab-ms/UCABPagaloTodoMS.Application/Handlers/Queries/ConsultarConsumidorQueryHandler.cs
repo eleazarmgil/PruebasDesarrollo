@@ -3,7 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Application.Validators.UsuarioValidator;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.Results;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarConsumidorQueryHandler : IRequestHandler<ConsultarConsumidorQuery, List<ConsultarConsumidorResponse>>
@@ -27,7 +29,22 @@ public class ConsultarConsumidorQueryHandler : IRequestHandler<ConsultarConsumid
             }
             else
             {
-                return HandleAsync(request);
+                var validator = new CiValidator(); //Variable del validator
+
+                //Llamo a validator del CiValidator y verifico 
+                ValidationResult result = validator.Validate(request);
+                if (result.IsValid) //Si el request es valido llamo a HandleAsync
+                {
+                    return HandleAsync(request);
+                }
+                else  //Si no es valido, muestra los errores con el campo y el mensaje del campo en el validator  
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        _logger.LogWarning($"Error en el campo {error.PropertyName} {error.ErrorMessage}");
+                    }
+                    throw new ArgumentNullException(nameof(request));
+                }
             }
         }
         catch (Exception)
@@ -36,19 +53,31 @@ public class ConsultarConsumidorQueryHandler : IRequestHandler<ConsultarConsumid
             throw;
         }
     }
-
+    /// <summary>
+    /// Este método maneja una consulta de consumidores y devuelve una lista de objetos ConsultarConsumidorResponse.
+    /// </summary>
+    /// <param name="request">Objeto ConsultarConsumidorQuery que contiene la ci de la consulta.</param>
+    /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos ConsultarConsumidorResponse.</returns>
+    /// <exception cref="InvalidOperationException">Se lanza si el usuario proporcionado no existe en la base de datos.</exception>
     private async Task<List<ConsultarConsumidorResponse>> HandleAsync(ConsultarConsumidorQuery request)
-    {//Todo lo bueno para chocar contra la bd
+    {
         try
         {
             _logger.LogInformation("ConsultarConsumidorQueryHandler.HandleAsync");
 
-            var result = _dbContext.Consumidor.Where(c=>c.ci == request._request.ci).Select(c => new ConsultarConsumidorResponse()
+            var result = _dbContext.Consumidor.Count(c => c.ci == request._request.ci);
+
+            if (result == 0) //Verifico que el Consumidor exista 
+            {
+                throw new InvalidOperationException("No se encontro al Consumidor registrado");
+            }
+
+            var consumidor = _dbContext.Consumidor.Where(c=>c.ci == request._request.ci).Select(c => new ConsultarConsumidorResponse() //Traemos al consumidor de la bd
             {
                 Id = c.Id,
             });
 
-            return await result.ToListAsync();
+            return await consumidor.ToListAsync();
         }
         catch (Exception ex)
         {

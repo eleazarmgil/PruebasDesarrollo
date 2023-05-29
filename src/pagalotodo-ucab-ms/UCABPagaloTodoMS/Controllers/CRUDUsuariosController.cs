@@ -296,7 +296,7 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     [HttpGet("PreguntasDeSeguridad")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<List<PreguntasDeSeguridadResponse>>> PreguntasDeSeguridad([FromBody] PreguntasDeSeguridadRequest request)
+    public async Task<ActionResult<List<PreguntasDeSeguridadResponse>>> PreguntasDeSeguridad([FromBody] ConsultarUsuarioRequest request)
     {
         _logger.LogInformation("Entrando al método que consulta las preguntas de seguridad del usuario");
         try

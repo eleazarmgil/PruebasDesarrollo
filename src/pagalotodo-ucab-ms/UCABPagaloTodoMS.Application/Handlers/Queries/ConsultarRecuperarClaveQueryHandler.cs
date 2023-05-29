@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
-using UCABPagaloTodoMS.Application.Validators;
+using UCABPagaloTodoMS.Application.Validators.UsuarioValidator;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.Results;
 

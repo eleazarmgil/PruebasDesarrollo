@@ -155,10 +155,10 @@ public static class BuildDataContextFaker
 
     //Faker de PreguntasDeSeguridad
 
-    public static Faker<PreguntasDeSeguridadRequest> BuildPreguntasDeSeguridadRequest()
+    public static Faker<ConsultarUsuarioRequest> BuildPreguntasDeSeguridadRequest()
     {
         Randomizer.Seed = new Random(100);
-        return new Faker<PreguntasDeSeguridadRequest>()
+        return new Faker<ConsultarUsuarioRequest>()
             .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word());
     }
 

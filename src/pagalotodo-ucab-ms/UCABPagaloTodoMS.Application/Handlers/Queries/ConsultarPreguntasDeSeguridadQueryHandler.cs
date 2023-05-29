@@ -3,7 +3,9 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Application.Validators.UsuarioValidator;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.Results;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarPreguntasDeSeguridadQueryHandler : IRequestHandler<ConsultarPreguntasDeSeguridadQuery, List<PreguntasDeSeguridadResponse>>
@@ -38,7 +40,7 @@ public class ConsultarPreguntasDeSeguridadQueryHandler : IRequestHandler<Consult
     }
 
     private async Task<List<PreguntasDeSeguridadResponse>> HandleAsync(ConsultarPreguntasDeSeguridadQuery request)
-    {//Todo lo bueno para chocar contra la bd
+    {
         try
         {
             _logger.LogInformation("ConsultarPreguntasDeSeguridadQueryHandler.HandleAsync");

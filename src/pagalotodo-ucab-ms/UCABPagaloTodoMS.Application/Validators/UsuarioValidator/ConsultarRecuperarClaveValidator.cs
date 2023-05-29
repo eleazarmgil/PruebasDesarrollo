@@ -2,9 +2,9 @@
 using UCABPagaloTodoMS.Application.Requests;
 using FluentValidation;
 
-namespace UCABPagaloTodoMS.Application.Validators
+namespace UCABPagaloTodoMS.Application.Validators.UsuarioValidator
 {
-    public class ConsultarRecuperarClaveValidator : AbstractValidator <ConsultarRecuperarClaveQuery>
+    public class ConsultarRecuperarClaveValidator : AbstractValidator<ConsultarRecuperarClaveQuery>
     {
         public ConsultarRecuperarClaveValidator()
         {

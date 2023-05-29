@@ -1,5 +1,5 @@
 ﻿namespace UCABPagaloTodoMS.Application.Requests;
-public class PreguntasDeSeguridadRequest
+public class ConsultarUsuarioRequest
 {
     public string? usuario { set; get; }
 

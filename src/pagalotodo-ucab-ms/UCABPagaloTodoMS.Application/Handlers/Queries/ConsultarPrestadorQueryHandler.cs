@@ -3,7 +3,10 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Application.Validators.UsuarioValidator;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.Results;
+using FluentValidation;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarPrestadorQueryHandler : IRequestHandler<ConsultarPrestadorQuery, List<ConsultarPrestadorResponse>>
@@ -27,7 +30,22 @@ public class ConsultarPrestadorQueryHandler : IRequestHandler<ConsultarPrestador
             }
             else
             {
-                return HandleAsync(request);
+                var validator = new RifValidator(); //Variable del validator
+
+                //Llamo a validator del RifValidator y verifico 
+                ValidationResult result = validator.Validate(request);
+                if (result.IsValid) //Si el request es valido llamo a HandleAsync
+                {
+                    return HandleAsync(request);
+                }
+                else  //Si no es valido, muestra los errores con el campo y el mensaje del campo en el validator  
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        _logger.LogWarning($"Error en el campo {error.PropertyName} {error.ErrorMessage}");
+                    }
+                    throw new ArgumentNullException(nameof(request));
+                }
             }
         }
         catch (Exception)
@@ -42,13 +60,19 @@ public class ConsultarPrestadorQueryHandler : IRequestHandler<ConsultarPrestador
         try
         {
             _logger.LogInformation("ConsultarPrestadorQueryHandler.HandleAsync");
+            var result = _dbContext.Usuario.Count(c => c.usuario == request._request.ci);
 
-            var result = _dbContext.Prestador.Where(c => c.rif == request._request.rif).Select(c => new ConsultarPrestadorResponse()
+            if (result == 0) //Verifico que el Consumidor exista 
+            {
+                throw new InvalidOperationException("No se encontro al usuario registrado");
+            }
+
+            var usuario = _dbContext.Prestador.Where(c => c.rif == request._request.rif).Select(c => new ConsultarPrestadorResponse()
             {
                 Id = c.Id,
             });
 
-            return await result.ToListAsync();
+            return await usuario.ToListAsync();
         }
         catch (Exception ex)
         {
