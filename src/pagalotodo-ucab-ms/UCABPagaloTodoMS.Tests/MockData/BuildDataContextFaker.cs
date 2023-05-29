@@ -6,7 +6,9 @@ namespace UCABPagaloTodoMS.Tests.MockData;
 
 public static class BuildDataContextFaker
 {
-    //Faker de Valores
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             FAKER DE VALORES
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static Faker<ValoresRequest> BuildValoresRequest()
     {
@@ -43,6 +45,9 @@ public static class BuildDataContextFaker
         };
         return data;
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             FAKER DE USUARIOS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Faker de LoginUsuario
 
@@ -70,6 +75,7 @@ public static class BuildDataContextFaker
         };
         return data;
     }
+
     //Faker de ConsultarUsuarios
     public static List<ConsultarUsuariosResponse> BuildListaConsultarUsuariosRequest()
     {
@@ -333,4 +339,30 @@ public static class BuildDataContextFaker
         };
         return data.Id;
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             FAKER DE SERVICIOS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Faker de AgregarServicio
+
+    public static Faker<RegistrarServicioRequest> BuildRegistrarServicioRequest()
+    {
+        var guid = Guid.NewGuid();
+        Randomizer.Seed = new Random(100);
+        return new Faker<RegistrarServicioRequest>()
+            .RuleFor(cs => cs.PrestadorEntityId, fk => guid)
+            .RuleFor(cs => cs.nombre, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.descripcion, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.monto, fk => fk.Random.Double(0, 10000));
+    }
+    public static Guid BuildGuidRegistrarServicio()
+    {
+        var data = new RegistrarServicioResponse()
+        {
+            PrestadorEntityId = new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+        };
+        return data.PrestadorEntityId;
+    }
+
 }

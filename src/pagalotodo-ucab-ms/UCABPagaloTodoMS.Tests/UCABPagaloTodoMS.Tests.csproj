@@ -65,6 +65,8 @@
     <Folder Include="UnitTestsApplication\Handlers\Commands\" />
     <Folder Include="UnitTestsApplication\Handlers\Queries\" />
     <Folder Include="UnitTestsInfrastructure\Services\" />
+    <Folder Include="UnitTests\Controllers\CRUDServicios\Update\" />
+    <Folder Include="UnitTests\Controllers\CRUDServicios\Select\" />
   </ItemGroup>
 
 
