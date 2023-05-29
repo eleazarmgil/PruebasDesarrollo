@@ -71,7 +71,7 @@ public static class BuildDataContextFaker
         return data;
     }
     //Faker de ConsultarUsuarios
-    public static List<ConsultarUsuariosResponse> BuildListaConsultarUsuarios()
+    public static List<ConsultarUsuariosResponse> BuildListaConsultarUsuariosRequest()
     {
         var data = new List<ConsultarUsuariosResponse>()
         {
@@ -205,7 +205,7 @@ public static class BuildDataContextFaker
 
     //Faker de AdministradorActualizarPrestador
 
-    public static Faker<AdministradorActualizarPrestadorRequest> BuildAdministradorActualizarPrestador()
+    public static Faker<AdministradorActualizarPrestadorRequest> BuildAdministradorActualizarPrestadorRequest()
     {
         Randomizer.Seed = new Random(100);
         return new Faker<AdministradorActualizarPrestadorRequest>()
@@ -234,7 +234,7 @@ public static class BuildDataContextFaker
 
     //Faker de AdministradorActualizarConsumidor
 
-    public static Faker<AdministradorActualizarConsumidorRequest> BuildAdministradorActualizarConsumidor()
+    public static Faker<AdministradorActualizarConsumidorRequest> BuildAdministradorActualizarConsumidorRequest()
     {
         Randomizer.Seed = new Random(100);
         return new Faker<AdministradorActualizarConsumidorRequest>()
@@ -262,7 +262,7 @@ public static class BuildDataContextFaker
 
     //Faker de CambiarClave
 
-    public static Faker<CambiarClaveUsuarioRequest> BuildCambiarClaveUsuario()
+    public static Faker<CambiarClaveUsuarioRequest> BuildCambiarClaveUsuarioRequest()
     {
         Randomizer.Seed = new Random(100);
         return new Faker<CambiarClaveUsuarioRequest>()
@@ -272,6 +272,60 @@ public static class BuildDataContextFaker
         ;
     }
     public static Guid BuildGuidCambiarClaveUsuario()
+    {
+        var data = new AdministradorActualizarConsumidorResponse()
+        {
+            Id = new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+        };
+        return data.Id;
+    }
+
+    //Faker de AgregarPrestador
+
+    public static Faker<RegistrarPrestadorRequest> BuildRegistrarPrestadorRequest()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<RegistrarPrestadorRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.password, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.correo, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.nombre, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.apellido, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.preguntas_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.rif, fk => fk.Random.Number(99999, 90000000))
+            .RuleFor(cs => cs.nombre_empresa, fk => fk.Lorem.Word())
+        ;
+    }
+    public static Guid BuildGuidRegistrarPrestador()
+    {
+        var data = new AdministradorActualizarPrestadorResponse()
+        {
+            Id = new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc"),
+        };
+        return data.Id;
+    }
+
+    //Faker de AgregarConsumidor
+
+    public static Faker<RegistrarConsumidorRequest> BuildRegistrarConsumidorRequest()
+    {
+        Randomizer.Seed = new Random(100);
+        return new Faker<RegistrarConsumidorRequest>()
+            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.password, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.correo, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.nombre, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.apellido, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.preguntas_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.ci, fk => fk.Random.Number(99999, 90000000));
+    }
+    public static Guid BuildGuidRegistrarConsumidor()
     {
         var data = new AdministradorActualizarConsumidorResponse()
         {

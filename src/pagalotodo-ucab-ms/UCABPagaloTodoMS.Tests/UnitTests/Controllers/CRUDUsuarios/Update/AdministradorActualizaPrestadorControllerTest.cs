@@ -35,7 +35,7 @@ public class AdministradorActualizaPrestadorControllerTest
     public async Task AdministradorActualizaPrestadorStatus200OK()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildAdministradorActualizarPrestador();
+        var request = BuildDataContextFaker.BuildAdministradorActualizarPrestadorRequest();
         var valores = BuildDataContextFaker.BuildGuidAdministradorActualizarPrestador();
 
         _mediatorMock.Setup(x => x.Send(It.IsAny<AdministradorActualizarConsumidorCommand>(), It.IsAny<CancellationToken>()))
@@ -54,7 +54,7 @@ public class AdministradorActualizaPrestadorControllerTest
     public async Task AdministradorActualizaPrestadorStatus400BadRequestTest()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildAdministradorActualizarPrestador();
+        var request = BuildDataContextFaker.BuildAdministradorActualizarPrestadorRequest();
         _mediatorMock.Setup(x => x.Send(It.IsAny<AdministradorActualizarPrestadorCommand>(), It.IsAny<CancellationToken>()))
                     .ThrowsAsync(new Exception("Ocurrio un error"));
 

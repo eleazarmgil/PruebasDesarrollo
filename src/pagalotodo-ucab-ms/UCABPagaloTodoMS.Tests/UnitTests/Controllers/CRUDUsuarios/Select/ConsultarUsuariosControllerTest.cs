@@ -32,7 +32,7 @@ public class ConsultarUsuariosControllerTest
     public async Task ConsultarUsuariosStatus200OK()
     {
         //Arrange-> Datos necesario para las pruebas
-        var valores = BuildDataContextFaker.BuildListaConsultarUsuarios();
+        var valores = BuildDataContextFaker.BuildListaConsultarUsuariosRequest();
 
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarUsuariosQuery>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
@@ -50,7 +50,7 @@ public class ConsultarUsuariosControllerTest
     public async Task ConsultarUsuariosStatus400BadRequestTest()
     {
         //Arrange-> Datos necesario para las pruebas
-        var valores = BuildDataContextFaker.BuildListaConsultarUsuarios();
+        var valores = BuildDataContextFaker.BuildListaConsultarUsuariosRequest();
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarUsuariosQuery>(), It.IsAny<CancellationToken>()))
                     .ThrowsAsync(new Exception("Ocurrio un error"));
 

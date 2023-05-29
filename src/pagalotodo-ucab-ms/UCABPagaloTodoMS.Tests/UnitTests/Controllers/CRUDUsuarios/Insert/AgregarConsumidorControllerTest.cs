@@ -10,15 +10,15 @@ using Xunit;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Commands;
 
-namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers.CRUDUsuarios.Update;
+namespace UCABPagaloTodoMS.Tests.UnitTests.Controllers.CRUDUsuarios.Insert;
 
-public class CambiarClaveControllerTest
+public class AgregarConsumidorControllerTest
 {
     private readonly CRUDUsuariosController _controller;
     private readonly Mock<IMediator> _mediatorMock;
     private readonly Mock<ILogger<CRUDUsuariosController>> _loggerMock;
 
-    public CambiarClaveControllerTest()
+    public AgregarConsumidorControllerTest()
     {
         _loggerMock = new Mock<ILogger<CRUDUsuariosController>>();
         _mediatorMock = new Mock<IMediator>();
@@ -30,18 +30,18 @@ public class CambiarClaveControllerTest
     }
 
 
-    [Fact(DisplayName = "CambiarClaveController estatus 200-ok")]
-    public async Task CambiarClaveStatus200OK()
+    [Fact(DisplayName = "AgregarConsumidorController estatus 200-ok")]
+    public async Task AgregarConsumidorStatus200OK()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildCambiarClaveUsuarioRequest();
-        var valores = BuildDataContextFaker.BuildGuidCambiarClaveUsuario();
+        var request = BuildDataContextFaker.BuildRegistrarConsumidorRequest();
+        var valores = BuildDataContextFaker.BuildGuidRegistrarConsumidor();
 
-        _mediatorMock.Setup(x => x.Send(It.IsAny<CambiarClaveCommand>(), It.IsAny<CancellationToken>()))
+        _mediatorMock.Setup(x => x.Send(It.IsAny<AgregarRegistrarConsumidorCommand>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
 
         //Act-> Cuales son las actividades de mi consulta que debo tener
-        var result = await _controller.CambiarClave(request);
+        var result = await _controller.AgregarConsumidor(request);
         var response = Assert.IsType<OkObjectResult>(result.Result);
 
         //Assert-> Aqui verifico cual es el estado de la consulta-> 200 = 200
@@ -49,16 +49,16 @@ public class CambiarClaveControllerTest
         _mediatorMock.Verify();
     }
 
-    [Fact(DisplayName = "CambiarClaveController estatus 400-BadRequest")]
-    public async Task CambiarClaveStatus400BadRequestTest()
+    [Fact(DisplayName = "AgregarConsumidorController estatus 400-BadRequest")]
+    public async Task AdministradorActualizaConsumidorStatus400BadRequestTest()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildCambiarClaveUsuarioRequest();
-        _mediatorMock.Setup(x => x.Send(It.IsAny<CambiarClaveCommand>(), It.IsAny<CancellationToken>()))
+        var request = BuildDataContextFaker.BuildRegistrarConsumidorRequest();
+        _mediatorMock.Setup(x => x.Send(It.IsAny<AgregarRegistrarConsumidorCommand>(), It.IsAny<CancellationToken>()))
                     .ThrowsAsync(new Exception("Ocurrio un error"));
 
         //Act-> Cuales son las actividades de mi consulta que debo tener
-        var result = await _controller.CambiarClave(request);
+        var result = await _controller.AgregarConsumidor(request);
         Console.WriteLine(result.Result);
         var response = Assert.IsType<BadRequestObjectResult>(result.Result);
 
