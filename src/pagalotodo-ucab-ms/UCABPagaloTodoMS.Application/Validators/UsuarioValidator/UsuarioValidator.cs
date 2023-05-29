@@ -8,7 +8,7 @@ public class UsuarioValidator : AbstractValidator<ConsultarPreguntasDeSeguridadQ
 {
     public UsuarioValidator()
     {
-        // Valido que los campos que lleguen del resquest de LoginUsuario sean correctos
+        // Valido que el campo usuario sean los correctos
 
         RuleFor(x => x._request.usuario)
             .NotEmpty().WithMessage("El nombre de usuario es requerido.")

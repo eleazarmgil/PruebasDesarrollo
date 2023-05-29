@@ -9,6 +9,8 @@ public class RifValidator: AbstractValidator<ConsultarPrestadorQuery>
 {
     public RifValidator()
     {
+        // Valido que los campos que lleguen del resquest de ConsultarPrestadorRequest sean correctos
+
         RuleFor(x => x._request.rif)
             .NotEmpty().WithMessage("El RIF no puede estar vacío.")
             .Matches(@"^(J|G|V|E|P)-\d{8}$").WithMessage("El RIF debe tener el formato J|G|V|E|P-XXXXXXX, J|G|V|E|P-XXXXXXXX");

@@ -7,6 +7,8 @@ public class CiValidator : AbstractValidator<ConsultarConsumidorQuery>
 {
     public CiValidator()
     {
+        // Valido que los campos que lleguen del resquest de ConsultarConsumidorRequest sean correctos
+
         RuleFor(x => x._request.ci)
             .NotEmpty().WithMessage("La cédula no puede estar vacía.")
             .Matches(@"^(V|E)-\d{6,7}$").WithMessage("La cédula debe tener el formato V-XXXXXXX, V-XXXXXXXX, E-XXXXXX o E-XXXXXXX");

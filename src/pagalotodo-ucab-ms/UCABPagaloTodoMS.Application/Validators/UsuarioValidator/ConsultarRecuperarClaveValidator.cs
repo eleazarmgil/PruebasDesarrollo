@@ -6,6 +6,8 @@ namespace UCABPagaloTodoMS.Application.Validators.UsuarioValidator
 {
     public class ConsultarRecuperarClaveValidator : AbstractValidator<ConsultarRecuperarClaveQuery>
     {
+        // Valido que los campos que lleguen del resquest de RecuperarClaveRequest sean correctos
+
         public ConsultarRecuperarClaveValidator()
         {
             RuleFor(x => x._request.usuario)
