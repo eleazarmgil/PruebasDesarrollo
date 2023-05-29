@@ -38,7 +38,7 @@ public class ConsultarPrestadorQueryHandler : IRequestHandler<ConsultarPrestador
     }
 
     private async Task<List<ConsultarPrestadorResponse>> HandleAsync(ConsultarPrestadorQuery request)
-    {//Todo lo bueno para chocar contra la bd
+    {
         try
         {
             _logger.LogInformation("ConsultarPrestadorQueryHandler.HandleAsync");

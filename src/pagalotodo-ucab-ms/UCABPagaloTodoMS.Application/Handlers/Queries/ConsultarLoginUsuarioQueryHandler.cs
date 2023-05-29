@@ -30,7 +30,7 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
             }
             else
             {
-                var validator = new ConsultarLoginUsuarioValidator();
+                var validator = new UsuarioPasswordValidator();
                 ValidationResult result = validator.Validate(request);
                 //Llamo a validator del LoginUsuario y verifico 
                 if (result.IsValid) 

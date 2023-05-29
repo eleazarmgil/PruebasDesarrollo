@@ -109,7 +109,7 @@ public static class DataSeed
                   respuesta_de_seguridad2= "Respuesta2",
                   estado=true,
 
-                  rif=1234567894,
+                  rif="V-272792001",
                   nombre_empresa ="Polar",
              }
         };
@@ -135,7 +135,7 @@ public static class DataSeed
                   respuesta_de_seguridad2= "Respuesta2",
                   estado=true,
 
-                  ci=27277277,
+                  ci="V-27279200",
              }
         };
 

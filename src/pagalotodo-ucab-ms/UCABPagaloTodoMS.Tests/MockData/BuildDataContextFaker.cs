@@ -109,7 +109,7 @@ public static class BuildDataContextFaker
     {
         Randomizer.Seed = new Random(100);
         return new Faker<ConsultarConsumidorRequest>()
-            .RuleFor(cs => cs.ci, fk => fk.Random.Number(99999, 90000000));
+            .RuleFor(cs => cs.ci, fk => fk.Lorem.Word());
     }
 
     public static List<ConsultarConsumidorResponse> BuildListaConsultarConsumidor()
@@ -134,7 +134,7 @@ public static class BuildDataContextFaker
     {
         Randomizer.Seed = new Random(100);
         return new Faker<ConsultarPrestadorRequest>()
-            .RuleFor(cs => cs.rif, fk => fk.Random.Number(99999, 90000000));
+            .RuleFor(cs => cs.rif, fk => fk.Lorem.Word());
     }
 
     public static List<ConsultarPrestadorResponse> BuildListaConsultarPrestador()
@@ -224,7 +224,7 @@ public static class BuildDataContextFaker
             .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
-            .RuleFor(cs => cs.rif, fk => fk.Random.Number(99999, 90000000))
+            .RuleFor(cs => cs.rif, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.nombre_empresa, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.estado, fk => fk.Random.Bool());
         ;
@@ -253,7 +253,7 @@ public static class BuildDataContextFaker
             .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
-            .RuleFor(cs => cs.ci, fk => fk.Random.Number(99999, 90000000))
+            .RuleFor(cs => cs.ci, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.estado, fk => fk.Random.Bool());
         ;
     }
@@ -301,9 +301,8 @@ public static class BuildDataContextFaker
             .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
-            .RuleFor(cs => cs.rif, fk => fk.Random.Number(99999, 90000000))
-            .RuleFor(cs => cs.nombre_empresa, fk => fk.Lorem.Word())
-        ;
+            .RuleFor(cs => cs.rif, fk => fk.Lorem.Word())
+            .RuleFor(cs => cs.nombre_empresa, fk => fk.Lorem.Word());
     }
     public static Guid BuildGuidRegistrarPrestador()
     {
@@ -329,7 +328,7 @@ public static class BuildDataContextFaker
             .RuleFor(cs => cs.preguntas_de_seguridad2, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.respuesta_de_seguridad2, fk => fk.Lorem.Word())
-            .RuleFor(cs => cs.ci, fk => fk.Random.Number(99999, 90000000));
+            .RuleFor(cs => cs.ci, fk => fk.Lorem.Word());
     }
     public static Guid BuildGuidRegistrarConsumidor()
     {

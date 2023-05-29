@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace UCABPagaloTodoMS.Application.Validators;
 
-public class ConsultarLoginUsuarioValidator : AbstractValidator<ConsultarLoginUsuarioQuery>
+public class UsuarioPasswordValidator : AbstractValidator<ConsultarLoginUsuarioQuery>
 {
-    public ConsultarLoginUsuarioValidator() 
+    public UsuarioPasswordValidator() 
     {
         // Valido que los campos que lleguen del resquest de LoginUsuario sean correctos
 
