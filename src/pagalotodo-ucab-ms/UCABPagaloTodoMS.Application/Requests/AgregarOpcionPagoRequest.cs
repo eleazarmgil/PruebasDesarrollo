@@ -14,4 +14,6 @@ public class AgregarOpcionPagoRequest
     public Guid? ServicioEntityId { get; set; }
 
     public List<DetalleDeOpcionRequest>? detalleDeOpcion { get; set; } 
+
+
 }

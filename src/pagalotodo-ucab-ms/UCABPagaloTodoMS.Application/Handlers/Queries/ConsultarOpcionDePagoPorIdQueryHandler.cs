@@ -40,27 +40,37 @@ public class ConsultarOpcionDePagoPorIdQueryHandler : IRequestHandler<ConsultarO
     }
 
     private async Task<List<ConsultarOpcionDePagoPorIdResponse>> HandleAsync(ConsultarOpcionDePagoPorIdQuery request)
-    {//Todo lo bueno para chocar contra la bd
+    {
         try
         {
             _logger.LogInformation("ConsultarServicioEmpresaQueryHandler.HandleAsync");
 
-            var result = _dbContext.OpcionDePago.Where(p => p.Id == request._request.opciondepago_id).Select(c => new ConsultarOpcionDePagoPorIdResponse()
-            {
-                Id = c.Id,
-                nombre = c.nombre,
-                estatus = c.estatus,
+            var result = await _dbContext.OpcionDePago
+                .Include(p => p.detalleDeOpcion)
+                .Where(p => p.Id == request._request.opciondepago_id)
+                .Select(c => new ConsultarOpcionDePagoPorIdResponse()
+                {
+                    Id = c.Id,
+                    nombre = c.nombre,
+                    estatus = c.estatus,
+                    detalledeopciondepago = c.detalleDeOpcion.Select(d => new DetalleDeOpcionDePagoResponse()
+                    {
+                        nombre = d.nombre,
+                        tipo_dato = d.tipo_dato,
+                        cant_caracteres = d.cant_caracteres,
+                        formato = d.formato
+                    }).ToList()
+                })
+                .ToListAsync();
 
-            });
-
-            return await result.ToListAsync();
+            return result;
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error LoginUsuarioQueryHandler.HandleAsync. {Mensaje}", ex.Message);
             throw;
         }
-    }
 
+    }
 }
 

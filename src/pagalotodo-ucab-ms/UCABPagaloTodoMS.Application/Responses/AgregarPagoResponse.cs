@@ -8,5 +8,5 @@ namespace UCABPagaloTodoMS.Application.Responses;
 
 public class AgregarPagoResponse
 {
-    public Guid? OpcionDePagoIdEntity { get; set; }
+    public Guid? Id { get; set; }
 }

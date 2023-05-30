@@ -16,7 +16,7 @@ public class AgregarPagoMapper
         var response = new AgregarPagoResponse()
         {
 
-            OpcionDePagoIdEntity = entity.opcionDePagoId,
+            Id = entity.Id,
 
         };
 
@@ -32,9 +32,25 @@ public class AgregarPagoMapper
             fecha = DateTime.Now,
             opcionDePagoId = request.OpcionDePagoIdEntity,
             ConsumidorId = request.ConsumidorIdEntity,
+            //detalleDePago = new List<DetalleDePagoEntity>()
 
         };
-       
+
+       /* if (request.detalledepago != null) // reviso que la lista del request no este vacia
+        {
+            foreach (var detalle in request.detalledepago)
+
+            //  toma cada detalle en mi request y lo guarda en su entidad detalle de opcion entity
+            {
+                var detalleEntity = new DetalleDePagoEntity()
+                {
+                   detalle = detalle.detalle,
+                };
+                entity.detalleDePago.Add(detalleEntity);
+                // se llena la lista entidad con los elementos del request
+            }
+        }*/
+
 
 
         return entity;

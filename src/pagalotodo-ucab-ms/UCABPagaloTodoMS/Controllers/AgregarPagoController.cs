@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UCABPagaloTodoMS.Application.Commands;
-using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
-using UCABPagaloTodoMS.Application.Responses;
 using UCABPagaloTodoMS.Base;
 
 namespace UCABPagaloTodoMS.Controllers;
@@ -17,7 +15,33 @@ public class AgregarPagoController : BaseController<AgregarPagoController>
     {
         _mediator = mediator;
     }
-    [HttpGet("AgregarPago")]
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             CRUDS DE AGREGAR PAGO
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /// <summary>
+    /// Endpoint para realizar un pago.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite agregar un nuevo pago a un servicio con los datos proporcionados en el cuerpo de la solicitud.
+    ///     ## Description
+    ///     ### Set campos monto, fecha, opcion de pago, consumidor y detalle del pago, 
+    ///     ## Url
+    ///     POST /crudPagos/AgregarPago
+    /// </remarks>
+    /// <param name="request">El objeto de solicitud que contiene los datos del necesarios para agregar el pago.</param>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta.
+    /// </response>
+    /// <returns>El ID del nuevo pago agregado.</returns>
+
+    [HttpPost("AgregarPago")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

@@ -1,5 +1,5 @@
 ﻿namespace UCABPagaloTodoMS.Application.Requests;
 public class ConsultarPrestadorRequest
 {
-    public int? rif { set; get; }
+    public String? rif { set; get; }
 }

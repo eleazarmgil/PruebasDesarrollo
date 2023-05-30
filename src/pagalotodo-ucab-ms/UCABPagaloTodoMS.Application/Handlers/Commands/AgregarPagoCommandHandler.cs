@@ -1,15 +1,7 @@
-﻿using Azure;
-using MassTransit.Mediator;
+﻿
 using MediatR;
-using Microsoft.Azure.Amqp.Serialization;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UCABPagaloTodoMS.Application.Commands;
-using UCABPagaloTodoMS.Application.Handlers.Queries;
 using UCABPagaloTodoMS.Application.Mappers;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
@@ -37,7 +29,7 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
         {
             if (request._request == null)
             {
-                _logger.LogWarning("ActualizarPrestadorCommandHandler.Handle: Request nulo.");
+                _logger.LogWarning("AgregarPagoCommandHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));
             }
             else
@@ -59,19 +51,19 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
         {
             _logger.LogInformation("AgregarPagoCommandHandler.HandleAsync {Request}", request);
 
-           
+
             var result = _dbContext.OpcionDePago.Count(c => c.Id == request._request.OpcionDePagoIdEntity); // id existe
 
             if (result == 0)
             {
-                throw new InvalidOperationException("Registro fallido: No existe prestador para este servicio");
+                throw new InvalidOperationException("Registro fallido: No existe la opcion de pago indicada");
             }
 
             var entity = AgregarPagoMapper.MapRequestEntity(request._request);
 
             _dbContext.Pago.Add(entity);
-           // var id = entity.Id;
-           
+            
+
 
             var consultaDetallesRequest = new ConsultarDetalleDeOpcionDePagoRequest
             {
@@ -82,28 +74,41 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
 
             var detallesOpcionPago = await _mediator.Send(new ConsultarDetalleDeOpcionDePagoQuery(consultaDetallesRequest));
 
-            foreach (var detalle in detallesOpcionPago)
+            if (request._request.detalledepago == null || request._request.detalledepago.Count != detallesOpcionPago.Count)
             {
-                var detallePago = new DetalleDePagoEntity
-                {
-                    nombre = detalle.nombre,
-                    pagoid= entity.Id,
-                    // asignar las demás propiedades de DetalleDePagoEntity según corresponda
-                };
-                _dbContext.DetalleDePago.Add(detallePago);
+                throw new InvalidOperationException("Registro fallido: La lista de detalles de pago es nula o no tiene la cantidad correcta de elementos.");
             }
 
+            var detalleDePagoEntities = new List<DetalleDePagoEntity>();
+
+            for (int i = 0; i < detallesOpcionPago.Count; i++)
+            {
+                var detalleDepago = new DetalleDePagoEntity
+                {
+                    nombre = detallesOpcionPago[i].nombre ?? "",
+                    detalle = request._request.detalledepago[i].detalle,
+                    pagoid = entity.Id,
+                };
+
+                detalleDePagoEntities.Add(detalleDepago);
+            }
+
+            _dbContext.DetalleDePago.AddRange(detalleDePagoEntities);
+
+            
             await _dbContext.SaveEfContextChanges("APP");
             transaccion.Commit();
-            _logger.LogInformation("AgregarValorPruebaCommandHandler.HandleAsync {Response}", entity.Id);
+            _logger.LogInformation("AgregarPagoCommandHandler.HandleAsync {Response}", entity.Id);
             return entity.Id;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error ConsultarValoresQueryHandler.HandleAsync. {Mensaje}", ex.Message);
+            _logger.LogError(ex, "Error AgregarPagoCommandHandler.HandleAsync. {Mensaje}", ex.Message);
             transaccion.Rollback();
             throw;
         }
 
     }
+
+
 }

@@ -10,6 +10,6 @@ public class RegistrarConsumidorRequest
     public string? preguntas_de_seguridad2 { set; get; }
     public string? respuesta_de_seguridad { set; get; }
     public string? respuesta_de_seguridad2 { set; get; }
-    public int? ci { set; get; }
+    public string? ci { set; get; }
 
 }
