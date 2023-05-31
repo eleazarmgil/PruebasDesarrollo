@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarValoresQueryHandler : IRequestHandler<ConsultarValoresPruebaQuery, List<ValoresResponse>>
@@ -11,6 +12,7 @@ public class ConsultarValoresQueryHandler : IRequestHandler<ConsultarValoresPrue
     private readonly IUCABPagaloTodoDbContext _dbContext;
     private readonly ILogger<ConsultarValoresQueryHandler> _logger;
 
+    [ExcludeFromCodeCoverage]
     public ConsultarValoresQueryHandler(IUCABPagaloTodoDbContext dbContext, ILogger<ConsultarValoresQueryHandler> logger)
     {
         _dbContext = dbContext;

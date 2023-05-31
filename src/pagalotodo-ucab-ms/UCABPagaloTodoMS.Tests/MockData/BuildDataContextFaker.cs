@@ -1,8 +1,11 @@
 ﻿using Bogus;
+using System.Diagnostics.CodeAnalysis;
 using UCABPagaloTodoMS.Application.Requests;
 using UCABPagaloTodoMS.Application.Responses;
 
 namespace UCABPagaloTodoMS.Tests.MockData;
+
+[ExcludeFromCodeCoverage]
 
 public static class BuildDataContextFaker
 {
@@ -50,13 +53,30 @@ public static class BuildDataContextFaker
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Faker de LoginUsuario
-
-    public static Faker<LoginUsuarioRequest> BuildLoginUsuarioRequest()
+    public static Faker< LoginUsuarioRequest> BuildLoginUsuarioRequestRandom()
     {
         Randomizer.Seed = new Random(100);
         return new Faker<LoginUsuarioRequest>()
             .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
             .RuleFor(cs => cs.password, fk => fk.Lorem.Word());
+    }
+    public static LoginUsuarioRequest BuildLoginUsuarioRequestFallaUsuarioNull()
+    {
+        var data = new LoginUsuarioRequest()
+        {
+             usuario= "",
+             password= "Faker.12"           
+        };
+        return data;
+    }
+    public static LoginUsuarioRequest BuildLoginUsuarioRequestFallaPasswordNull()
+    {
+        var data = new LoginUsuarioRequest()
+        {
+            usuario = "Faker1",
+            password = ""
+        };
+        return data;
     }
 
     public static List<LoginUsuarioResponse> BuildListaLoginUsuario()
@@ -67,11 +87,6 @@ public static class BuildDataContextFaker
             {
                 Id= new Guid("f1da2b15-922e-44ce-92bb-07b069b43dfc")
             },
-            new LoginUsuarioResponse()
-            {
-
-                Id= new Guid("33b6653b-128d-4178-bb89-5fd77d2164b6")
-            }
         };
         return data;
     }

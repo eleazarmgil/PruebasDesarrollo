@@ -1,4 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Application.Requests;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Application.Requests;
+
+[ExcludeFromCodeCoverage]
 public class RecuperarClaveRequest
 {
     public string? usuario { get; set; }

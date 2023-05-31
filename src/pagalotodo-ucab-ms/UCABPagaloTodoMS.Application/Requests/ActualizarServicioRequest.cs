@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace UCABPagaloTodoMS.Application.Requests;
 
+[ExcludeFromCodeCoverage]
 public class ActualizarServicioRequest
 {
     public Guid Id { get; set; }

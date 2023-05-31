@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UCABPagaloTodoMS.Core.Database;
 using Microsoft.EntityFrameworkCore;
 using UCABPagaloTodoMS.Core.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS.Tests.DataSeed;
+
+[ExcludeFromCodeCoverage]
 public static class DataSeed
 {
     //Seed de los Valores

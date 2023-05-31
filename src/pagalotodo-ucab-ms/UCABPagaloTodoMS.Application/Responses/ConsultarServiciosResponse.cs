@@ -1,7 +1,8 @@
-﻿using UCABPagaloTodoMS.Core.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS.Application.Responses;
 
+[ExcludeFromCodeCoverage]
 public class ConsultarServiciosResponse
 {
     public Guid id_servicio { get; set; }

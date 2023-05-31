@@ -1,4 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 namespace UCABPagaloTodoMS.Core.Entities;
+
+[ExcludeFromCodeCoverage]
 public class ConciliacionEntity : BaseEntity
 {
     public DateTime? fecha { set; get; }

@@ -1,4 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Application.Requests;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Application.Requests;
+
+[ExcludeFromCodeCoverage]
 public class RegistrarConsumidorRequest
 {
     public string? usuario { get; set; }

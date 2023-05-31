@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace UCABPagaloTodoMS.Application.Responses;
 
+[ExcludeFromCodeCoverage]
 public class RegistrarConsumidorResponse
 {
     public string? usuario { get; set; }

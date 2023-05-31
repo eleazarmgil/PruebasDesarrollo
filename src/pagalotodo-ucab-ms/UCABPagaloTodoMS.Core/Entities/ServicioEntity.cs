@@ -1,4 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace UCABPagaloTodoMS.Core.Entities;
+
+[ExcludeFromCodeCoverage]
 public class ServicioEntity : BaseEntity
 {
     public string? nombre { set; get; }

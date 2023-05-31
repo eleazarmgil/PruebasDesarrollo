@@ -1,4 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Core.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Core.Entities;
+
+[ExcludeFromCodeCoverage]
 public class DetalleDePagoEntity : BaseEntity
 {
     public string? detalle { get; set; }

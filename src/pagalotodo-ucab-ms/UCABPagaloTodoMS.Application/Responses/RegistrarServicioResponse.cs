@@ -1,4 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace UCABPagaloTodoMS.Application.Responses;
+
+[ExcludeFromCodeCoverage]
 public class RegistrarServicioResponse
 {
     public Guid PrestadorEntityId { get; set; }

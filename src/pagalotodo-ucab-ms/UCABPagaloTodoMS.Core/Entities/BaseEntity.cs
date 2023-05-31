@@ -1,4 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Core.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Core.Entities;
+
+[ExcludeFromCodeCoverage]
 public class BaseEntity
 {
     public Guid Id { get; set; }

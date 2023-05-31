@@ -1,4 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace UCABPagaloTodoMS.Core.Entities;
+
+[ExcludeFromCodeCoverage]
 public class UsuarioEntity : BaseEntity
 {
     public string? usuario { get; set; }

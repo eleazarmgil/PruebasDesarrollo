@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using RestSharp;
 using MediatR;
 using UCABPagaloTodoMS.Application.Handlers.Queries;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS;
+
+[ExcludeFromCodeCoverage]
 public class Startup
 {
     private AppSettings _appSettings;

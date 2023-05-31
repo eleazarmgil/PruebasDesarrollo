@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
@@ -71,6 +72,7 @@ public class EjemploController : BaseController<EjemploController>
     [HttpPost("valor")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ExcludeFromCodeCoverage]
     public async Task<ActionResult<Guid>> AgregarValor(ValoresRequest valor)
     {
         _logger.LogInformation("Entrando al método que registra los valores de prueba");

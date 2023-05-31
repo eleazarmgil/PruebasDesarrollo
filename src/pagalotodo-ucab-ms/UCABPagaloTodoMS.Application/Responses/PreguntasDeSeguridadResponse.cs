@@ -1,4 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Application.Responses;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Application.Responses;
+
+[ExcludeFromCodeCoverage]
 public class PreguntasDeSeguridadResponse
 {
     public string? pregunta_de_seguridad { set; get; }
