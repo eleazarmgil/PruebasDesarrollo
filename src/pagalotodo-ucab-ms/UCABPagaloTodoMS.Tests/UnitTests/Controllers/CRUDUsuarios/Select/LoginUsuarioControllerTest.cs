@@ -32,8 +32,8 @@ public class LoginUsuarioControllerTest
     public async Task LoginUsuarioStatus200OK()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildLoginUsuarioRequestRandom();
-        var valores = BuildDataContextFaker.BuildListaLoginUsuario();
+        var request = BuildDataContextFaker.BuildLoginUsuarioRequest();
+        var valores = BuildDataContextFaker.BuildListaLoginUsuarioResponse();
 
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarLoginUsuarioQuery>(), It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(valores));
@@ -51,7 +51,7 @@ public class LoginUsuarioControllerTest
     public async Task LoginUsuarioStatus400BadRequestTest()
     {
         //Arrange-> Datos necesario para las pruebas
-        var request = BuildDataContextFaker.BuildLoginUsuarioRequestRandom();
+        var request = BuildDataContextFaker.BuildLoginUsuarioRequest();
         _mediatorMock.Setup(x => x.Send(It.IsAny<ConsultarLoginUsuarioQuery>(), It.IsAny<CancellationToken>()))
                     .ThrowsAsync(new Exception("Ocurrio un error"));
 

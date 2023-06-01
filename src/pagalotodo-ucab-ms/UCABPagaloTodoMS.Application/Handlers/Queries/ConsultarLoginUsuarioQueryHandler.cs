@@ -3,10 +3,12 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Responses;
+using UCABPagaloTodoMS.Application.Excepciones;
 using UCABPagaloTodoMS.Application.Validators.UsuarioValidator;
 using Microsoft.EntityFrameworkCore;
-using RestSharp.Validation;
 using FluentValidation.Results;
+using FluentValidation;
+using Microsoft.Azure.Amqp.Framing;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginUsuarioQuery, List<LoginUsuarioResponse>>
@@ -26,6 +28,7 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
     /// <param name="cancellationToken">El token de cancelación que se utiliza para cancelar la operación de forma asincrónica.</param>
     /// <returns>Una tarea asincrónica que representa la operación y una lista de objetos LoginUsuarioResponse.</returns>
     /// <exception cref="ArgumentNullException">Se lanza si el objeto ConsultarLoginUsuarioQuery es nulo.</exception>
+    /// <exception cref="ValidationException">Se lanza si el objeto ConsultarLoginUsuarioQuery es nulo.</exception>
     /// <remarks>
     /// Este método valida el objeto ConsultarLoginUsuarioQuery utilizando un validador de UsuarioPasswordValidator. Si la validación es exitosa, llama al método HandleAsync para manejar la consulta y devuelve los resultados como una tarea asincrónica. Si la validación falla, se lanza una excepción ArgumentNullException y se muestran los errores de validación en el registro.
     /// </remarks>
@@ -35,33 +38,34 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
         {
             if (request is null) //Pregunto si el request es nulo
             {
-                _logger.LogWarning("LoginUsuarioQueryHandler.Handle: Request nulo.");
+                _logger.LogWarning("ConsultarConsumidorQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));
             }
             else
             {
-                var validator = new UsuarioPasswordValidator();
-                ValidationResult result = validator.Validate(request);
-                //Llamo a validator del LoginUsuario y verifico 
-                if (result.IsValid) 
+                var validator = new UsuarioPasswordValidator(); //Variable del validator
+                //Llamo a validator del CiValidator y verifico 
+                if (validator.Validate(request).IsValid) //Si el request es valido llamo a HandleAsync
                 {
                     return HandleAsync(request);
                 }
-                else
+                else  //Si no es valido, muestra los errores con el campo y el mensaje del campo en el validator  
                 {
-                    foreach (var error in result.Errors) //Muestra los errores
-                    {
-                        _logger.LogWarning($"Error en el campo {error.PropertyName} {error.ErrorMessage}");
-                    }
-                    throw new ArgumentNullException(nameof(request));
+                    throw new ValidationException($"Error en campos del {nameof(request)} campos invalidos {validator.Validate(request).Errors.Count}");
                 }
             }
         }
-        catch (Exception)
+        catch (ValidationException)
         {
-            _logger.LogWarning("LoginUsuarioQueryHandler.Handle: ArgumentNullException");
+            _logger.LogWarning("ConsultarConsumidorQueryHandler.Handle: ");
             throw;
         }
+        catch (ArgumentNullException)
+        {
+            _logger.LogWarning("ConsultarConsumidorQueryHandler.Handle: ArgumentNullException");
+            throw;
+        }
+
     }
     /// <summary>
     /// Maneja una consulta de login de usuario y devuelve una lista de objetos LoginUsuarioResponse.

@@ -52,34 +52,20 @@ public static class BuildDataContextFaker
     //                                             FAKER DE USUARIOS
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //------------------------------------------------------------------------------------------
     //Faker de LoginUsuario
-    public static Faker< LoginUsuarioRequest> BuildLoginUsuarioRequestRandom()
-    {
-        Randomizer.Seed = new Random(100);
-        return new Faker<LoginUsuarioRequest>()
-            .RuleFor(cs => cs.usuario, fk => fk.Lorem.Word())
-            .RuleFor(cs => cs.password, fk => fk.Lorem.Word());
-    }
-    public static LoginUsuarioRequest BuildLoginUsuarioRequestFallaUsuarioNull()
-    {
-        var data = new LoginUsuarioRequest()
-        {
-             usuario= "",
-             password= "Faker.12"           
-        };
-        return data;
-    }
-    public static LoginUsuarioRequest BuildLoginUsuarioRequestFallaPasswordNull()
+
+    public static LoginUsuarioRequest BuildLoginUsuarioRequest()
     {
         var data = new LoginUsuarioRequest()
         {
             usuario = "Faker1",
-            password = ""
+            password = "Faker.12"
         };
         return data;
     }
 
-    public static List<LoginUsuarioResponse> BuildListaLoginUsuario()
+    public static List<LoginUsuarioResponse> BuildListaLoginUsuarioResponse()
     {
         var data = new List<LoginUsuarioResponse>()
         {
@@ -91,7 +77,9 @@ public static class BuildDataContextFaker
         return data;
     }
 
+    //------------------------------------------------------------------------------------------
     //Faker de ConsultarUsuarios
+
     public static List<ConsultarUsuariosResponse> BuildListaConsultarUsuariosRequest()
     {
         var data = new List<ConsultarUsuariosResponse>()
@@ -118,6 +106,7 @@ public static class BuildDataContextFaker
         return data;
     }
 
+    //------------------------------------------------------------------------------------------
     //Faker de ConsultarConsumidor
 
     public static Faker<ConsultarConsumidorRequest> BuildConsultarConsumidorRequest()
@@ -143,6 +132,7 @@ public static class BuildDataContextFaker
         return data;
     }
 
+    //------------------------------------------------------------------------------------------
     //Faker de ConsultarPrestador
 
     public static Faker<ConsultarPrestadorRequest> BuildConsultarPrestadorRequest()
