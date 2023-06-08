@@ -1,9 +1,10 @@
-﻿namespace UCABPagaloTodoMS.Core.Entities
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Core.Entities;
+[ExcludeFromCodeCoverage]
+public class ValoresEntity : BaseEntity
 {
-    public class ValoresEntity : BaseEntity
-    {
-        public string? Nombre { get; set; }
-        public string? Apellido { get; set; }
-        public string Identificacion { get; set; } = string.Empty;
-    }
+    public string? Nombre { get; set; }
+    public string? Apellido { get; set; }
+    public string Identificacion { get; set; } = string.Empty;
 }

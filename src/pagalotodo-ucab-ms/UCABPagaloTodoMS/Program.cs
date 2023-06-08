@@ -1,8 +1,9 @@
 ﻿using Destructurama;
 using Serilog;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS;
-
+[ExcludeFromCodeCoverage]
 public static class Program
 {
     public static int Main(string[] args)

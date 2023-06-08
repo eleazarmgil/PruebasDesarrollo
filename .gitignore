@@ -440,3 +440,4 @@ reportgenerator
 
 NassaApiStarter/appsettings.Local.json
 NassaApiStarter.Tests/packages-microsoft-prod.deb
+/src/pagalotodo-ucab-ms/UCABPagaloTodoMS.Application/Requests/EliminarUsuarioRequest.cs

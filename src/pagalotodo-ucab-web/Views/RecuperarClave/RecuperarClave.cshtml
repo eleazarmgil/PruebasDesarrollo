@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_RecuperarClaveLayout.cshtml";
+}
+<body>
+    <div class="container" id="container">
+
+        
+
+        <div class="form-container login-container">
+            @using (Html.BeginForm("ConsultarRespuestas", "RecuperarClave", FormMethod.Post))
+            {
+                <h1>Recuperar Clave</h1>
+                <p>Ingresa tu usuario</p>
+                <input type="text" placeholder="Usuario" name="usuario">
+                <button>Aceptar</button>
+            }
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1 class="title">Recupera tu <br>contraseña<br>facilmente</h1>
+                    <p>Ingresa tu usuario para que podamos ayudarte</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

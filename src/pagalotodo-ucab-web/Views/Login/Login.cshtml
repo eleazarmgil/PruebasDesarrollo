@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<body>
+    <div class="container" id="container">
+
+        <div class="form-container registrarse-container">
+            @using (Html.BeginForm("RegistrarConsumidor", "RegistrarUsuario", FormMethod.Post))
+            {
+                <h1>Registrarse</h1>
+                <input type="text" placeholder="Cédula" name="ci" required>
+                <input type="text" placeholder="Nombres" name="nombre" required>
+                <input type="text" placeholder="Apellidos" name="apellido" required>
+                <input type="text" placeholder="Usuario" name="usuario" required>
+                <input type="email" placeholder="Correo" name="correo" required>
+                <input type="password" placeholder="Contraseña" name="password" required>
+                <select name="preguntas_de_seguridad" id="preguntas">
+                    <option value="¿Cuál es el nombre de tu mascota?">¿Cuál es el nombre de tu mascota?</option>
+                    <option value="¿Cuál es tu color favorito?">¿Cuál es tu color favorito?</option>
+                    <option value="¿En qué ciudad naciste?">¿En qué ciudad naciste?</option>
+                    <option value="¿Cuál es el nombre de soltera de tu madre?">¿Cuál es el nombre de soltera de tu madre?</option>
+                    <option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
+                </select>
+                <input type="text" placeholder="Respuesta" name="respuesta_de_seguridad">
+                <select name="preguntas_de_seguridad2" id="preguntas">
+                    <option value="¿Cuál es el nombre de tu mascota?">¿Cuál es el nombre de tu mascota?</option>
+                    <option value="¿Cuál es tu color favorito?">¿Cuál es tu color favorito?</option>
+                    <option value="¿En qué ciudad naciste?">¿En qué ciudad naciste?</option>
+                    <option value="¿Cuál es el nombre de soltera de tu madre?">¿Cuál es el nombre de soltera de tu madre?</option>
+                    <option value="¿Cuál es tu comida favorita?">¿Cuál es tu comida favorita?</option>
+                </select>
+                <input type="text" placeholder="Respuesta" name="respuesta_de_seguridad2">
+                <button>registrarse</button>
+            }
+        </div>
+
+        <div class="form-container login-container">
+            @using (Html.BeginForm("ValidarCredenciales", "Login", FormMethod.Post))
+            {
+                <h1>Iniciar sesión</h1>
+                <input type="text" placeholder="Usuario" name="usuario">
+                <input type="password" placeholder="Contraseña" name="password">
+                <div class="content">
+                    <div class="pass-link">
+                        <a href="@Url.Action("RecuperarClave", "RecuperarClave")">¿Has olvidado tu contraseña?</a>
+                    </div>
+                </div>
+                <button>Comenzar</button>
+            }
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="title">Bienvenidos a <br> nuestra plataforma</h1>
+                    <p>Si tienes una cuenta, inicia sesión aquí y diviértete</p>
+                    <button class="ghost" id="login">
+                        Login
+                        <i class="lni lni-arrow-left login"></i>
+                    </button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1 class="title">Comienza tu<br>viaje con<br>Pagalo Todo Ucab</h1>
+                    <p>Si aún no tiene una cuenta, únase a nosotros y comience su viaje.</p>
+                    <button class="ghost" id="registrarse">
+                        registrarse
+                        <i class="lni lni-arrow-right registrarse"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

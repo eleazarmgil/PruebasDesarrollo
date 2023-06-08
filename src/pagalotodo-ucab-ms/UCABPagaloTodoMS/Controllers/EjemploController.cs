@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 using UCABPagaloTodoMS.Application.Commands;
 using UCABPagaloTodoMS.Application.Queries;
 using UCABPagaloTodoMS.Application.Requests;
@@ -10,6 +11,7 @@ namespace UCABPagaloTodoMS.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ExcludeFromCodeCoverage]
     public class EjemploController : BaseController<EjemploController>
     {
         private readonly IMediator _mediator;
@@ -69,6 +71,7 @@ namespace UCABPagaloTodoMS.Controllers
         [HttpPost("valor")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
         public async Task<ActionResult<Guid>> AgregarValor(ValoresRequest valor)
         {
             _logger.LogInformation("Entrando al método que registra los valores de prueba");

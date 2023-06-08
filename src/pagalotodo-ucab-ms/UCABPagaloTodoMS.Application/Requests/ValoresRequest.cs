@@ -1,5 +1,8 @@
-﻿namespace UCABPagaloTodoMS.Application.Requests
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace UCABPagaloTodoMS.Application.Requests
 {
+    [ExcludeFromCodeCoverage]
     public class ValoresRequest
     {
         public string? Nombre { get; set; }

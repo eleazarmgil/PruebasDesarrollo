@@ -3,18 +3,30 @@ using System.Reflection;
 using UCABPagaloTodoMS.Core.Database;
 using UCABPagaloTodoMS.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace UCABPagaloTodoMS.Infrastructure.Database;
 
-
+[ExcludeFromCodeCoverage]
 public class UCABPagaloTodoDbContext : DbContext, IUCABPagaloTodoDbContext
 {
+
     public UCABPagaloTodoDbContext(DbContextOptions<UCABPagaloTodoDbContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<ValoresEntity> Valores { get; set; } = null!;
+    public virtual DbSet<UsuarioEntity> Usuario { get; set; } = null!;
+    public virtual DbSet<AdministradorEntity> Administrador { get; set; } = null!;
+    public virtual DbSet<ConciliacionEntity> Conciliacion { get; set; } = null!;
+    public virtual DbSet<ConsumidorEntity> Consumidor { get; set; } = null!;
+    public virtual DbSet<DetalleDeOpcionEntity> DetalleDeOpcion { get; set; } = null!;
+    public virtual DbSet<OpcionDePagoEntity> OpcionDePago { get; set; } = null!;
+    public virtual DbSet<DetalleDePagoEntity> DetalleDePago { get; set; } = null!;
+    public virtual DbSet<PagoEntity> Pago { get; set; } = null!;
+    public virtual DbSet<PrestadorEntity> Prestador { get; set; } = null!;
+    public virtual DbSet<ServicioEntity> Servicio { get; set; } = null!;
 
     public DbContext DbContext
     {

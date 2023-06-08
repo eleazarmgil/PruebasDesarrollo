@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -40,6 +40,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
 
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
 
 
@@ -59,12 +63,6 @@
     <ProjectReference Include="..\UCABPagaloTodoMS.Core\UCABPagaloTodoMS.Core.csproj" />
     <ProjectReference Include="..\UCABPagaloTodoMS.Infrastructure\UCABPagaloTodoMS.Infrastructure.csproj" />
     <ProjectReference Include="..\UCABPagaloTodoMS\UCABPagaloTodoMS.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="UnitTestsApplication\Handlers\Commands\" />
-    <Folder Include="UnitTestsApplication\Handlers\Queries\" />
-    <Folder Include="UnitTestsInfrastructure\Services\" />
   </ItemGroup>
 
 

@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_ConsultarRespuestasLayout.cshtml";
+}
+@using UCABPagaloTodoWeb.Models.Responses;
+@model PreguntasDeSeguridadResponse;
+<body>
+    <div class="container" id="container">
+        <div class="form-container registrarse-container">
+            @using (Html.BeginForm("ValidarRespuestas", "RecuperarClave", FormMethod.Post))
+            {
+                <h1>Recuperar Clave</h1>
+                <div>
+                    <label>Indica tu nueva clave</label>
+                    <input type="password" name="password" required>
+                </div>
+                <p>Responde las preguntas de seguridad</p>
+                <div>
+                    <label>@ViewData["pregunta_de_seguridad"]</label>
+                    <input type="text" name="respuesta1" required>
+                </div>
+                <div>
+                    <label>@ViewData["pregunta_de_seguridad2"]</label>
+                    <input type="text" name="respuesta2" required>
+                </div>
+                <button>Aceptar</button>
+            }
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1 class="title">Preguntas de Seguridad</h1>
+                    <p>Responde las siguientes preguntas para poder asegurarnos que seas tú en realidad</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
