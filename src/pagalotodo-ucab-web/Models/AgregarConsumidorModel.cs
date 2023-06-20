@@ -12,6 +12,5 @@
         public string? respuesta_de_seguridad { set; get; }
         public string? respuesta_de_seguridad2 { set; get; }
         public string? ci { set; get; }
-        public bool? estatus { get; set; }
     }
 }

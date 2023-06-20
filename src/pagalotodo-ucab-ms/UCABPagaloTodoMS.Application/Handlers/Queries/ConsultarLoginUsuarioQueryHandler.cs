@@ -105,7 +105,8 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
                 var usuarioConsumidor = _dbContext.Usuario.Where(c => c.usuario == request._request.usuario).Select(c => new LoginUsuarioResponse() //Traemos al usuario de la bd
                 {
                     Id = c.Id,
-                    discriminator = "Consumidor"
+                    discriminator = "Consumidor",
+                    usuario=c.usuario
                 });
                 return await usuarioConsumidor.ToListAsync();
             }
@@ -119,7 +120,8 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
                 var usuarioPrestador = _dbContext.Usuario.Where(c => c.usuario == request._request.usuario).Select(c => new LoginUsuarioResponse() //Traemos al usuario de la bd
                 {
                     Id = c.Id,
-                    discriminator = "Prestador"
+                    discriminator = "Prestador",
+                    usuario = c.usuario
                 });
                 return await usuarioPrestador.ToListAsync();
             }
@@ -129,7 +131,8 @@ public class ConsultarLoginUsuarioQueryHandler : IRequestHandler<ConsultarLoginU
             var usuarioAdministrador = _dbContext.Usuario.Where(c => c.usuario == request._request.usuario).Select(c => new LoginUsuarioResponse() //Traemos al usuario de la bd
             {
                 Id = c.Id,
-                discriminator = "Administrador"
+                discriminator = "Administrador",
+                usuario = c.usuario
             });
             return await usuarioAdministrador.ToListAsync();
 

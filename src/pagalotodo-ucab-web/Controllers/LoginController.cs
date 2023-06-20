@@ -7,6 +7,7 @@ using System.Security.Claims;
 using UCABPagaloTodoWeb.Models;
 using System.Text;
 using UCABPagaloTodoWeb.Models.Responses;
+using UCABPagaloTodoWeb.Models.Views;
 
 namespace UCABPagaloTodoWeb.Controllers
 {
@@ -26,11 +27,9 @@ namespace UCABPagaloTodoWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ValidarCredenciales(string usuario, string password)
+        public async Task<IActionResult> ValidarCredenciales(LoginModel requestBody)
         {
-
             var api = "https://localhost:44339/crudusuarios/loginusuario";
-            var requestBody= new {usuario=usuario, password= password};
             var jsonBody=JsonConvert.SerializeObject(requestBody, new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore
@@ -41,9 +40,9 @@ namespace UCABPagaloTodoWeb.Controllers
                
                 var responseContent=await response.Content.ReadAsStringAsync();
                 var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
-                if(loginResponse!=null)
+                if (loginResponse.data[0].id!=Guid.Empty)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("MenuAdministrador", "MenuAdministrador", loginResponse.data[0]);
                 }
                 return RedirectToAction("Privacy", "Home");
                 

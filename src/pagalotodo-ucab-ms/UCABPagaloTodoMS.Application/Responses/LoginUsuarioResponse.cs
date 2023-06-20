@@ -7,4 +7,5 @@ public class LoginUsuarioResponse
 {
     public Guid Id { get; set; }
     public string? discriminator { get; set; }
+    public string? usuario { get; set; }
 }

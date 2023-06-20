@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_MenuAdministradorLayout.cshtml";
+}
+
+@using UCABPagaloTodoWeb.Models.Views;
+@using UCABPagaloTodoWeb.Models.Responses;
+@model ConsultarUsuariosViewModel;
+
+<div id="usuarios-content" class="content">
+    
+    <h2>Usuarios</h2>
+    <p>Este es el contenido de la sección "Usuarios".</p>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Correo electrónico</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Tipo</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (UsuarioDataModel usuario in Model.consultarUsuarioResponse.data)
+            {
+                
+            
+            <tr>
+                <td>@usuario.id_usuario</td>
+                <td>@usuario.usuario</td>
+                <td>@usuario.correo</td>
+                <td>@usuario.nombre</td>
+                <td>@usuario.estado</td>
+                <td>@usuario.Discriminator</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

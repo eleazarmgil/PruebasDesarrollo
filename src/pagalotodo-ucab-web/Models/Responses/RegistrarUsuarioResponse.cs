@@ -1,9 +1,9 @@
 ﻿namespace UCABPagaloTodoWeb.Models.Responses
 {
-    public class LoginResponse
+    public class RegistrarUsuarioResponse
     {
         public string? operationId { get; set; }
         public string? operationName { get; set; }
-        public LoginDataModel[]? data { get; set; }
+        public Guid data { get; set; }
     }
 }

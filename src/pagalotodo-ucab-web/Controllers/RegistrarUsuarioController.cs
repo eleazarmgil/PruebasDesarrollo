@@ -26,13 +26,11 @@ namespace UCABPagaloTodoWeb.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> RegistrarConsumidor(AgregarConsumidorModel datos)
+        public async Task<IActionResult> RegistrarConsumidor(AgregarConsumidorModel requestBody)
         {
             //enviar preguntas al backend para mostrarlas
 
             var api = "https://localhost:44339/crudusuarios/agregarconsumidor";
-            datos.estatus = true;
-            var requestBody = datos;
             var jsonBody = JsonConvert.SerializeObject(requestBody, new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore
@@ -40,10 +38,8 @@ namespace UCABPagaloTodoWeb.Controllers
             var response = await _httpClient.PostAsync(api, new StringContent(jsonBody, Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
-
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
-                
+                var loginResponse = JsonConvert.DeserializeObject<RegistrarUsuarioResponse>(responseContent);
                 if (loginResponse.data != Guid.Empty)
                 {
                     //Si es correcto
