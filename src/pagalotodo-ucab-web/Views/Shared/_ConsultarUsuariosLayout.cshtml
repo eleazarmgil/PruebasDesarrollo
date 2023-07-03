@@ -1,5 +1,5 @@
 ﻿@using UCABPagaloTodoWeb.Models.Views;
-@model ConsultarUsuariosViewModel;
+@model VerUsuariosViewModel;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@
                 <div class="sub-menu">
                     <div class="uer-info">
                         <img src="~/img/user.jfif">
-                        <h3>@Model.loginDataModel.usuario</h3>
+                        <h3>@Model.obtenerUsuario()</h3>
                     </div>
                     <hr>
                     <a href="#" class="sub-menu-link">

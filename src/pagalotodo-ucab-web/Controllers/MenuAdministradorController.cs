@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json.Nodes;
 using UCABPagaloTodoWeb.Models;
+using UCABPagaloTodoWeb.Models.Requests;
 using UCABPagaloTodoWeb.Models.Responses;
 using UCABPagaloTodoWeb.Models.Views;
 
@@ -39,9 +40,7 @@ namespace UCABPagaloTodoWeb.Controllers
                 var consultarUsuariosResponse = JsonConvert.DeserializeObject<ConsultarUsuarioResponse>(responseContent);
                 if (consultarUsuariosResponse.data.Length > 0)
                 {
-                    ConsultarUsuariosViewModel consultarUsuariosViewModel=new ConsultarUsuariosViewModel();
-                    consultarUsuariosViewModel.consultarUsuarioResponse = consultarUsuariosResponse;
-                    consultarUsuariosViewModel.loginDataModel = loginDataModel;
+                    VerUsuariosViewModel consultarUsuariosViewModel=new VerUsuariosViewModel(loginDataModel, consultarUsuariosResponse);
 
                     return View(consultarUsuariosViewModel);
                 }
@@ -55,7 +54,7 @@ namespace UCABPagaloTodoWeb.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> RegistrarConsumidor(AgregarConsumidorModel requestBody)
+        public async Task<IActionResult> RegistrarConsumidor(AgregarConsumidorRequestModel requestBody)
         {
             //enviar preguntas al backend para mostrarlas
 

@@ -1,6 +1,6 @@
-﻿namespace UCABPagaloTodoWeb.Models
+﻿namespace UCABPagaloTodoWeb.Models.Requests
 {
-    public class AgregarConsumidorModel
+    public class AgregarConsumidorRequestModel
     {
         public string? usuario { get; set; }
         public string? password { get; set; }

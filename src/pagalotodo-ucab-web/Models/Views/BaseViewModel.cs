@@ -5,5 +5,7 @@ namespace UCABPagaloTodoWeb.Models.Views
     public interface BaseViewModel
     {
         string obtenerUsuario();
+
+        LoginDataModel obtenerLoginDataModel();
     }
 }

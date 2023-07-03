@@ -8,6 +8,7 @@ using UCABPagaloTodoWeb.Models;
 using System.Text;
 using UCABPagaloTodoWeb.Models.Responses;
 using UCABPagaloTodoWeb.Models.Views;
+using UCABPagaloTodoWeb.Models.Requests;
 
 namespace UCABPagaloTodoWeb.Controllers
 {
@@ -21,13 +22,13 @@ namespace UCABPagaloTodoWeb.Controllers
             _httpClient = new HttpClient();
         }
 
-        public IActionResult Login(LoginModel credenciales)
+        public IActionResult Login(LoginRequestModel credenciales)
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> ValidarCredenciales(LoginModel requestBody)
+        public async Task<IActionResult> ValidarCredenciales(LoginRequestModel requestBody)
         {
             var api = "https://localhost:44339/crudusuarios/loginusuario";
             var jsonBody=JsonConvert.SerializeObject(requestBody, new JsonSerializerSettings

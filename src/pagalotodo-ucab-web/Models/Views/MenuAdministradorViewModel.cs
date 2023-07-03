@@ -10,5 +10,6 @@ namespace UCABPagaloTodoWeb.Models.Views
         {
             return loginDataModel.usuario;
         }
+        public LoginDataModel obtenerLoginDataModel() => loginDataModel;
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using UCABPagaloTodoWeb.Models;
+using UCABPagaloTodoWeb.Models.Requests;
 using UCABPagaloTodoWeb.Models.Responses;
 
 namespace UCABPagaloTodoWeb.Controllers
@@ -26,7 +27,7 @@ namespace UCABPagaloTodoWeb.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> RegistrarConsumidor(AgregarConsumidorModel requestBody)
+        public async Task<IActionResult> RegistrarConsumidor(AgregarConsumidorRequestModel requestBody)
         {
             //enviar preguntas al backend para mostrarlas
 

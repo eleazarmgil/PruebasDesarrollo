@@ -1,4 +1,4 @@
-﻿namespace UCABPagaloTodoWeb.Models
+﻿namespace UCABPagaloTodoWeb.Models.Requests
 {
     public class ConsultarRespuestasDeSeguridadModel
     {

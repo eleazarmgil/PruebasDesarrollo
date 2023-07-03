@@ -1,6 +1,6 @@
-﻿namespace UCABPagaloTodoWeb.Models
+﻿namespace UCABPagaloTodoWeb.Models.Requests
 {
-    public class RecuperarClaveModel
+    public class RecuperarClaveRequestModel
     {
         public string? usuario { get; set; }
         public string? respuesta_de_seguridad { set; get; }

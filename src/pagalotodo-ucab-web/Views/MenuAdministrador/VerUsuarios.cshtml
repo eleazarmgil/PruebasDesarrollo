@@ -4,7 +4,7 @@
 
 @using UCABPagaloTodoWeb.Models.Views;
 @using UCABPagaloTodoWeb.Models.Responses;
-@model ConsultarUsuariosViewModel;
+@model VerUsuariosViewModel;
 
 <div id="usuarios-content" class="content">
     
@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (UsuarioDataModel usuario in Model.consultarUsuarioResponse.data)
+            @foreach (UsuarioDataModel usuario in Model.obtenerUsuarios())
             {
                 
             
