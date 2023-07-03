@@ -29,7 +29,7 @@ namespace UCABPagaloTodoWeb.Controllers
             return View(menuAdministradorViewModel);
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> VerUsuarios(LoginDataModel loginDataModel)
         {
             var api = "https://localhost:44339/crudusuarios/consultarusuarios";

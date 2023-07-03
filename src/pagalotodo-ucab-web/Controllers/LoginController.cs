@@ -43,12 +43,49 @@ namespace UCABPagaloTodoWeb.Controllers
                 var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(responseContent);
                 if (loginResponse.data[0].id!=Guid.Empty)
                 {
-                    return RedirectToAction("MenuAdministrador", "MenuAdministrador", loginResponse.data[0]);
+                    return RedirectToAction("loginAdministrador", loginResponse.data[0]);
+                    
                 }
                 return RedirectToAction("Privacy", "Home");
                 
             }
             return RedirectToAction("Privacy", "Home");
+        }
+
+        public IActionResult loginAdministrador(LoginDataModel loginDataModel)
+        {
+            if (loginDataModel.discriminator == "Administrador")
+            {
+                return RedirectToAction("MenuAdministrador", "MenuAdministrador", loginDataModel);
+            }
+            else
+            {
+                return RedirectToAction("loginConsumidor", loginDataModel);
+            }
+        }
+
+        public IActionResult loginConsumidor(LoginDataModel loginDataModel)
+        {
+            if (loginDataModel.discriminator == "Consumidor")
+            {
+                return RedirectToAction("MenuAdministrador", "MenuAdministrador", loginDataModel);
+            }
+            else
+            {
+                return RedirectToAction("loginPrestador", loginDataModel);
+            }
+        }
+
+        public IActionResult loginPrestador(LoginDataModel loginDataModel)
+        {
+            if (loginDataModel.discriminator == "Prestador")
+            {
+                return RedirectToAction("MenuAdministrador", "MenuAdministrador", loginDataModel);
+            }
+            else
+            {
+                return RedirectToAction("loginPrestador", loginDataModel);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

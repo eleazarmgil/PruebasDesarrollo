@@ -20,7 +20,14 @@
             </div>
             <ul>
                 <li id="inicio-link">
-                    <a href="@Url.Action("VerUsuarios", "MenuAdministrador", Model.obtenerLoginDataModel())">Usuarios</a>
+                    @using (Html.BeginForm("VerUsuarios", "MenuAdministrador", FormMethod.Post))
+                    {
+                        
+                        <input name="id" value="@Model.obtenerLoginDataModel().id" hidden/>
+                        <input name="discriminator" value="@Model.obtenerLoginDataModel().discriminator" hidden/>
+                        <input name="usuario" value="@Model.obtenerLoginDataModel().usuario" hidden/>
+                        <button id="boton-VerUsuarios" type="submit">Ver Usuarios</button>
+                    }
                 </li>
                 <li id="usuarios-link">
                     <a asp-area="" asp-controller="Login" asp-action="Login">Iniciar Sesión</a>
