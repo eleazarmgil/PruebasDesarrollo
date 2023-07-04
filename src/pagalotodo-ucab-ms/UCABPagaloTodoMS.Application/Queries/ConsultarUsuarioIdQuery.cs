@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
+using UCABPagaloTodoMS.Application.Requests;
+using UCABPagaloTodoMS.Application.Responses;
 
-namespace UCABPagaloTodoMS.Application.Queries
+namespace UCABPagaloTodoMS.Application.Queries;
+
+public class ConsultarUsuarioIdQuery : IRequest<List<ConsultarUsuarioIdResponse>>
 {
-    internal class ConsultarUsuarioIdQuery
+    public ConsultarUsuarioIdRequest _request { get; set; }
+    public ConsultarUsuarioIdQuery(ConsultarUsuarioIdRequest request)
     {
+        _request = request;
     }
 }
