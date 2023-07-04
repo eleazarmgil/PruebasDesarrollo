@@ -275,6 +275,47 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     }
 
     /// <summary>
+    ///     Endpoint para obtener información de un usuario por su id.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite obtener información de un usuario registrado en el sistema.
+    ///     ## Description
+    ///     ### Get campo Id
+    ///     ## Url
+    ///     GET /crudusuarios/consultarUsuarioId
+    /// </remarks>
+    /// <param name="request">El objeto de solicitud que contiene el identificador del usuario a consultar.</param>
+    /// <response code="200">
+    ///     Accepted:
+    ///     - Operation successful.
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta.
+    /// </response>
+    /// <returns> Un objeto que contiene la información del usuario consultado.</returns>
+
+    [HttpGet("ConsultarUsuarioId")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<ConsultarUsuarioIdResponse>>> ConsultarUsuarioId([FromBody] ConsultarUsuarioIdRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta el id del usuario");
+        try
+        {
+            var query = new ConsultarUsuarioIdQuery(request);
+            var response = await _mediator.Send(query);
+            return Response200(NewResponseOperation(), response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error al intentar registrar un valor de prueba. Exception: " + ex);
+            return Response400(NewResponseOperation(), ex.Message,
+                "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
+        }
+    }
+
+    /// <summary>
     /// Endpoint para obtener las preguntas de seguridad de un usuario registrado en el sistema.
     /// </summary>
     /// <remarks>
