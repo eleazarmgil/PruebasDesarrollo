@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UCABPagaloTodoMS.Application.Requests
+namespace UCABPagaloTodoMS.Application.Requests;
+
+public class ConsultarUsuarioIdRequest
 {
-    internal class ConsultarUsuarioIdRequest
-    {
-    }
+    public Guid id_usuario { set; get; }
 }
