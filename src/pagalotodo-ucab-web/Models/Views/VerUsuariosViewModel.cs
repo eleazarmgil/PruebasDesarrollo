@@ -6,7 +6,7 @@ namespace UCABPagaloTodoWeb.Models.Views
     public class VerUsuariosViewModel : IBaseViewModel
     {
         private LoginDataModel? loginDataModel { get; set; }
-        private ConsultarUsuarioResponse? consultarUsuarioResponse { get; set; }
+        private ConsultarUsuariosResponse? consultarUsuarioResponse { get; set; }
 
         public string obtenerUsuario() => loginDataModel.usuario;
 
@@ -14,7 +14,7 @@ namespace UCABPagaloTodoWeb.Models.Views
 
         public UsuarioDataModel[] obtenerUsuarios() => consultarUsuarioResponse.data;
 
-        public VerUsuariosViewModel(LoginDataModel _loginDataModel, ConsultarUsuarioResponse _consultarUsuarioResponse) {
+        public VerUsuariosViewModel(LoginDataModel _loginDataModel, ConsultarUsuariosResponse _consultarUsuarioResponse) {
             loginDataModel= _loginDataModel;
             consultarUsuarioResponse= _consultarUsuarioResponse;
         }

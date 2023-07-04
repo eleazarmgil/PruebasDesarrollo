@@ -1,6 +1,6 @@
 ﻿namespace UCABPagaloTodoWeb.Models.Responses
 {
-    public class ConsultarUsuarioResponse
+    public class ConsultarUsuariosResponse
     {
         public UsuarioDataModel[]? data { get; set; }
         public string? operationId { get; set; }

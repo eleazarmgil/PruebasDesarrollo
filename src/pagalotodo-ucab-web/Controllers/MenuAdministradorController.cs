@@ -36,7 +36,7 @@ namespace UCABPagaloTodoWeb.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
-                var consultarUsuariosResponse = JsonConvert.DeserializeObject<ConsultarUsuarioResponse>(responseContent);
+                var consultarUsuariosResponse = JsonConvert.DeserializeObject<ConsultarUsuariosResponse>(responseContent);
                 if (consultarUsuariosResponse.data.Length > 0)
                 {
                     VerUsuariosViewModel consultarUsuariosViewModel=new VerUsuariosViewModel(loginDataModel, consultarUsuariosResponse);
@@ -50,26 +50,40 @@ namespace UCABPagaloTodoWeb.Controllers
             
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AgregarPrestador(LoginDataModel loginDataModel)
-        {
-            
-            return View(actualizarConsumidorViewModel);
-        }
+
 
         [HttpGet]
-        public async Task<IActionResult> ActualizarConsumidor(string usuarioLogin, string discriminatorLogin, Guid idLogin, Guid id)
+        public async Task<IActionResult> ConsultarUsuario(string usuarioLogin, string discriminatorLogin, Guid idLogin, Guid id)
         {
-            LoginDataModel loginDataModel = new LoginDataModel(idLogin, discriminatorLogin, usuarioLogin);
-            if (discriminatorLogin=="Consumidor"){
-                ActualizarConsumidorViewModel actualizarConsumidorViewModel = new ActualizarConsumidorViewModel(loginDataModel);
-                return View(actualizarConsumidorViewModel);
-            }
-            else
+            LoginDataModel loginDataModel = new LoginDataModel(idLogin, discriminatorLogin, usuarioLogin);  
+            var api = "https://localhost:44339/crudusuarios/consultarusuarioid?id_usuario="+id;
+            var response = await _httpClient.GetAsync(api);
+                
+            if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("ConsultarPrestador");
-            }
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var consultarUsuarioIdResponse = JsonConvert.DeserializeObject<ConsultarUsuarioIdResponse>(responseContent);
+                if (consultarUsuarioIdResponse.data.Length > 0)
+                {
+                        ActualizarConsumidorViewModel actualizarConsumidorViewModel = new ActualizarConsumidorViewModel(loginDataModel, consultarUsuarioIdResponse.data[0]);
+                    if (consultarUsuarioIdResponse.data[0].Discriminator == "Consumidor")
+                    {
+                        return RedirectToAction("ActualizarConsumidor",actualizarConsumidorViewModel);
+                    }
+                    return RedirectToAction("Privacy", "Home");
+                }
+                    return RedirectToAction("Privacy", "Home");
+
+                }
+            return RedirectToAction("Privacy", "Home");
         }
+
+        public IActionResult ActualizarConsumidor(ActualizarConsumidorViewModel actualizarConsumidorViewModel)
+        {
+            return View(actualizarConsumidorViewModel);
+        }
+        
+
 
 
         [HttpPost]

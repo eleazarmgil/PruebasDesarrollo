@@ -298,7 +298,7 @@ public class CRUDUsuariosController : BaseController<CRUDUsuariosController>
     [HttpGet("ConsultarUsuarioId")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<List<ConsultarUsuarioIdResponse>>> ConsultarUsuarioId([FromBody] ConsultarUsuarioIdRequest request)
+    public async Task<ActionResult<List<ConsultarUsuarioIdResponse>>> ConsultarUsuarioId([FromQuery] ConsultarUsuarioIdRequest request)
     {
         _logger.LogInformation("Entrando al método que consulta el id del usuario");
         try
