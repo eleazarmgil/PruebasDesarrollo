@@ -75,6 +75,7 @@ public class ConsultarUsuarioIdQueryHandler : IRequestHandler<ConsultarUsuarioId
                     Discriminator = EF.Property<string>(c, "Discriminator"),
                     estado = c.estado,
                     ci = c.ci,
+                    rif = null,
                 })
                 .Union(_dbContext.Usuario
                     .OfType<PrestadorEntity>()
@@ -88,6 +89,7 @@ public class ConsultarUsuarioIdQueryHandler : IRequestHandler<ConsultarUsuarioId
                         Discriminator = EF.Property<string>(c, "Discriminator"),
                         estado = c.estado,
                         rif = c.rif,
+                        ci = null,
                     })
                 );
 
