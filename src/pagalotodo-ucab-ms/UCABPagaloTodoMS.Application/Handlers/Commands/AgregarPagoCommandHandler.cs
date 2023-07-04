@@ -107,17 +107,6 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
                 detalleDePagoEntities.Add(detalleDepago);
             }
 
-            for (int i = 0; i < detallesOpcionPago.Count; i++)
-            {
-                var detalleDepago = new DetalleDePagoEntity
-                {
-                    nombre = detallesOpcionPago[i].nombre ?? "",
-                    detalle = request._request.detalledepago[i].detalle,
-                    pagoid = entity.Id,
-                };
-
-                detalleDePagoEntities.Add(detalleDepago);
-            }
 
             _dbContext.DetalleDePago.AddRange(detalleDePagoEntities);
 
