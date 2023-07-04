@@ -3,7 +3,7 @@ using UCABPagaloTodoWeb.Models.Responses;
 
 namespace UCABPagaloTodoWeb.Models.Views
 {
-    public class VerUsuariosViewModel : BaseViewModel
+    public class VerUsuariosViewModel : IBaseViewModel
     {
         private LoginDataModel? loginDataModel { get; set; }
         private ConsultarUsuarioResponse? consultarUsuarioResponse { get; set; }

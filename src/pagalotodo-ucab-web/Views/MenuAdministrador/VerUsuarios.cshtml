@@ -7,35 +7,34 @@
 @model VerUsuariosViewModel;
 
 <div id="usuarios-content" class="content">
-    
     <h2>Usuarios</h2>
-    <p>Este es el contenido de la sección "Usuarios".</p>
-    <table>
+
+    <!-- Campo de búsqueda por nombre -->
+    <div>
+        <label for="buscar-nombre">Buscar por nombre:</label>
+        <input type="text" id="buscar-nombre">
+        <button type="button" id="buscar-boton" onclick="buscarPorNombre()">Buscar</button>
+    </div>
+
+    <!-- Tabla de usuarios -->
+    <table id="tabla-usuarios">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Usuario</th>
-                <th>Correo electrónico</th>
                 <th>Nombre</th>
-                <th>Estado</th>
-                <th>Tipo</th>
-
+                <th>Correo electrónico</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (UsuarioDataModel usuario in Model.obtenerUsuarios())
-            {
-                
             
-            <tr>
-                <td>@usuario.id_usuario</td>
-                <td>@usuario.usuario</td>
-                <td>@usuario.correo</td>
-                <td>@usuario.nombre</td>
-                <td>@usuario.estado</td>
-                <td>@usuario.Discriminator</td>
-            </tr>
-            }
+                @foreach(UsuarioDataModel usuario in Model.obtenerUsuarios())
+                {             
+                    <tr>
+                    <td><a href="@Url.Action("ActualizarConsumidor","MenuAdministrador", new{idLogin=Model.obtenerLoginDataModel().id, usuarioLogin=Model.obtenerUsuario(), discriminatorLogin=Model.obtenerLoginDataModel().discriminator, id=@usuario.id_usuario})">@usuario.id_usuario</a></td>
+                    <td>@usuario.nombre</td>
+                    <td>@usuario.correo</td>
+                    </tr>
+                }
         </tbody>
     </table>
 </div>

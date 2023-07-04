@@ -1,0 +1,138 @@
+﻿@{
+    Layout = "~/Views/Shared/_MenuAdministradorLayout.cshtml";
+}
+
+@using UCABPagaloTodoWeb.Models.Views;
+@using UCABPagaloTodoWeb.Models.Responses;
+@model ActualizarConsumidorViewModel;
+
+<section class="py-5 my-5">
+	<div class="container">
+		<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+			<div class="profile-tab-nav border-right">
+				<div class="p-4">
+					<div class="img-circle text-center mb-3">
+						<img src="~/img/user.jfif" alt="Image" class="shadow">
+					</div>
+					<br />
+					<br />
+					<h4 class="text-center">NOMBRE USUARIO</h4> <!-- Aqui va el nombre de usuario del request -->
+				</div>
+				<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+				</div>
+			</div>
+
+
+
+			<!-- Esta es la parte de cambiar cuenta -->
+			<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+				<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+					<h3 class="mb-4">Actualizar Cuenta</h3>
+					<div class="row">
+
+						<!-- Usuario -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Usuario</label>
+								<input type="text" class="form-control" value="UsuarioRequest">
+							</div>
+						</div>
+
+						<!-- Contraseña -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Contraseña</label>
+								<input type="text" class="form-control" value="ContraseñaRequest">
+							</div>
+						</div>
+
+						<!-- Correo -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Correo</label>
+								<input type="text" class="form-control" value="CorreoRequest@gmail.com">
+							</div>
+						</div>
+
+						<!-- Nombre -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Nombre</label>
+								<input type="text" class="form-control" value="NombreRequest">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Apellido</label>
+								<input type="text" class="form-control" value="ApellidoRequest">
+							</div>
+						</div>
+
+						<!-- Cedula -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Cedula</label>
+								<input type="text" class="form-control" value="CedulaRequest">
+							</div>
+						</div>
+
+						<!-- Preguntas de seguridad y respuestas de seguridad 1 -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Pregunta de seguridad 1</label>
+								<input type="text" class="form-control" value="PreguntaSeguridadRequest1">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Respuesta de seguridad 1</label>
+								<input type="text" class="form-control" value="RespuestaSeguridadRequest1">
+							</div>
+						</div>
+
+						<!-- Preguntas de seguridad y respuestas de seguridad 2 -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Pregunta de seguridad 2</label>
+								<input type="text" class="form-control" value="PreguntaSeguridadRequest2">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Respuesta de seguridad 2</label>
+								<input type="text" class="form-control" value="RespuestaSeguridadRequest2">
+							</div>
+						</div>
+
+						<!-- Estado -->
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Estado</label>
+								<select>
+									<option value="Activo">Activo</option>
+									<option value="Inactivo">Inactivo</option>
+								</select>
+							</div>
+						</div>
+
+
+					</div>
+					<div class="botones">
+						<button class="btn btn-primary">Actualizar</button>
+						
+						@using (Html.BeginForm("VerUsuarios", "MenuAdministrador", FormMethod.Post)){
+							<div hidden>
+							@Html.HiddenFor(id=>Model.obtenerLoginDataModel().id);
+							@Html.HiddenFor(usuario=>Model.obtenerLoginDataModel().usuario);
+							@Html.HiddenFor(discriminator=>Model.obtenerLoginDataModel().discriminator);
+							</div>
+							<button class="btn btn-light">Cancelar</button>
+						}
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

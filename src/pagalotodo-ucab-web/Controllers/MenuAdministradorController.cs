@@ -24,8 +24,7 @@ namespace UCABPagaloTodoWeb.Controllers
 
         public IActionResult MenuAdministrador(LoginDataModel loginDataModel)
         {
-            MenuAdministradorViewModel menuAdministradorViewModel = new MenuAdministradorViewModel();
-            menuAdministradorViewModel.loginDataModel = loginDataModel;
+            MenuAdministradorViewModel menuAdministradorViewModel = new MenuAdministradorViewModel(loginDataModel);
             return View(menuAdministradorViewModel);
         }
 
@@ -51,6 +50,26 @@ namespace UCABPagaloTodoWeb.Controllers
             
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AgregarPrestador(LoginDataModel loginDataModel)
+        {
+            
+            return View(actualizarConsumidorViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ActualizarConsumidor(string usuarioLogin, string discriminatorLogin, Guid idLogin, Guid id)
+        {
+            LoginDataModel loginDataModel = new LoginDataModel(idLogin, discriminatorLogin, usuarioLogin);
+            if (discriminatorLogin=="Consumidor"){
+                ActualizarConsumidorViewModel actualizarConsumidorViewModel = new ActualizarConsumidorViewModel(loginDataModel);
+                return View(actualizarConsumidorViewModel);
+            }
+            else
+            {
+                return RedirectToAction("ConsultarPrestador");
+            }
+        }
 
 
         [HttpPost]

@@ -2,10 +2,14 @@
 
 namespace UCABPagaloTodoWeb.Models.Views
 {
-    public class MenuAdministradorViewModel : BaseViewModel
+    public class MenuAdministradorViewModel : IBaseViewModel
     {
-        public LoginDataModel? loginDataModel { get; set; }
+        private LoginDataModel? loginDataModel { get; set; }
 
+        public MenuAdministradorViewModel(LoginDataModel _loginDataModel) 
+        {
+            loginDataModel = _loginDataModel;
+        }
         public string obtenerUsuario()
         {
             return loginDataModel.usuario;

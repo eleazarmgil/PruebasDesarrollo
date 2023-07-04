@@ -1,5 +1,5 @@
 ﻿@using UCABPagaloTodoWeb.Models.Views;
-@model BaseViewModel;
+@model IBaseViewModel;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,14 @@
                     }
                 </li>
                 <li id="usuarios-link">
-                    <a asp-area="" asp-controller="Login" asp-action="Login">Iniciar Sesión</a>
+                    @using (Html.BeginForm("AgregarPrestador", "MenuAdministrador", FormMethod.Post))
+                    {
+
+                        <input name="id" value="@Model.obtenerLoginDataModel().id" hidden />
+                        <input name="discriminator" value="@Model.obtenerLoginDataModel().discriminator" hidden />
+                        <input name="usuario" value="@Model.obtenerLoginDataModel().usuario" hidden />
+                        <button id="boton-VerUsuarios" type="submit">AgregarPrestador</button>
+                    }
                 </li>
                 <li id="acerca-de-link">
                     <a asp-area="" asp-controller="Login" asp-action="Login">Login</a>
@@ -49,20 +56,9 @@
                     <hr>
                     <a href="#" class="sub-menu-link">
                         <img src="~/img/profile.png">
-                        <p>Editar Perfil</p>
                         <span></span>
                     </a>
-                    <a href="#" class="sub-menu-link">
-                        <img src="~/img/setting.png">
-                        <p>Configuración & Privacidad</p>
-                        <span></span>
-                    </a>
-                    <a href="#" class="sub-menu-link">
-                        <img src="~/img/help.png">
-                        <p>Ayuda & Soporte</p>
-                        <span></span>
-                    </a>
-                    <a href="#" class="sub-menu-link">
+                    <a href="" class="sub-menu-link">
                         <img src="~/img/logout.png">
                         <p>Cerrar sesión</p>
                         <span></span>

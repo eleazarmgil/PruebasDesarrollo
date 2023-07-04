@@ -2,7 +2,7 @@
 
 namespace UCABPagaloTodoWeb.Models.Views
 {
-    public interface BaseViewModel
+    public interface IBaseViewModel
     {
         string obtenerUsuario();
 
