@@ -56,7 +56,7 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
 
             var opcionDePago = await _dbContext.OpcionDePago
              .Where(c => c.Id == request._request.OpcionDePagoIdEntity)
-             .Select(c => new { c.estatus })
+             .Select(c => new { c.estatus, c.ServicioEntityId })
              .FirstOrDefaultAsync();
 
             if (opcionDePago == null)
@@ -73,7 +73,7 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
 
 
             var entity = AgregarPagoMapper.MapRequestEntity(request._request);
-
+            entity.ServicioEntityId = opcionDePago.ServicioEntityId;
             _dbContext.Pago.Add(entity);
             
 

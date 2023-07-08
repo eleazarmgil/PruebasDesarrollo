@@ -19,4 +19,6 @@ public class PagoEntity : BaseEntity
 
     //Relacion n a 1 con Consumidor
     public ConsumidorEntity Consumidor { get; set; } = null!;
+
+    public Guid? ServicioEntityId { get; set; }
 }
