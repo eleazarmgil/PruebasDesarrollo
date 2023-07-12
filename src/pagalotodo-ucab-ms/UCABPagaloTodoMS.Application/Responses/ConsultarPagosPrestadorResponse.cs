@@ -9,6 +9,7 @@ namespace UCABPagaloTodoMS.Application.Responses;
 public class ConsultarPagosPrestadorResponse
 {
     public Guid id_pago { set; get; }
+    public string? nombre_consumidor { set; get; }
     public string? nombre_servicio { get; set; }
     public Double? monto { get; set; }
     public DateTime? fecha { get; set; }

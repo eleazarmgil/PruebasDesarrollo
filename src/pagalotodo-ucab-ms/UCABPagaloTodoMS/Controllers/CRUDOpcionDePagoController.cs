@@ -112,6 +112,11 @@ public class CRUDOpcionPagoController : BaseController<CRUDOpcionPagoController>
                 "Ocurrio un error al intentar registrar un valor de prueba", ex.InnerException?.ToString());
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             CRUDS DETALLE DE OPCION DE PAGO
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     /// <summary>
     /// Endpoint para consultar el detalle de una opcion de pago.
     /// </summary>
@@ -203,4 +208,50 @@ public class CRUDOpcionPagoController : BaseController<CRUDOpcionPagoController>
         }
     }
 
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //                                             CRUDS CONSULTAR OPCIONES DE PAGO DE SERVICO
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /// <summary>
+    /// Endpoint para consultar todas las opciones de pago que tiene un servicio.
+    /// </summary>
+    /// <remarks>
+    /// Este endpoint permite consultar las opciones de pago que tiene un servicio.
+    ///     ## Description
+    ///     ### GET Lista de opciones de pago.
+    ///     ## Url
+    ///     PUT /crudsopciondepago/ConsultarOpPagoServicio
+    /// </remarks>
+    /// <param name="request">El objeto de solicitud que contiene el id del servicio.</param>
+    /// <response code="200">
+    ///     OK:
+    ///     - La operación se completó con éxito y se devuelve el ID de la opcion de pago .
+    /// </response>
+    /// <response code="400">
+    ///     Bad Request:
+    ///     - La solicitud del cliente es incorrecta y no se pudo actualizar la opcion de pago.
+    /// </response>
+    /// <returns>El ID de la opcion de pago y el nombre en una lista.</returns>
+    /// 
+
+    [HttpGet("ConsultarOpPagoServicio")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<List<ConsultarOpPagoServicioResponse>>> ConsultarOpPagoServicio([FromBody] ConsultarOpPagoServicioRequest request)
+    {
+        _logger.LogInformation("Entrando al método que consulta los LoginUsuario");
+        try
+        {
+            var query = new ConsultarOpPagoServicioQuery(request);
+            var response = await _mediator.Send(query);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("Ocurrio un error en la consulta de los usuario de prueba. Exception: " + ex);
+            throw;
+        }
+    }
 }

@@ -69,7 +69,19 @@ public class AgregarPagoCommandHandler : IRequestHandler<AgregarPagoCommand, Gui
                 throw new InvalidOperationException("Registro fallido: La opcion de pago indicada no está activa");
             }
 
+            var servicio = await _dbContext.Servicio
+            .Where(s => s.Id == opcionDePago.ServicioEntityId)
+            .FirstOrDefaultAsync();
 
+            if (servicio == null)
+            {
+                throw new InvalidOperationException("Registro fallido: No existe el servicio correspondiente a la opción de pago indicada");
+            }
+
+            if (request._request.monto < servicio.monto)
+            {
+                throw new InvalidOperationException($"Registro fallido: El monto mínimo de pago es {servicio.monto}.");
+            }
 
 
             var entity = AgregarPagoMapper.MapRequestEntity(request._request);

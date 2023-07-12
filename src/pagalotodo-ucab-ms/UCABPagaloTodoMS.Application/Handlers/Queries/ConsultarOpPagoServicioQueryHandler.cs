@@ -8,11 +8,11 @@ using UCABPagaloTodoMS.Core.Entities;
 
 namespace UCABPagaloTodoMS.Application.Handlers.Queries;
 
-public class ConsultarPagosConsumidorQueryHandler : IRequestHandler<ConsultarPagosConsumidorQuery, List<ConsultarPagosConsumidorResponse>>
+public class ConsultarOpPagoServicioQueryHandler : IRequestHandler<ConsultarOpPagoServicioQuery, List<ConsultarOpPagoServicioResponse>>
 {
     private readonly IUCABPagaloTodoDbContext _dbContext;
-    private readonly ILogger<ConsultarPagosConsumidorQueryHandler> _logger;
-    public ConsultarPagosConsumidorQueryHandler(IUCABPagaloTodoDbContext dbContext, ILogger<ConsultarPagosConsumidorQueryHandler> logger)
+    private readonly ILogger<ConsultarOpPagoServicioQueryHandler> _logger;
+    public ConsultarOpPagoServicioQueryHandler(IUCABPagaloTodoDbContext dbContext, ILogger<ConsultarOpPagoServicioQueryHandler> logger)
     {
         _dbContext = dbContext;
         _logger = logger;
@@ -31,13 +31,13 @@ public class ConsultarPagosConsumidorQueryHandler : IRequestHandler<ConsultarPag
     /// </remarks>
     /// 
 
-    public Task<List<ConsultarPagosConsumidorResponse>> Handle(ConsultarPagosConsumidorQuery request, CancellationToken cancellationToken)
+    public Task<List<ConsultarOpPagoServicioResponse>> Handle(ConsultarOpPagoServicioQuery request, CancellationToken cancellationToken)
     {
         try
         {
             if (request is null) //Pregunto si el request es nulo
             {
-                _logger.LogWarning("ConsultarConsumidorIdQueryHandler.Handle: Request nulo.");
+                _logger.LogWarning(" ConsultarOpPagoServicioQueryHandler.Handle: Request nulo.");
                 throw new ArgumentNullException(nameof(request));
             }
             else
@@ -47,7 +47,7 @@ public class ConsultarPagosConsumidorQueryHandler : IRequestHandler<ConsultarPag
         }
         catch (Exception)
         {
-            _logger.LogWarning("ConsultarConsumidorQueryHandler.Handle: ArgumentNullException");
+            _logger.LogWarning(" ConsultarOpPagoServicioQueryHandler.Handle: ArgumentNullException");
             throw;
         }
     }
@@ -60,39 +60,30 @@ public class ConsultarPagosConsumidorQueryHandler : IRequestHandler<ConsultarPag
     /// Este método busca todos los pagos que realizo un consumidor en la base de datos y devuelve los campos "id_pago", "nombre_consumidor", "nombre_servicio", "monto", "fecha"  como una lista de objetos ConsultarPagosPrestadorResponse en una tarea asincrónica.
     /// </remarks>
     /// 
-    private async Task<List<ConsultarPagosConsumidorResponse>> HandleAsync(ConsultarPagosConsumidorQuery request)
+    private async Task<List<ConsultarOpPagoServicioResponse>> HandleAsync(ConsultarOpPagoServicioQuery request)
     {
         try
         {
-            _logger.LogInformation("ConsultarPagosConsumidorQueryHandler.HandleAsync");
+            _logger.LogInformation("ConsultarOpPagoServicioQueryHandler.HandleAsync");
 
-            // Obtener el objeto ConsumidorEntity correspondiente al ID del consumidor que se está consultando
-            var consumidor = await _dbContext.Usuario.OfType<ConsumidorEntity>()
-                .Include(c => c.Pago)
-                .FirstOrDefaultAsync(c => c.Id == request._request.id_consumidor);
+            // Obtener todas las opciones de pago que tengan el mismo ServicioEntityId que el que se manda por request
+            var opcionesDePago = await _dbContext.OpcionDePago
+                .Where(op => op.ServicioEntityId == request._request.id_servicio && op.estatus != "Inactiva")
+                .ToListAsync();
 
-            // Si no se encuentra el consumidor, devolver una lista vacía
-            if (consumidor == null)
+            // Mapear cada objeto OpcionDePagoEntity a un objeto ConsultarOpPagoServicioResponse
+            var result = opcionesDePago.Select(opcionDePago => new ConsultarOpPagoServicioResponse
             {
-                return new List<ConsultarPagosConsumidorResponse>();
-            }
+                id_opcion_pago = opcionDePago.Id,
+                nombre_opcion_pago = opcionDePago.nombre,
 
-            // Mapear cada objeto PagoEntity a un objeto ConsultarPagosConsumidorResponse
-            var result = consumidor.Pago.SelectMany(pago => _dbContext.Servicio.Where(servicio => servicio.Id == pago.ServicioEntityId)
-                .Select(servicio => new ConsultarPagosConsumidorResponse
-                {
-                    id_pago = pago.Id,
-                    fecha = pago.fecha,
-                    monto = pago.monto,
-                    nombre_servicio = servicio.nombre
-                }))
-                .ToList();
+            }).ToList();
 
             return result;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error ConsultarPagosConsumidorQueryHandler.HandleAsync. {Mensaje}", ex.Message);
+            _logger.LogError(ex, "Error ConsultarOpPagoServicioQueryHandler.HandleAsync. {Mensaje}", ex.Message);
             throw;
         }
     }
